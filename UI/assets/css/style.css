@@ -1,0 +1,107 @@
+    @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600,600i");
+    @import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
+    @import url('./modules/button.css');
+    @import url('./modules/modal.css');
+    @import url('./modules/header.css');
+    main, header, footer, nav{
+        display: block
+    }
+    main{
+        position: relative;
+        
+    }
+    
+    
+    body{
+        margin:0px 0px;
+        display: block;
+        font-weight: 200;
+        font-family: 'Gudea', sans-serif;
+        
+    }
+    
+    .container{
+        display: block;
+        position: relative;
+        padding: 0px 10px 0px 10px;
+        }
+    
+    .row{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-flow: row wrap;
+      justify-content: space-around;
+     }
+    
+    .col{
+        width:auto;
+      height: 150px;
+      margin-top: 10px;
+      
+    
+      }
+    .col2{
+      flex: 
+    }
+    .col3{
+      flex: 0, 0,25%;
+      width: 25%
+    
+    }
+    .col4{
+      flex:0,0, 30%;
+      width: 30%;
+    }
+    .col5{
+      flex:0,0, 41.6%;
+      width: 41.6%;
+    }
+    .col8{
+      flex:0,0, 70%;
+      width: 70%;
+    }
+    .col7{
+      flex: 0,0,58.3%;
+      width: 58.3%;
+    }
+    .col9{
+      flex:0,0, 75%;
+      width:75%;
+    }
+    .col12{
+      flex:0,0,100%;
+      width: 100%;
+    }
+    .col-order1{
+    order: 1;
+    }
+    .col-order2{
+    order:2;}
+    .col-order3{
+    order:3;
+    }
+    @media(max-width:768px){
+      
+      .col-s{
+        -webkit-box-flex:0;
+        -ms-flex:0 0 auto;
+        flex:0 0 auto;
+        width:100%;
+    
+      }
+      .col-sorder1{
+        order: 1
+      }
+      .col-sorder2{
+        order:2;
+      }
+      .col-sorder3{
+        order: 3;
+      }
+    }
