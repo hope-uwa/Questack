@@ -22,8 +22,8 @@
             </div>
             <div class="">
                 <button id="loginModalBtn">Login</button>
-                <a href="">Login</a>
-                <a href="">SignUp</a>
+                <button id="signupModalBtn"> Sign Up</button>
+                
             </div>
 
         </div>
@@ -77,14 +77,57 @@
 
               </div>
               
-              <div class="modal-footer  w-100 pt2 pb2">
-                    
-                    <button class="btn btn-shadow btn_login-signup w60">Sign Up</button>
+              <div class="modal-footer  w-100 pt1 pb2">
+                    <p>---------New Here?--------</p>
+                    <button class="btn btn-shadow btn_login-signup w60" id="signupModalBtnX">SIGN UP</button>
 
               </div>
             </div>
 
-          </div>
+        </div>
+
+        <!--Sign Up-->
+
+        <div id="signUpModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-title w100">
+                        <span class="pl1 ">Join Our Community!</span>
+                        <span id="s-close" class="close">&times;</span>
+                    </div>
+                  
+                  <div class="modal__signup-form row">
+    
+                    
+                      <form class=" mt2"  >
+                        
+                          
+                        <div class="modal-form align-center">
+                          
+                          <input type="text" required placeholder="Enter Your Nickname" class="" name="username">
+
+                          <input type="email" required placeholder="Enter Email Address" class="" name="email" >
+    
+                          <input type="password" required placeholder="Enter Password"  class="" name="psw" >
+                              
+                          
+                          
+                        </div>
+    
+                        
+                      </form>
+    
+                  </div>
+                  
+                  <div class="modal-footer  w-100 pt2 pb2">
+                      
+                        <button class="btn btn-shadow btn_login-signup w60">SIGN UP</button>
+    
+                  </div>
+                </div>
+    
+            </div>
     </main>
     <footer>
 
