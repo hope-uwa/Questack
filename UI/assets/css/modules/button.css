@@ -77,3 +77,13 @@
 .btn-signup{
 
 }
+.btn-header{
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    box-shadow: none;
+    outline: none;
+}
+.btn-header:hover{
+color: #37A000;
+}

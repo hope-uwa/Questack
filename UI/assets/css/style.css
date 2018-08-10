@@ -1,8 +1,9 @@
-    @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600,600i");
-    @import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
+    @import url("");
+    @import url("");
     @import url('./modules/button.css');
     @import url('./modules/modal.css');
     @import url('./modules/header.css');
+    @import url('./modules/question.css');
     main, header, footer, nav{
         display: block
     }
@@ -13,10 +14,11 @@
     
     
     body{
+
         margin:0px 0px;
         display: block;
         font-weight: 200;
-        font-family: 'Gudea', sans-serif;
+        font-family: '';
         
     }
     
@@ -194,4 +196,21 @@
       text-align: center;
       align-content: center;
     
+    }
+    .align-left{
+      text-align: left;
+      align-content: left;
+      justify-content: flex-start
+    }
+    .link-nostyle{
+      text-decoration: none;
+    }
+    .green-text{
+      color:#449d48;
+    }
+    .black-text{
+      color:#4d545d;
+    }
+    .blckgrey-text{
+      color:#4d545d;
     }

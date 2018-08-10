@@ -8,8 +8,7 @@
     width: 100%; 
     height: 100%; 
     overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
+    background-color: #000000b8; 
 }
 
 
@@ -17,9 +16,14 @@
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
+    /* padding: 20px; */
     border: 1px solid #888;
-    width: 50%;
+    width: 35%;
+}
+@media(max-width:768px){
+    .modal-content{
+        width:80%
+    }
 }
 .modal__signup-form{
   
@@ -33,10 +37,18 @@
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    text-align: center;
+
+    -webkit-appearance: none;
+    background-color: hsla(0,0%,7%,.2);
+    border: 0;
+    border-radius: 290486px;
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    vertical-align: top;
+    width: 24px;
 }
 
 .close:hover,
@@ -44,4 +56,51 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+.modal-head{
+    position: relative;
+    background: #4CAF50;
+    color: white;
+    font-size: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.modal-title{
+    position: relative;
+    display: inline-block;
+    width: 80%;
+}
+.modal-form input[type="email" i],input[type="text" i],input[type="password" i] {
+    padding: 1px 10px;
+    margin-bottom: 15px;
+    height: 30px;
+    border: 1px solid #d7d7d7;
+    font-size: 16px;
+    max-width: 100%;
+   width: 70%;
+    
+    
+}
+input{
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    background-color: rgb(250, 255, 189) !important;
+    
+
+}
+input:-webkit-autofill{
+    background-color: rgb(250, 255, 189) !important;
+    background-image: none !important;
+    color: rgb(0, 0, 0) !important;
+}
+.modal-footer{
+    border-top: 1px solid #d5d5d5;
+    background-color: #F9F9F9;
+    text-align: center;
+    color: #4CAF50;
+    
 }
