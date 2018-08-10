@@ -1,21 +1,35 @@
 window.onload = function(){ 
-    var signUpModal = document.getElementById('signUpModal');
-    var loginModal = document.getElementById('loginModal');
-    var signUpBtn = document.getElementById("signupModalBtn");
+    let signUpModal = document.getElementById('signUpModal');
+    let loginModal = document.getElementById('loginModal');
+    let signupBtn = document.getElementById("signupModalBtn");
     var closeSpanx = document.getElementsByClassName("close")[0];
-    var loginBtn = document.getElementById("loginModalBtn")
+    let signupClose = document.getElementById('s-close');
+    var loginBtn = document.getElementById("loginModalBtn");
+    let mainSec = document.getElementById('main');
+    let signupBtnX =document.getElementById('signupModalBtnX');
+
     
-    // signUpBtn.onclick = function() {
-    //     signUpModal.style.display = "inline-block";
-    // }
-    // signUpSpanx.onclick = function() {
-    //     signUpModal.style.display = "none";
-    // };
-    loginBtn.onclick = function() {
+    signupBtn.onclick = ()=> {
+        signUpModal.style.display = "inline-block";
+    }
+    
+    loginBtn.onclick = () => {
         loginModal.style.display = "inline-block";
     }
-    closeSpanx.onclick = function() {
-        loginModal.style.display = "none";
+    signupClose.onclick = () => {
         signUpModal.style.display = "none";
+    }
+    closeSpanx.onclick = () => {
+        loginModal.style.display = "none";
+        
     };
+    mainSec.onclick= ()=>{
+        signUpModal.style.display="none";
+        loginModal.style.display = "none";
+    }
+    
+    signupBtnX.onclick = () => {
+        loginModal.style.display = "none";
+        signUpModal.style.display = "inline-block";
+    }
  }

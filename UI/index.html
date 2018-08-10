@@ -33,6 +33,24 @@
 
     </header>
     <main id="main">
+        <div class="question-post" id="questionBanner"> 
+            <div class="container">
+                <div class="row">
+                    <div class="question-box pl2 pr2 mt2 mb2">
+                        <h3>Give it a Title:</h3>
+                        <input type="text" class="w100" name="title" id="">
+                        <h3>Question:</h3>
+                        <textarea name="" class="w100"  id="" cols="30" rows="10" style="overflow-y: scroll"></textarea>
+                        <div class="align-right mt1 mb1">
+                            <button id="cancel-question" class="btn btn-danger btn-lg btn-shadow">Cancel</button>
+                            <button class="btn btn-success btn-lg btn-shadow">Publish</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col9">
@@ -159,7 +177,7 @@
                 </div>
                 <div class="col3 " >
                     <div class="row mt3 mb2">
-                        <button class="btn btn-success">
+                        <button id="askQuestion" class="btn btn-success">
                             Ask a Question
                         </button>
                     </div>
@@ -263,6 +281,7 @@
     <footer>
 
     </footer>
-<script src="./assets/js/modal.js"></script>   
+<script src="./assets/js/modal.js"></script> 
+<script src="./assets/js/script.js"></script>  
 </body>
 </html>

@@ -70,7 +70,7 @@
     display: inline-block;
     width: 80%;
 }
-.modal-form input[type="email" i],input[type="text" i],input[type="password" i] {
+.modal-form input[type="text" i],input[type="email" i],input[type="password" i] {
     padding: 1px 10px;
     margin-bottom: 15px;
     height: 30px;

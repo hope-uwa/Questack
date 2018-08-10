@@ -11,8 +11,6 @@
         position: relative;
         
     }
-    
-    
     body{
 
         margin:0px 0px;
@@ -21,7 +19,6 @@
         font-family: '';
         
     }
-    
     .container{
         display: block;
         position: relative;
@@ -201,6 +198,11 @@
       text-align: left;
       align-content: left;
       justify-content: flex-start
+    }
+    .align-right{
+      text-align:right;
+      align-content:right;
+      justify-content:flex-end;
     }
     .link-nostyle{
       text-decoration: none;
