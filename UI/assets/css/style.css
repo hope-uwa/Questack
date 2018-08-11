@@ -5,6 +5,7 @@
     @import url('./modules/header.css');
     @import url('./modules/question.css');
     @import url('./modules/answers.css');
+    @import url('./modules/sidebar.css');
 
     main, header, footer, nav{
         display: block
@@ -37,6 +38,7 @@
       display: -webkit-flex;
       display: flex;
       -webkit-flex-flow: row wrap;
+      flex-flow:row wrap;
       justify-content: space-around;
      }
     
@@ -47,9 +49,7 @@
       
     
       }
-    .col2{
-      flex: 
-    }
+    
     .col3{
       flex: 0, 0,25%;
       width: 25%

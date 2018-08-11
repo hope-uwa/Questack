@@ -1,0 +1,57 @@
+.profile__basic{
+    width: 100%;
+    text-decoration: none;
+    list-style: none;
+    padding-left: 0px;
+    padding-bottom:10px;
+    border-bottom: 1px solid #d5d5d5;
+    color:#828994;
+    margin-bottom: 0px;
+}
+.profile__basic-name{
+    font-size: 30px;
+    font-weight: 900;
+    
+}
+.profile__basic-date{
+    font-size: 12px;
+    font-weight: 700
+}
+.profile__basic-question{
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.profile__basic-answer{
+    cursor:pointer;
+    margin-top: 5px;
+    font-size: 18px;
+}
+.profile__actions{
+    padding-left: 0px;
+    text-decoration: none;
+    list-style: none;
+   
+
+}
+.profile__actions li{
+    text-align: left;
+    padding: 10px 5px;
+    border-bottom: 1px dotted #d7d7d7;
+    font-size: 18px;
+    font-weight: 800;
+    cursor:pointer;
+    letter-spacing: -.6px;
+    transition: padding-left .4s;
+    
+}
+.profile__actions li:hover{
+    background-color: #d7d7d7;
+}
+.profile-avatar{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgb(131, 143, 138);
+
+}

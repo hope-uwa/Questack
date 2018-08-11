@@ -19,6 +19,57 @@ header{
     justify-content: space-between;
     padding: 2rem 2rem;
 }
-.header_logo{
 
+.header__banner{
+    position: relative;
+    width: 100%;
+    height: 30vh;
+    background-color: black;
+
+}
+.header__banner-profilepix{
+    border: 2px solid white;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    display: inline-block;
+    top: 20vh;
+    left: 10%;
+    background-color: green;
+}
+@media(max-width:900px){
+    .header__banner-profilepix{
+    width: 80px;
+    height: 80px;
+    top: 20vh;
+    left: 5%;
+    }
+    .header__banner-profiledetail h1{
+        font-size: 1.2em;
+    }
+}
+@media(max-width:400px){
+    .header__banner-profilepix{
+    top: 8vh;
+    left: 2%;
+    }
+    .header__banner-profiledetail{
+        left: 2%!important;
+        top:20vh!important;
+        
+    }
+    
+}
+
+.header__banner-profiledetail{
+    position: absolute;
+    left: 25%;
+    top:15vh;
+    color: white;
+}
+.header__banner-profiledetail h1{
+    margin-bottom: 0px;
+}
+.header__banner-profiledetail h4{
+    margin-top: 5px;
 }

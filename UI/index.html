@@ -42,7 +42,7 @@
                         <h3>Question:</h3>
                         <textarea name="" class="w100"  id="" cols="30" rows="10" style="overflow-y: scroll"></textarea>
                         <div class="align-right mt1 mb1">
-                            <button id="cancel-question" class="btn btn-danger btn-lg btn-shadow">Cancel</button>
+                            <button id="cancel-question" onclick="cancelQuestion()" class="btn btn-danger btn-lg btn-shadow">Cancel</button>
                             <button class="btn btn-success btn-lg btn-shadow">Publish</button>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
             <div class="row">
                 <div class="col9">
                     <div class="row align-left">
-                       <h3>Recently Asked</h3>
+                       <h3 id="thread-title" class="">Recently Asked</h3>
                     </div>
                     <div class="row">
                         <div class="questions-card">
@@ -175,17 +175,27 @@
                     </div>
 
                 </div>
-                <div class="col3 " >
+                <div class="col3 sidebar" >
                     <div class="row mt3 mb2">
-                        <button id="askQuestion" class="btn btn-success btn-lg">
+                        <button id="askQuestion" onclick="askQuestion()" class="btn btn-success btn-lg">
                             Ask a Question
                         </button>
                     </div>
                     <div class="row">
-                        <ul>
-                            <li> New Threads </li>
-                            <li> Top Threads</li>
+                        <img src="" class="profile-avatar" alt="">
+                        
+                        <ul class="align-center profile__basic">
+                            <li class="profile__basic-name">John Doe</li>
+                            <li class="profile__basic-date">Joined: A month Ago</li>
+                            <li class="profile__basic-question">Questions Asked: 10</li>
+                            <li class="profile__basic-answer">Given Answers: 100 </li>
                         </ul>
+                        <ul class="align-center profile__actions">
+                            <li id="mostanswer" class="profile__actions-questions">Most Answered Questions</li>
+                            <li id="recentquestion" class="profile__actions-recent">Recently Asked Question</li>
+                            <li id="allthread" class="profile__actions-threads">All Threads</li>
+                        </ul>
+
                     </div>
                 </div>
             </div>
