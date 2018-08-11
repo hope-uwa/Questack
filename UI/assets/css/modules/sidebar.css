@@ -45,8 +45,15 @@
     transition: padding-left .4s;
     
 }
+.profile__actions li a{
+    text-decoration: none;
+    
+}
 .profile__actions li:hover{
     background-color: #d7d7d7;
+}
+.profile__actions li a:active {
+color:inherit;
 }
 .profile-avatar{
     width: 80px;

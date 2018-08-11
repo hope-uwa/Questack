@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Gudea:400,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="header-logo">   
+                <a href="index.html">
+                    <img src="" alt="Logo">
+                </a>
+            </div>
+            <div class="search-box">
+            
+            </div>
+            <div class="">
+                <button class="btn-header" id="loginModalBtn">Login</button>
+                <button class="btn-header" id="signupModalBtn"> Sign Up</button>
+                
+            </div>
+
+        </div>
+        <div class="header-banner">
+
+        </div>
+
+    </header>
+    <main id="main">
+        <div class="question-post" id="questionBanner"> 
+            <div class="container">
+                <div class="row">
+                    <div class="question-box pl2 pr2 mt2 mb2">
+                        <h3>Give it a Title:</h3>
+                        <input type="text" class="w100" name="title" id="">
+                        <h3>Question:</h3>
+                        <textarea name="" class="w100"  id="" cols="30" rows="10" style="overflow-y: scroll"></textarea>
+                        <div class="align-right mt1 mb1">
+                            <button id="cancel-question" onclick="cancelQuestion()" class="btn btn-danger btn-lg btn-shadow">Cancel</button>
+                            <button class="btn btn-success btn-lg btn-shadow">Publish</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col9">
+                    <div class="row align-left">
+                       <h3 id="thread-title" class="    ">Recently Asked</h3>
+                    </div>
+                    <div id="recent" class="row">
+                        <div class="questions-card">
+                        <div class="question__avatar">
+                            <span class="question__avatar-img"></span>
+                        </div>
+                        <div class="question__content">
+                            <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to check IP address</a></h4>
+                            <div class="question__content-description">
+                                <span>7 days ago</span>
+                                <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                            </div>
+                            <div class="question__content-body">
+                                <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                            </div>
+                        </div>
+                        <div class="question__response">
+                            
+                            <i class=""></i><span>5 answers</span>
+                        </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="most-answer" class="row">
+                        <div class="questions-card">
+                        <div class="question__avatar">
+                            <span class="question__avatar-img"></span>
+                        </div>
+                        <div class="question__content">
+                            <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                            <div class="question__content-description">
+                                <span>7 days ago</span>
+                                <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                            </div>
+                            <div class="question__content-body">
+                                <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                            </div>
+                        </div>
+                        <div class="question__response">
+                            
+                            <i class=""></i><span>5 answers</span>
+                        </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="all" class="row">
+                        <div class="questions-card">
+                        <div class="question__avatar">
+                            <span class="question__avatar-img"></span>
+                        </div>
+                        <div class="question__content">
+                            <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                            <div class="question__content-description">
+                                <span>7 days ago</span>
+                                <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                            </div>
+                            <div class="question__content-body">
+                                <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                            </div>
+                        </div>
+                        <div class="question__response">
+                            
+                            <i class=""></i><span>5 answers</span>
+                        </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                        <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="question__avatar-img"></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class=""><a class="green-text" href="">Hope Uwa</a></span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <i class=""></i><span>5 answers</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col3 sidebar" >
+                    <div class="row mt3 mb2">
+                        <button id="askQuestion" onclick="askQuestion()" class="btn btn-success btn-lg">
+                            Ask a Question
+                        </button>
+                    </div>
+                    <div class="row">
+                        <img src="" class="profile-avatar" alt="">
+                        
+                        <ul class="align-center profile__basic">
+                            <li class="profile__basic-name">John Doe</li>
+                            <li class="profile__basic-date">Joined: A month Ago</li>
+                            <li class="profile__basic-question">Questions Asked: 10</li>
+                            <li class="profile__basic-answer">Given Answers: 100 </li>
+                        </ul>
+                        <ul class="align-center profile__actions">
+                            <li class="profile__actions-questions"><a href="./user-profile.html?thread=mostanswer">Most Answered Question</a></li>
+                            <li class="profile__actions-recent"><a href="./user-profile.html?thread=recent">Recently Asked Question</a></li>
+                            <li class="profile__actions-threads"><a href="./user-profile.html?thread=all">All Threads</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+     
+        
+    </main>
+    <!-- The Modal -->
+    <div id="loginModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-head w100">
+                    <span class="pl1 modal-title ">Welcome Back!</span>
+                    <span class="close">&times;</span>
+                </div>
+              
+              <div class="modal__signup-form row">
+
+                
+                  <form class=" mt2 mb2"  >
+                    
+                      
+                    <div class="modal-form align-center">
+                      
+                      <input type="email" required placeholder="Enter Email Address" class="" name="email" required>
+
+                      <input type="password" required placeholder="Enter Password"  class="" name="psw" required>
+                          
+                      <button type="submit" class="btn btn-success btn-shadow btn-login w60 mt1" >LOGIN</button>
+                      
+                    </div>
+
+                    
+                  </form>
+
+              </div>
+              
+              <div class="modal-footer  w-100 pt1 pb2">
+                    <p>---------New Here?--------</p>
+                    <button class="btn btn-shadow btn_login-signup w60" id="signupModalBtnX">SIGN UP</button>
+
+              </div>
+            </div>
+
+        </div>
+
+        <!--Sign Up-->
+
+        <div id="signUpModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-head w100">
+                        <span class="pl1  modal-title ">Join Our Community!</span>
+                        <span id="s-close" class="close">&times;</span>
+                    </div>
+                  
+                  <div class="modal__signup-form row">
+    
+                    
+                      <form class=" mt2"  >
+                        
+                          
+                        <div class="modal-form align-center">
+                          
+                          <input type="text" required placeholder="Enter Your Nickname" class="" name="username">
+
+                          <input type="email" required placeholder="Enter Email Address" class="" name="email" >
+    
+                          <input type="password" required placeholder="Enter Password"  class="" name="psw" >
+                              
+                          
+                          
+                        </div>
+    
+                        
+                      </form>
+    
+                  </div>
+                  
+                  <div class="modal-footer  w-100 pt2 pb2">
+                      
+                        <button class="btn btn-shadow btn_login-signup w60">SIGN UP</button>
+    
+                  </div>
+                </div>
+    
+        </div>
+        <!--end of Modals-->
+    <footer>
+
+    </footer>
+<script src="./assets/js/profile.js"></script>
+<script src="./assets/js/modal.js"></script> 
+<script src="./assets/js/script.js"></script>  
+</body>
+</html>
