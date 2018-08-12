@@ -210,7 +210,7 @@
       text-decoration: none;
     }
     .green-text{
-      color:#449d48;
+      color:#30a0b6fc;
     }
     .black-text{
       color:#4d545d;
@@ -218,6 +218,25 @@
     .blckgrey-text{
       color:#4d545d;
     }
+    .blue-text{
+      color: #93e1f0fc;
+    }
+    .white{
+      background-color: white;
+    }
    .f3{
       font-size: 3em;
+    }
+    .footer{
+      background-color: #222;
+      color: white;
+
+    }
+    .icon-success{
+      color: #37A000;
+      font-size: 22px;
+    }
+    .icon-unanswered{
+      color:rgb(101, 101, 223);
+      font-size: 22px;
     }

@@ -13,8 +13,9 @@
     <header>
         <div class="navbar">
             <div class="header-logo">   
+                
                 <a href="index.html">
-                    <img src="" alt="Logo">
+                    <img class="logo-size" src="./assets/img/logo.png" alt="Logo">
                 </a>
             </div>
             <div class="search-box">
@@ -53,17 +54,17 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col9">
+                <div class="col9 ">
                     <div class="row align-left">
-                       <h3 id="thread-title" class="">Recently Asked</h3>
+                       <h2 id="thread-title" class="">Recent Thread</h2>
                     </div>
                     <div class="row">
                         <div class="questions-card">
                         <div class="question__avatar">
-                            <span class="question__avatar-img"></span>
+                            <span class="question__avatar-img"><i class="fa fa-check icon-success"></i></span>
                         </div>
                         <div class="question__content">
-                            <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                            <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
                             <div class="question__content-description">
                                 <span>7 days ago</span>
                                 <span class=""><a class="green-text" href="">Hope Uwa</a></span>
@@ -79,10 +80,10 @@
                         </div>
                         <div class="questions-card">
                             <div class="question__avatar">
-                                <span class="question__avatar-img"></span>
+                                <span class="question__avatar-img"><i class="fa fa-exclamation icon-success"></i></span>
                             </div>
                             <div class="question__content">
-                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
                                 <div class="question__content-description">
                                     <span>7 days ago</span>
                                     <span class=""><a class="green-text" href="">Hope Uwa</a></span>
@@ -101,7 +102,7 @@
                                 <span class="question__avatar-img"></span>
                             </div>
                             <div class="question__content">
-                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
                                 <div class="question__content-description">
                                     <span>7 days ago</span>
                                     <span class=""><a class="green-text" href="">Hope Uwa</a></span>
@@ -120,7 +121,7 @@
                                 <span class="question__avatar-img"></span>
                             </div>
                             <div class="question__content">
-                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
                                 <div class="question__content-description">
                                     <span>7 days ago</span>
                                     <span class=""><a class="green-text" href="">Hope Uwa</a></span>
@@ -139,7 +140,7 @@
                                 <span class="question__avatar-img"></span>
                             </div>
                             <div class="question__content">
-                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
                                 <div class="question__content-description">
                                     <span>7 days ago</span>
                                     <span class=""><a class="green-text" href="">Hope Uwa</a></span>
@@ -177,7 +178,7 @@
                 </div>
                 <div class="col3 sidebar" >
                     <div class="row mt3 mb2">
-                        <button id="askQuestion" onclick="askQuestion()" class="btn btn-success btn-lg">
+                        <button id="askQuestion" onclick="askQuestion()" class="btn btn-success btn-lg btn-shadow">
                             Ask a Question
                         </button>
                     </div>
@@ -189,9 +190,10 @@
 
 
         </div>
-     
+        
         
     </main>
+    
     <!-- The Modal -->
     <div id="loginModal" class="modal">
 
@@ -205,7 +207,7 @@
               <div class="modal__signup-form row">
 
                 
-                  <form class=" mt2 mb2"  >
+                  <form class=" mt2 mb2" action="user-profile.html"  >
                     
                       
                     <div class="modal-form align-center">
@@ -246,7 +248,7 @@
                   <div class="modal__signup-form row">
     
                     
-                      <form class=" mt2"  >
+                      <form class=" mt2" action="user-profile.html"  >
                         
                           
                         <div class="modal-form align-center">
@@ -275,9 +277,11 @@
     
         </div>
         <!--end of Modals-->
-    <footer>
 
-    </footer>
+        <footer class="footer mt3 pt2 pb2 align-center">
+                © Bootcamp Cycle 35
+        </footer>
+    
 <script src="./assets/js/modal.js"></script> 
 <script src="./assets/js/script.js"></script>  
 </body>

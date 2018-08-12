@@ -14,7 +14,7 @@
         <div class="navbar">
             <div class="header-logo">   
                 <a href="index.html">
-                    <img src="" alt="Logo">
+                        <img class="logo-size" src="./assets/img/logo.png" alt="Logo">
                 </a>
             </div>
             <div class="search-box">
@@ -58,8 +58,8 @@
                     
                     <div class="row align-left question-board pl2 pb1 mb1">
                         <div class="question-head mb1">
-                            <h2>How to fix something</h2>
-                            <span>Asked 5 days ago by</span><span>John Doe</span>
+                            <h1><i class="fa fa-comment"></i> How to fix something</h1>
+                            <span class="ml3">Asked 5 days ago by</span><span>John Doe</span>
                         </div>
                         <div class="question-body">
                                 I will help you find today by just taking a peep into the necessities of existence in a 3rd world
@@ -171,7 +171,7 @@
                         <div class="answers-card pt3 pb1">
                             
                             <div class="answer__avatar">
-                                <span class="answer__avatar-img"></span>
+                                
                             </div>
                             <div class="answer__box align-right">
                                 <textarea name="" id="answer"  class="answer-text"></textarea>
@@ -187,17 +187,27 @@
 
                 </div>
                 <div class="col3 " >
-                    <div class="row mt3 mb2">
-                        <button id="askQuestion" onclick="askQuestion()" class="btn btn-success btn-lg">
-                            Ask a Question
-                        </button>
-                    </div>
-                    <div class="row">
-                        <ul>
-                            <li> New Threads </li>
-                            <li> Top Threads</li>
-                        </ul>
-                    </div>
+                        <div class="row mt3 mb2">
+                            <button id="askQuestion" onclick="askQuestion()" class="btn btn-success btn-lg btn-shadow">
+                                Ask a Question
+                            </button>
+                        </div>
+                        <div class="row">
+                            <img src="" class="profile-avatar" alt="">
+                            
+                            <ul class="align-center profile__basic">
+                                <li class="profile__basic-name">John Doe</li>
+                                <li class="profile__basic-date">Joined: A month Ago</li>
+                                <li class="profile__basic-question">Questions Asked: 10</li>
+                                <li class="profile__basic-answer">Given Answers: 100 </li>
+                            </ul>
+                            <ul class="align-center profile__actions">
+                                <li class="profile__actions-questions"><a href="./user-profile.html?thread=mostanswer">Most Answered Question</a></li>
+                                <li class="profile__actions-recent"><a href="./user-profile.html?thread=recent">Recently Asked Question</a></li>
+                                <li class="profile__actions-threads"><a href="./user-profile.html?thread=all">All Threads</a></li>
+                            </ul>
+    
+                        </div>
                 </div>
             </div>
 
@@ -219,7 +229,7 @@
               <div class="modal__signup-form row">
 
                 
-                  <form class=" mt2 mb2"  >
+                  <form class=" mt2 mb2" action="user-profile.html">
                     
                       
                     <div class="modal-form align-center">
@@ -260,7 +270,7 @@
                   <div class="modal__signup-form row">
     
                     
-                      <form class=" mt2"  >
+                      <form class=" mt2" action="user-profile.html" >
                         
                           
                         <div class="modal-form align-center">
@@ -289,8 +299,8 @@
     
         </div>
         <!--end of Modals-->
-    <footer>
-
+    <footer class="footer pt3 pb3 align-center">
+            © Bootcamp Cycle 35
     </footer>
 <script src="./assets/js/modal.js"></script> 
 <script src="./assets/js/script.js"></script>  
