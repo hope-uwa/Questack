@@ -17,7 +17,7 @@ header{
     align-items: center;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    padding: 2rem 2rem;
+    padding: 1rem 1rem;
 }
 
 .header__banner{
@@ -36,6 +36,11 @@ header{
     top: 20vh;
     left: 10%;
     background-color: green;
+}
+.logo-size{
+    margin-left: 1em;
+    width:60px;
+    height:60px;
 }
 @media(max-width:900px){
     .header__banner-profilepix{

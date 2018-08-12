@@ -5,7 +5,7 @@ window.onload = function(){
     let closeSpanx = document.getElementsByClassName("close")[0];
     let signupClose = document.getElementById('s-close');
     let loginBtn = document.getElementById("loginModalBtn");
-    // let mainSec = document.getElementById('main');
+     let mainSec = document.getElementById('main');
     let signupBtnX =document.getElementById('signupModalBtnX');
 
     
