@@ -78,3 +78,35 @@ header{
 .header__banner-profiledetail h4{
     margin-top: 5px;
 }
+
+.header-right button{
+    margin-right: 20px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.search-box input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 12px;
+    /* -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out; */
+}
+@media(max-width:600px){
+    
+    .search-box input[type=text] {
+        display: none;
+    }
+}
+  /* When the input field gets focus, change its width to 100% */
+  .search-box input[type=text]:focus {
+      width: 100%;
+      box-shadow: none!important;
+  }

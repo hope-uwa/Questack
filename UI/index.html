@@ -19,11 +19,11 @@
                 </a>
             </div>
             <div class="search-box">
-            
+                    <input type="text" name="search" placeholder="Search..">
             </div>
-            <div class="">
-                <button class="btn-header" id="loginModalBtn">Login</button>
-                <button class="btn-header" id="signupModalBtn"> Sign Up</button>
+            <div class="header-right">
+                <button class="btn-header" id="loginModalBtn" onclick="loginModalBtn()">Login</button>
+                <button class="btn-header" id="signupModalBtn" onclick="signupModalBtn()"> Sign Up</button>
                 
             </div>
 
@@ -184,6 +184,9 @@
                     </div>
                     <div class="row welcome">
                         Join the community
+                        <button id="signupModalBtn">Join </button>
+
+                        <button class="btn-header" id="signupModalBtn" onclick="signupModalBtn()"> Sign Up</button>
                     </div>
                 </div>
             </div>
@@ -201,7 +204,7 @@
             <div class="modal-content">
                 <div class="modal-head w100">
                     <span class="pl1 modal-title ">Welcome Back!</span>
-                    <span class="close">&times;</span>
+                    <span onclick="closeModal()" class="close">&times;</span>
                 </div>
               
               <div class="modal__signup-form row">
@@ -242,7 +245,7 @@
                 <div class="modal-content">
                     <div class="modal-head w100">
                         <span class="pl1  modal-title ">Join Our Community!</span>
-                        <span id="s-close" class="close">&times;</span>
+                        <span onclick="closeModal()" id="s-close" class="close">&times;</span>
                     </div>
                   
                   <div class="modal__signup-form row">
