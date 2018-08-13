@@ -18,7 +18,7 @@
                 </a>
             </div>
             <div class="search-box">
-            
+                    <input type="text" name="search" placeholder="Search..">
             </div>
             <div class="">
                 <button class="btn-header" id="loginModalBtn">Login</button>
@@ -36,7 +36,7 @@
         <div class="question-post" id="questionBanner"> 
             <div class="container">
                 <div class="row">
-                    <div class="question-box pl2 pr2 mt2 mb2">
+                    <div class="question-box pl2 pr2 mt2 mb2 ">
                         <h3>Give it a Title:</h3>
                         <input type="text" class="w100" name="title" id="">
                         <h3>Question:</h3>
@@ -51,14 +51,14 @@
 
             </div>
         </div>
-        <div class="container mt2">
+        <div class="container ">
             <div class="row">
-                <div class="col9">
+                <div class="col9 pt2 colsm12 colsm-order1">
                     
                     
-                    <div class="row align-left question-board pl2 pb1 mb1">
+                    <div class="row align-left question-board pl2 pb1 mb1 pls1">
                         <div class="question-head mb1">
-                            <h1><i class="fa fa-comment"></i> How to fix something</h1>
+                            <h1><i class="fa fa-question"></i> How to fix something</h1>
                             <span class="ml3">Asked 5 days ago by</span><span>John Doe</span>
                         </div>
                         <div class="question-body">
@@ -69,10 +69,11 @@
                         </div>
 
                     </div>
-                    <div class="row ml2 pb3">
+                    <div class="row ml2 mls1 pb3">
                         
 
-                        <div class="answers-card pt1 pb1">
+                        <div class="answers-card pt2 pb1">
+                            <div class="best-answer">Best Answer</div>
                             <div class="answer__avatar">
                                 <span class="answer__avatar-img"></span>
                             </div>
@@ -162,15 +163,15 @@
                                 </div>
                             </div>
                             <div class="answer__response black-text">
-                                <span><i class="fa fa-comment"></i><sup>10</sup></span><br>
-                                <span><i class="fa fa-thumbs-up"></i><sup>1000</sup></span><br>
-                                <span><i class="fa fa-thumbs-down"></i><sup>5</sup></span>
+                                <span class="answer__response-comment"><i class="fa fa-comment"></i><sup>10</sup></span><br>
+                                <span class="answer__response-voteup"><i class=" fa fa-thumbs-up"></i><sup>1000</sup></span><br>
+                                <span class="answer__response-votedown"><i class=" fa fa-thumbs-down"></i><sup>5</sup></span>
                             </div>
                         </div>
                         
                         <div class="answers-card pt3 pb1">
                             
-                            <div class="answer__avatar">
+                            <div class=" smhide answer__avatar">
                                 
                             </div>
                             <div class="answer__box align-right">
@@ -186,7 +187,7 @@
                     </div>
 
                 </div>
-                <div class="col3 " >
+                <div class="col3 colsm12 sidebar colsm-order2" >
                         <div class="row mt3 mb2">
                             <button id="askQuestion" onclick="askQuestion()" class="btn btn-success btn-lg btn-shadow">
                                 Ask a Question
@@ -217,7 +218,7 @@
         
     </main>
     <!-- The Modal -->
-    <di v id="loginModal" class="modal">
+    <div id="loginModal" class="modal">
 
             <!-- Modal content -->
             <div class="modal-content">

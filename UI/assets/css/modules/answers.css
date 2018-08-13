@@ -1,4 +1,5 @@
 .answers-card{
+    position: relative;
     display: flex;
     -webkit-box-pack: justify;
     width: 100%;
@@ -63,9 +64,9 @@ margin-bottom:5px;
     margin-right:10px;
 }
 
-.question-board{
+/* .question-board{
 
-}
+} */
 .question-head h2{
     margin-bottom: 5px;
 }
@@ -75,4 +76,33 @@ margin-bottom:5px;
     width: 100%;
     height: 100px;
     
+}
+.best-answer{
+    width: 98%;
+    position: absolute;
+    padding: 5px 10px;
+    color: white;
+    background-color: #818181;
+    top: 0px;
+}
+.answer__response-comment{
+ color: rgba(40, 58, 3, 0.878);
+ font-size: 20px;
+}
+.answer__response-voteup{
+ color: rgba(67, 54, 4, 0.878);
+ font-size: 20px;
+}
+.answer__response-votedown{
+color: rgba(3, 20, 58, 0.878);
+font-size: 20px;
+}
+@media(max-width:768px){
+    .answer-text{
+        width: 100%!important;
+    }
+    .answer__box{
+        margin-left: 1em;
+        width: 100%;
+    }
 }
