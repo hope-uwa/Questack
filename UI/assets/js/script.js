@@ -11,3 +11,4 @@ let cancelQuestion = () => {
     questionBanner.style.display = "none";
     questionDisplayBtn.style.display = "block";
 }
+
