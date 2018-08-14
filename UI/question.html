@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Welcome</title>
+  <title>Questack</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Gudea:400,700">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -10,28 +10,37 @@
   
 </head>
 <body>
-    <header>
-        <div class="navbar">
-            <div class="header-logo">   
-                <a href="index.html">
+        <header>
+            <div class="navbar">
+                <div class="header-logo">   
+                    
+                    <a href="index.html">
                         <img class="logo-size" src="./assets/img/logo.png" alt="Logo">
-                </a>
+                    </a>
+                    
+                </div>
+                <div class="header-title" >
+                    <a href="index.html"> Questack</a>
+                </div>
+                <div class="search-box ml2 mls1">
+                        <input type="text" name="search" placeholder="Search..">
+                </div>
+                <div class="header-right mr1">
+                    <button class="btn-header">
+                        <div class="header-profile">E</div>
+                    </button>
+                    <button class="btn-header header-profile-text black-text">Elpis</button>
+                    <button class="btn-header ml1" id="logoutModalBtn" >Logout</button>
+                    
+                    
+                </div>
+    
             </div>
-            <div class="search-box">
-                    <input type="text" name="search" placeholder="Search..">
+            <div class="header-banner">
+    
             </div>
-            <div class="">
-                <button class="btn-header" id="loginModalBtn">Login</button>
-                <button class="btn-header" id="signupModalBtn"> Sign Up</button>
-                
-            </div>
-
-        </div>
-        <div class="header-banner">
-
-        </div>
-
-    </header>
+    
+        </header>
     <main id="main">
         <div class="question-post" id="questionBanner"> 
             <div class="container">
@@ -59,7 +68,7 @@
                     <div class="row align-left question-board pl2 pb1 mb1 pls1">
                         <div class="question-head mb1">
                             <h1><i class="fa fa-question"></i> How to fix something</h1>
-                            <span class="ml3">Asked 5 days ago by</span><span>John Doe</span>
+                            <span class="ml3">Asked 5 days ago by</span><span>Elpis</span>
                         </div>
                         <div class="question-body">
                                 I will help you find today by just taking a peep into the necessities of existence in a 3rd world
@@ -72,100 +81,110 @@
                     <div class="row ml2 mls1 pb3">
                         
 
-                        <div class="answers-card pt2 pb1">
-                            <div class="best-answer">Best Answer</div>
+                        <div class="answers-card pt3 pb1">
+                            <div class="best-answer">Most Preferred Answer</div>
                             <div class="answer__avatar">
-                                <span class="answer__avatar-img"></span>
+                                <span class="answer__avatar-img">A</span>
+                                <span><i class=" vote fa fa-thumbs-o-up"></i><sup>1000</sup></span>
+                                <span><i class=" vote fa fa-thumbs-down"></i><sup>50</sup></span>
                             </div>
+
                             <div class="answer__content">
                                 <div class="answer__content-title">
-                                    <span>7 days ago</span> <span>by</span>
-                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Hope Uwa</a></span>
+                                    <span>1 days ago</span> <span>by</span>
+                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Alpha</a></span>
                                 </div>
                                 <div class="answer__content-body">
                                     <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
                                 </div>
                             </div>
                             <div class="answer__response black-text">
-                                <span><i class="fa fa-comment"></i><sup>10</sup></span>
-                                <span><i class="fa fa-thumbs-up"></i><sup>1000</sup></span>
-                                <span><i class="fa fa-thumbs-down"></i><sup>5</sup></span>
+                                <span><i class="pl1 fa fa-comment"></i><sup>10</sup></span>
+                                
                             </div>
                         </div>
                         <div class="answers-card pt1 pb1">
                             <div class="answer__avatar">
-                                <span class="answer__avatar-img"></span>
+                                <span class="answer__avatar-img">B</span>
+                                <span><i class=" vote fa fa-thumbs-o-up"></i><sup>1000</sup></span>
+                                <span><i class=" vote fa fa-thumbs-down"></i><sup>50</sup></span>
                             </div>
+
                             <div class="answer__content">
                                 <div class="answer__content-title">
-                                    <span>7 days ago</span> <span>by</span>
-                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Hope Uwa</a></span>
+                                    <span>2 days ago</span> <span>by</span>
+                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Beta</a></span>
                                 </div>
                                 <div class="answer__content-body">
                                     <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
                                 </div>
                             </div>
                             <div class="answer__response black-text">
-                                <span><i class="fa fa-comment"></i><sup>10</sup></span>
-                                <span><i class="fa fa-thumbs-up"></i><sup>1000</sup></span>
-                                <span><i class="fa fa-thumbs-down"></i><sup>5</sup></span>
+                                <span><i class="pl1 fa fa-comment"></i><sup>10</sup></span>
+                                
                             </div>
                         </div>
                         <div class="answers-card pt1 pb1">
                             <div class="answer__avatar">
-                                <span class="answer__avatar-img"></span>
+                                <span class="answer__avatar-img">G</span>
+                                <span><i class=" vote fa fa-thumbs-o-up"></i><sup>1000</sup></span>
+                                <span><i class=" vote fa fa-thumbs-down"></i><sup>50</sup></span>
                             </div>
+
                             <div class="answer__content">
                                 <div class="answer__content-title">
-                                    <span>7 days ago</span> <span>by</span>
-                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Hope Uwa</a></span>
+                                    <span>3 days ago</span> <span>by</span>
+                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Gamma</a></span>
                                 </div>
                                 <div class="answer__content-body">
                                     <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
                                 </div>
                             </div>
                             <div class="answer__response black-text">
-                                <span><i class="fa fa-comment"></i><sup>10</sup></span>
-                                <span><i class="fa fa-thumbs-up"></i><sup>1000</sup></span>
-                                <span><i class="fa fa-thumbs-down"></i><sup>5</sup></span>
+                                <span><i class="pl1 fa fa-comment"></i><sup>10</sup></span>
+                                
                             </div>
                         </div>
                         <div class="answers-card pt1 pb1">
                             <div class="answer__avatar">
-                                <span class="answer__avatar-img"></span>
+                                <span class="answer__avatar-img">L</span>
+                                <span><i class=" vote fa fa-thumbs-o-up"></i><sup>1000</sup></span>
+                                <span><i class=" vote fa fa-thumbs-down"></i><sup>50</sup></span>
                             </div>
+
                             <div class="answer__content">
                                 <div class="answer__content-title">
-                                    <span>7 days ago</span> <span>by</span>
-                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Hope Uwa</a></span>
+                                    <span>4 days ago</span> <span>by</span>
+                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Landa</a></span>
                                 </div>
                                 <div class="answer__content-body">
                                     <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
                                 </div>
                             </div>
                             <div class="answer__response black-text">
-                                <span><i class="fa fa-comment"></i><sup>10</sup></span>
-                                <span><i class="fa fa-thumbs-up"></i><sup>1000</sup></span>
-                                <span><i class="fa fa-thumbs-down"></i><sup>5</sup></span>
+                                <span><i class="pl1 fa fa-comment"></i><sup>10</sup></span>
+                                
                             </div>
                         </div>
                         <div class="answers-card pt1 pb1">
                             <div class="answer__avatar">
-                                <span class="answer__avatar-img"></span>
+                                <span class="answer__avatar-img">T</span>
+                                <span><i class=" vote fa fa-thumbs-o-up"></i><sup>1000</sup></span>
+                                <span><i class=" vote fa fa-thumbs-down"></i><sup>50</sup></span>
                             </div>
+
                             <div class="answer__content">
                                 <div class="answer__content-title">
-                                    <span>7 days ago</span> <span>by</span>
-                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Hope Uwa</a></span>
+                                    <span>5 days ago</span> <span>by</span>
+                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Theta</a></span>
                                 </div>
                                 <div class="answer__content-body">
                                     <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
                                 </div>
                             </div>
                             <div class="answer__response black-text">
-                                <span class="answer__response-comment"><i class="fa fa-comment"></i><sup>10</sup></span><br>
-                                <span class="answer__response-voteup"><i class=" fa fa-thumbs-up"></i><sup>1000</sup></span><br>
-                                <span class="answer__response-votedown"><i class=" fa fa-thumbs-down"></i><sup>5</sup></span>
+                                <span><i class="pl1 fa fa-comment"></i><sup>10</sup></span>
+                                
                             </div>
                         </div>
                         
@@ -189,23 +208,23 @@
                 </div>
                 <div class="col3 colsm12 sidebar colsm-order2" >
                         <div class="row mt3 mb2">
-                            <button id="askQuestion" onclick="askQuestion()" class="btn btn-success btn-lg btn-shadow">
-                                Ask a Question
-                            </button>
+                                <button id="askQuestion" onclick="askQuestion()" class="btn btn-success btn-lg btn-shadow">
+                                        Ask a Question
+                                </button>
                         </div>
                         <div class="row">
-                            <img src="" class="profile-avatar" alt="">
+                            <div class="profile-avatar">E</div>
                             
                             <ul class="align-center profile__basic">
-                                <li class="profile__basic-name">John Doe</li>
+                                <li class="profile__basic-name">Elpis</li>
                                 <li class="profile__basic-date">Joined: A month Ago</li>
                                 <li class="profile__basic-question">Questions Asked: 10</li>
                                 <li class="profile__basic-answer">Given Answers: 100 </li>
                             </ul>
                             <ul class="align-center profile__actions">
-                                <li class="profile__actions-questions"><a href="./user-profile.html?thread=mostanswer">Most Answered Question</a></li>
-                                <li class="profile__actions-recent"><a href="./user-profile.html?thread=recent">Recently Asked Question</a></li>
-                                <li class="profile__actions-threads"><a href="./user-profile.html?thread=all">All Threads</a></li>
+                                <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="./user-profile.html?thread=mostanswer">Most Answered Question</a></li>
+                                <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="./user-profile.html?thread=recent">Recently Asked Question</a></li>
+                                <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="./user-profile.html?thread=all">All Threads</a></li>
                             </ul>
     
                         </div>
@@ -301,7 +320,7 @@
         </div>
         <!--end of Modals-->
     <footer class="footer pt3 pb3 align-center">
-            © Bootcamp Cycle 35
+            © 2018 Hope Uwa
     </footer>
 <script src="./assets/js/modal.js"></script> 
 <script src="./assets/js/script.js"></script>  
