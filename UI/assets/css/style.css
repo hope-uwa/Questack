@@ -1,4 +1,4 @@
-    @import url("");
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
     @import url("");
     @import url('./modules/button.css');
     @import url('./modules/modal.css');
@@ -15,11 +15,11 @@
         
     }
     body{
-
+      font-family: 'Montserrat', sans-serif!important;
         margin:0px 0px;
         display: block;
         font-weight: 200;
-        font-family: '';
+        
         
     }
     .container{
@@ -204,6 +204,7 @@
     .pb3{
       padding-bottom: 3em;
     }
+    
     @media(max-width:768px){
     .pls1{
       padding-left: 1em!important;
@@ -245,6 +246,12 @@
     .blue-text{
       color: #93e1f0fc;
     }
+    .red-text{
+      color:red;
+    }
+    .dblue-text{
+      color:#0b424cfc;
+    }
     .white{
       background-color: white;
     }
@@ -256,16 +263,38 @@
       color: white;
 
     }
-    .icon-success{
-      color: #37A000;
-      font-size: 22px;
-    }
-    .icon-unanswered{
-      color:rgb(101, 101, 223);
-      font-size: 22px;
-    }
+    
     @media(max-width:768px){
       .smhide{
         display: none;
     }
+  }
+  .bb-grey{
+    border-bottom: 1px solid #d5d5d5;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .pagination a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s;
+      border: 1px solid #ddd;
+  }
+    .pagination a.active {
+      background-color: #4CAF50;
+      color: white;
+      border: 1px solid #4CAF50;
+  }
+
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+  .bg-cream{
+    background-color: #faffbdab;
   }

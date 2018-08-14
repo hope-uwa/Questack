@@ -13,19 +13,24 @@
 }
 .answer__avatar{
     display: block;
-    width: 50px;
+    width: 80px;
     margin-left:1em;
     margin-right: 1em;
+}
+.answer__avatar .vote:hover{
+    color: #4CAF50;
+    cursor: pointer;
 }
 .answer__avatar-img{
     width: 50px;
     height:50px;
     border-radius: 50%;
     color:white;
-    background-color:#f5f5f5;
+    background-color:#779fabc9;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 5px;
 }
 .answer__box{
     width: 75%;
@@ -58,10 +63,11 @@ margin-bottom:5px;
 .answer__content-body{
     margin-top:10px;
     margin-bottom: 1em;
-
+    font-size:14px;
 }
 .answer__response{
-    margin-right:10px;
+    margin-right:15px;
+    
 }
 
 /* .question-board{
@@ -85,18 +91,17 @@ margin-bottom:5px;
     background-color: #818181;
     top: 0px;
 }
-.answer__response-comment{
+.answer__response span{
  color: rgba(40, 58, 3, 0.878);
- font-size: 20px;
+ font-size: 20px!important;
+ cursor: pointer;
 }
-.answer__response-voteup{
- color: rgba(67, 54, 4, 0.878);
- font-size: 20px;
-}
-.answer__response-votedown{
-color: rgba(3, 20, 58, 0.878);
-font-size: 20px;
-}
+.answer__response span:hover{
+    color: rgba(109, 157, 13, 0.878);
+    font-size: 20px!important;
+   }
+
+
 @media(max-width:768px){
     .answer-text{
         width: 100%!important;
