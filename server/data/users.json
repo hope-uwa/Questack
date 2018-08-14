@@ -1,0 +1,27 @@
+[
+    {
+        "id":1,
+        "userName":"alpha",
+        "email":"alpha@mail.com",
+        "password":"alpha123",
+        "createdAt":"2018-08-15",
+        "updatedAt":"2018-08-15"
+    },
+    {
+        "id":2,
+        "userName":"beta",
+        "email":"beta@mail.com",
+        "password":"beta123",
+        "createdAt":"2018-08-16",
+        "updatedAt":"2018-08-16"
+    },
+    {
+        "id":3,
+        "userName":"gamma",
+        "email":"gamma@mail.com",
+        "password":"gamma123",
+        "createdAt":"2018-08-17",
+        "updatedAt":"2018-08-17"
+    }
+
+]

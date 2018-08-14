@@ -2,17 +2,17 @@
     {
         "id":1,
         "userId":1,
-        "questionId":"",
+        "questionId":2,
         "answerBody":"",
-        "createdAt":"",
-        "updatedAt":""
+        "createdAt":"2018-08-18T14:34:90.000",
+        "updatedAt":"2018-08-18T14:34:90.000"
     },
     {
         "id":1,
         "userId":1,
-        "questionId":"",
+        "questionId":3,
         "answerBody":"",
-        "createdAt":"",
-        "updatedAt":""
-    },
+        "createdAt":"2018-08-18T16:34:90.000",
+        "updatedAt":"2018-08-18T16:34:90.000"
+    }
 ]

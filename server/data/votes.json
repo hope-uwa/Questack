@@ -1,0 +1,13 @@
+[
+    {"id":1,"answerId":1,"userId":1,"vote":"up"},
+    {"id":2,"answerId":1,"userId":2,"vote":"down"},
+    {"id":3,"answerId":1,"userId":3,"vote":"up"},
+    {"id":4,"answerId":2,"userId":1,"vote":"up"},
+    {"id":5,"answerId":2,"userId":2,"vote":"down"},
+    {"id":6,"answerId":2,"userId":3,"vote":"down"},
+    {"id":7,"answerId":3,"userId":1,"vote":"up"},
+    {"id":8,"answerId":3,"userId":2,"vote":"down"},
+    {"id":9,"answerId":3,"userId":3,"vote":"down"},
+    
+
+]
