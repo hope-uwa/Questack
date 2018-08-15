@@ -117,3 +117,16 @@ describe('GET all answers endpoint', () => {
   });
 
 });
+
+describe('DELETE endpoint for a question', () => {
+
+  it('should return an 200', (done) => {
+    chai.request(app)
+      .get('/api/v1/questions/2')
+      .end((error, response) => {
+        expect(response.status).to.equal(204);
+        expect(response.body.message).to.be.an('Question has been successfully deleted!');
+        done();
+      });
+  });
+});
