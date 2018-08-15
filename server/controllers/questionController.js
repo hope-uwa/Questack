@@ -104,6 +104,25 @@ class QuestionController {
 
   }
 
+  /**
+       * Returns a Answers
+       * @method getAnswers
+       * @memberof QuestionController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
+
+  static getAnswers(req, res) {
+    const questionId = QuestionController.newMethod(req);
+
+    // sort for hte answers to the question
+    const findAnswer = data.answers.filter(ans => ans.questionId === parseInt(questionId, 10));
+    const displayAnswer = ['There is no response yet'];
+    if (findAnswer.length !== 0) { displayAnswer[0] = findAnswer }
+    return res.status(200).json(displayAnswer[0] )
+
+  }
 
 
 
