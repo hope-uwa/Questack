@@ -47,8 +47,33 @@ class QuestionController {
 
   }
 
+  /**
+       * Returns a Question
+       * @method getQuestion
+       * @memberof QuestionController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
+
+  static getQuestion(req, res) {
+    const questionId = QuestionController.newMethod(req);
+    const allQuestions = data.questions;
+    const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10))
+    // sort for hte answers to the question
+    const findAnswer = data.answers.filter(ans => ans.questionId === parseInt(questionId, 10));
+    const displayAnswer = ['There is no response yet'];
+    if (findAnswer.length !== 0) { displayAnswer[0] = findAnswer }
+    return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'All answers': displayAnswer[0] })
+
+  }
 
 
+
+
+  static newMethod(req) {
+    return req.params.questionId;
+  }
 }
 
 export default QuestionController;

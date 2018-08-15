@@ -6,7 +6,9 @@ const routes = (app) => {
   });
   app.get('/api/v1/questions', QuestionController.allQuestions);
 
- app.post('/api/v1/questions', QuestionController.postQuestions)
+  app.post('/api/v1/questions', QuestionController.postQuestions);
+
+  app.get('/api/v1/questions/:questionId', QuestionController.getQuestion);
 }
 
 export default routes;
