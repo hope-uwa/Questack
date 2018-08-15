@@ -14,7 +14,6 @@ class QuestionController {
      * @param {object} res
      * @returns {(function|object)} Function next() or JSON object
      */
-
   static allQuestions(req, res) {
     return res.status(200).json(data.questions );
   }
