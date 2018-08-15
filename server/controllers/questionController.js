@@ -38,7 +38,7 @@ class QuestionController {
     const newQuestion = {
       id, userId, questionTitle, questionBody, createdAt, updatedAt
     }
-    if (questionTitle !== '' && questionBody !== '') {
+    if (questionTitle !== '' && questionBody !== '' && questionTitle !== undefined && questionBody !== undefined) {
       allQuestions.push(newQuestion);
 
       return res.status(201).json({ message: 'Question added successfully', 'Question Title': newQuestion.questionTitle, 'Question body': newQuestion.questionBody });
@@ -65,6 +65,42 @@ class QuestionController {
     const displayAnswer = ['There is no response yet'];
     if (findAnswer.length !== 0) { displayAnswer[0] = findAnswer }
     return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'All answers': displayAnswer[0] })
+
+  }
+
+  /**
+       * Returns an Answer
+       * @method postAnswers
+       * @memberof QuestionController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
+  static postAnswers(req, res) {
+    // reminder: remove userId from req.body, it should be gotten from the middleware
+    const questionId = QuestionController.newMethod(req);
+    // check if question exist
+    const allQuestions = data.questions;
+    const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10))
+    if (findQuestion === -1) {
+      return res.status(404).json({ message: 'Question not found' });
+    }
+    // add answer
+    const { userId, answerBody } = req.body;
+    const allAnswers = data.answers;
+    const id = allAnswers[allAnswers.length - 1].id + 1;
+    const createdAt = moment().format('YYYY-MM-DD');
+    const updatedAt = moment().format('YYYY-MM-DD');
+
+    const newAnswer = {
+      id, userId, answerBody, createdAt, updatedAt
+    }
+    if (answerBody !== '' && answerBody !== undefined) {
+      allAnswers.push(newAnswer);
+
+      return res.status(201).json({ message: 'Answer added successfully', content: newAnswer });
+    }
+    return res.status(400).json({ message: 'An Empty field found, Please fill up all fields', error: 'Bad Request' })
 
   }
 
