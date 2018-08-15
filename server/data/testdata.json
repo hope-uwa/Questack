@@ -16,6 +16,15 @@
         "questionTitle":"Firing onclick event which triggers a POST request in jsdom",
         "questionBody":"I'm trying to do this the elegant way, with jsdom and jQuery in node"
         
+    },
+    "noContentAnswer":{
+        "userId":1,
+        "answerBody":"",
+        
+    },
+    "goodAnswer":{
+        "userId":1,
+        "answerBody":"I'm trying to do this the elegant way",
     }
 
     
