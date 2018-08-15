@@ -19,12 +19,12 @@
     },
     "noContentAnswer":{
         "userId":1,
-        "answerBody":"",
+        "answerBody":""
         
     },
     "goodAnswer":{
         "userId":1,
-        "answerBody":"I'm trying to do this the elegant way",
+        "answerBody":"I'm trying to do this the elegant way"
     }
 
     

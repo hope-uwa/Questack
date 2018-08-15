@@ -11,6 +11,8 @@ const routes = (app) => {
   app.get('/api/v1/questions/:questionId', QuestionController.getQuestion);
 
   app.post('/api/v1/questions/:questionId/answers', QuestionController.postAnswers);
+
+  app.get('/api/v1/questions/:questionId/answers', QuestionController.getAnswers);
 }
 
 export default routes;
