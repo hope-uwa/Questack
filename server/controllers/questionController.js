@@ -9,7 +9,7 @@ class QuestionController {
   /**
      * Returns a list of Questions
      * @method allQuestions
-     * @memberof Meals
+     * @memberof QuestionController
      * @param {object} req
      * @param {object} res
      * @returns {(function|object)} Function next() or JSON object
