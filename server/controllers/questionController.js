@@ -1,11 +1,12 @@
-import questions from '../data';
+import data from '../data';
 
 /**
  * @exports
  * @class QuestionController
  */
 class QuestionController {
-    /**
+
+  /**
      * Returns a list of Questions
      * @method allQuestions
      * @memberof Meals
@@ -14,9 +15,9 @@ class QuestionController {
      * @returns {(function|object)} Function next() or JSON object
      */
 
-    static allQuestions(req, res) {
-        return res.status(200).json({ questions });
-    }
+  static allQuestions(req, res) {
+    return res.status(200).json(data.questions );
+  }
 
 }
 

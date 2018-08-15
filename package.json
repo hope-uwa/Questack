@@ -4,7 +4,7 @@
   "description": "StackOverflow-lite is a platform where people can ask questions and provide answers.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:babel-register server/test/*.js --exit",
     "start": "nodemon --exec babel-node -- ./server/app.js",
     "lint-all": "eslint ./server/app.js ./server/test/*"
   },
