@@ -73,3 +73,33 @@ describe('POST endpoint for questions', () => {
       });
   });
 });
+
+
+// Adding an answer
+describe('POST endpoint for answers', () => {
+  const api = '/api/v1/questions/1/answers';
+  it('should not add an empty answer', (done) => {
+    chai.request(app)
+      .post(api)
+      .send(data.noContentAnswer)
+      .end((error, response) => {
+        expect(response.status).to.equal(400);
+        expect(response.body.message).to.equal('An Empty field found, Please fill up all fields');
+        expect(response.body.error).to.equal('Bad Request');
+        done();
+      });
+  });
+
+  it('should return 201 for a successful post request ', (done) => {
+    chai.request(app)
+      .post(api)
+      .send(data.goodAnswer)
+      .end((error, response) => {
+        expect(response.status).to.equal(201);
+        expect(response.body.message).to.equal('Answer added successfully');
+        expect(response.body).to.be.an('object');
+        // expect(response.body.request).to.be.an('array');
+        done();
+      });
+  });
+});
