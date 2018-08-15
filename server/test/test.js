@@ -23,7 +23,7 @@ describe('GET all questions endpoint', () => {
 describe('GET endpoint for a question', () => {
   it('should return an 200', (done) => {
     chai.request(app)
-      .get('/api/v1/users/questions/1')
+      .get('/api/v1/questions/2')
       .end((error, response) => {
         expect(response.status).to.equal(200);
         expect(response.body).to.be.an('object');
