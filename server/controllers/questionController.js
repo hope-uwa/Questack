@@ -121,7 +121,7 @@ class QuestionController {
     const questionId = QuestionController.newMethod(req);
     const allAnswers = data.answers;
     // sort for hte answers to the question
-    const findAnswer = allAnswers.filter(ans => ans.questionId == parseInt(questionId, 10));
+    const findAnswer = allAnswers.filter(ans => ans.questionId === parseInt(questionId, 10));
     const displayAnswer = ['There is no response yet'];
     if (findAnswer.length !== 0) { displayAnswer[0] = findAnswer }
     return res.status(200).json(displayAnswer[0])

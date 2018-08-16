@@ -110,8 +110,7 @@ describe('POST endpoint for answers', () => {
       .send(data.goodAnswer)
       .end((error, response) => {
         expect(response.status).to.equal(404);
-        expect(response.body.message).to.equal('Question not found');
-        
+        expect(response.body.message).to.equal('Question not found');      
         // expect(response.body.request).to.be.an('array');
         done();
       });
