@@ -8,9 +8,17 @@
         "updatedAt":"2018-08-18T14:34:90.000"
     },
     {
-        "id":1,
-        "userId":1,
-        "questionId":3,
+        "id":2,
+        "userId":2,
+        "questionId":2,
+        "answerBody":"",
+        "createdAt":"2018-08-18T14:34:90.000",
+        "updatedAt":"2018-08-18T14:34:90.000"
+    },
+    {
+        "id":3,
+        "userId":3,
+        "questionId":2,
         "answerBody":"",
         "createdAt":"2018-08-18T16:34:90.000",
         "updatedAt":"2018-08-18T16:34:90.000"
