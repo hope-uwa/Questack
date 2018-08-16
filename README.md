@@ -1,6 +1,9 @@
 # StackOverflow-lite
 StackOverflow-lite is a platform where people can ask questions and provide answers.
 
+[![Build Status](https://travis-ci.org/uwaelpis/StackOverflow-lite.svg?branch=master)](https://travis-ci.org/uwaelpis/StackOverflow-lite)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f825ed59ea572f98f4cc/test_coverage)](https://codeclimate.com/github/uwaelpis/StackOverflow-lite/test_coverage)
+
 ## Table of Contents
 
  * [Technologies](#technologies)
