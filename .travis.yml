@@ -25,4 +25,4 @@ script:
 
 
 
-after_success: npm run coverall
+after_success: npm run coverage
