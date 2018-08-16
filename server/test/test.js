@@ -137,7 +137,7 @@ describe('DELETE endpoint for a question', () => {
     chai.request(app)
       .delete('/api/v1/questions/2')
       .end((error, response) => {
-        expect(response.status).to.equal(204);
+        expect(response.status).to.equal(200);
         expect(response.body.message).to.equal('Question has been deleted!');
         done();
       });
