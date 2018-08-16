@@ -7,8 +7,6 @@
     "test": "mocha --compilers js:babel-register server/test/*.js  --exit",
     "start": "nodemon --exec babel-node -- ./server/app.js",
     "lint-all": "eslint ./server/app.js ./server/test/*",
-    // "cover": " istanbul cover ./node_modules/mocha/bin/_mocha --compilers js:babel-register server/test/*.js  --exit",
-    // "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
