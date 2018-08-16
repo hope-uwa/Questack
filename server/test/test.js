@@ -78,6 +78,7 @@ describe('POST endpoint for questions', () => {
 // Adding an answer
 describe('POST endpoint for answers', () => {
   const api = '/api/v1/questions/1/answers';
+  const noQuestionApi = '/api/v1/questions/50/answers';
   it('should not add an empty answer', (done) => {
     chai.request(app)
       .post(api)
@@ -102,6 +103,19 @@ describe('POST endpoint for answers', () => {
         done();
       });
   });
+
+  it('should return 404 if question doesnt exist ', (done) => {
+    chai.request(app)
+      .post(noQuestionApi)
+      .send(data.goodAnswer)
+      .end((error, response) => {
+        expect(response.status).to.equal(404);
+        expect(response.body.message).to.equal('Question not found');
+        
+        // expect(response.body.request).to.be.an('array');
+        done();
+      });
+  });
 });
 
 describe('GET all answers endpoint', () => {
@@ -122,10 +136,10 @@ describe('DELETE endpoint for a question', () => {
 
   it('should return an 200', (done) => {
     chai.request(app)
-      .get('/api/v1/questions/2')
+      .delete('/api/v1/questions/2')
       .end((error, response) => {
         expect(response.status).to.equal(204);
-        expect(response.body.message).to.be.an('Question has been successfully deleted!');
+        expect(response.body.message).to.equal('Question has been deleted!');
         done();
       });
   });

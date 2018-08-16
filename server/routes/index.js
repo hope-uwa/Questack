@@ -13,6 +13,8 @@ const routes = (app) => {
   app.post('/api/v1/questions/:questionId/answers', QuestionController.postAnswers);
 
   app.get('/api/v1/questions/:questionId/answers', QuestionController.getAnswers);
+
+  app.delete('/api/v1/questions/:questionId', QuestionController.deleteQuestion);
 }
 
 export default routes;

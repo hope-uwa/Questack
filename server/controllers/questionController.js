@@ -60,11 +60,15 @@ class QuestionController {
     const questionId = QuestionController.newMethod(req);
     const allQuestions = data.questions;
     const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10))
+    if (findQuestion === -1) {
+      return res.status(404).json({ message: 'Question not found' });
+    }
+    const allAnswers = data.answers;
     // sort for hte answers to the question
-    const findAnswer = data.answers.filter(ans => ans.questionId === parseInt(questionId, 10));
+    const findAnswer = allAnswers.filter(ans => ans.questionId === parseInt(questionId, 10));
     const displayAnswer = ['There is no response yet'];
     if (findAnswer.length !== 0) { displayAnswer[0] = findAnswer }
-    return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'All answers': displayAnswer[0] })
+    return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'All answers': findAnswer })
 
   }
 
@@ -89,11 +93,11 @@ class QuestionController {
     const { userId, answerBody } = req.body;
     const allAnswers = data.answers;
     const id = allAnswers[allAnswers.length - 1].id + 1;
-    const createdAt = moment().format('YYYY-MM-DD');
-    const updatedAt = moment().format('YYYY-MM-DD');
+    const createdAt = moment();
+    const updatedAt = moment();
 
     const newAnswer = {
-      id, userId, answerBody, createdAt, updatedAt
+      id, userId, questionId, answerBody, createdAt, updatedAt
     }
     if (answerBody !== '' && answerBody !== undefined) {
       allAnswers.push(newAnswer);
@@ -115,14 +119,40 @@ class QuestionController {
 
   static getAnswers(req, res) {
     const questionId = QuestionController.newMethod(req);
-
+    const allAnswers = data.answers;
     // sort for hte answers to the question
-    const findAnswer = data.answers.filter(ans => ans.questionId === parseInt(questionId, 10));
+    const findAnswer = allAnswers.filter(ans => ans.questionId == parseInt(questionId, 10));
     const displayAnswer = ['There is no response yet'];
     if (findAnswer.length !== 0) { displayAnswer[0] = findAnswer }
-    return res.status(200).json(displayAnswer[0] )
+    return res.status(200).json(displayAnswer[0])
 
   }
+
+  /**
+       * Returns a message
+       * @method deleteQuestion
+       * @memberof QuestionController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
+
+  static deleteQuestion(req, res) {
+    const questionId = QuestionController.newMethod(req);
+
+    const allQuestions = data.questions;
+    const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10));
+    if (findQuestion === -1) {
+      return res.status(404).json({ message: 'Question doesn\'t exist' });
+    }
+    allQuestions.splice(findQuestion, 1);
+
+    return res.status(200).json({ message: 'Question has been deleted!' });
+
+
+  }
+
+
 
 
 
