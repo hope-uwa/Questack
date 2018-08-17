@@ -7,8 +7,8 @@
     "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-register server/test/*.js  --exit",
     "start": "nodemon --exec babel-node -- ./server/app.js",
     "lint-all": "eslint ./server/app.js ./server/test/*",
-    "coverage": "nyc --reporter=html --reporter=text --reporter=lcov mocha --reporter spec --require babel-register server/test/* --exit",
-    "coverall": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coverage": "istanbul cover --report lcov mocha --require babel-register server/test/* --exit ",
+    "coverall": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     
   },
   "repository": {
