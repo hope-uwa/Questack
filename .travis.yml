@@ -1,13 +1,11 @@
 language: node_js
 node_js: 
-- stable
+- 8.11.1
 
 cache:
   directories:
     - "node_modules"
-env:
-  global:
-  - CC_TEST_REPORTER_ID=eba3da5656d2eacdb7febf2a4a3fa314d41ec6ffee3c041088f58f1463289554
+
 
 before_install:
   - npm install -g mocha 
