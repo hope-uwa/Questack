@@ -1,3 +1,5 @@
 [
-    {"id":1,"questionId":2,"answerId":1}
+    {"id":1,"questionId":2,"answerId":0},
+    {"id":2,"questionId":2,"answerId":0},
+    {"id":3,"questionId":2,"answerId":0}
 ]
