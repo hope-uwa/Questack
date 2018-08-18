@@ -7,7 +7,7 @@
     "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-register server/test/*.js  --exit",
     "start": "nodemon --exec babel-node -- ./server/app.js",
     "lint-all": "eslint ./server/app.js ./server/test/*",
-    "coverage": "istanbul cover --report lcov mocha --reporter spec --require babel-register server/test/* --exit ",
+    "coverage": "istanbul cover --report lcov _mocha",
     "coverall": "npm run coverage | ./node_modules/coveralls/bin/coveralls.js"
     
   },
