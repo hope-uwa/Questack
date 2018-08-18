@@ -14,12 +14,10 @@ before_install:
 before_script:
     
 script:
-  - npm test
-
-
+  - npm run test
 
 after_success:
-  - npm run coverall
+  - npm run coveralls
   
 after_script:
   - npm install -g codeclimate-test-reporter
