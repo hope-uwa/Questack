@@ -25,6 +25,10 @@ Project is currently being built with the Project Management Tool, Pivotal Track
 ### Template
 Template is hosted at [https://uwaelpis.github.io/StackOverflow-lite/UI/index.html](https://uwaelpis.github.io/StackOverflow-lite/UI/index.html)
 
+### API Deployment
+API is deployed with dummy data at [https://uwaelpis.herokuapp.com/](https://uwaelpis.herokuapp.com/)
+
+
 ## Technologies
 
 * [NodeJS](https://nodejs.org/) - Runtime Environment
