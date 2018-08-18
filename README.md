@@ -89,6 +89,8 @@ answer.
 
 <tr><td>POST</td> <td>api/v1/questions/:questionId/answers</td> <td>Add answer to a Question</td></tr>
 
+<tr><td>PUT</td> <td>api/v1/questions/:questionId/answers/answerId/preferred</td> <td>Mark an answer as preferred</td></tr>
+
 </table>
 
 ## Getting Started
