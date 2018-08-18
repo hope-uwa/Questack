@@ -57,7 +57,7 @@ class QuestionController {
        */
 
   static getQuestion(req, res) {
-    const questionId = QuestionController.newMethod(req);
+    const questionId = QuestionController.questionId(req);
     const allQuestions = data.questions;
     const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10))
     if (findQuestion === -1) {
@@ -82,7 +82,7 @@ class QuestionController {
        */
   static postAnswers(req, res) {
     // reminder: remove userId from req.body, it should be gotten from the middleware
-    const questionId = QuestionController.newMethod(req);
+    const questionId = QuestionController.questionId(req);
     // check if question exist
     const allQuestions = data.questions;
     const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10))
@@ -118,7 +118,7 @@ class QuestionController {
        */
 
   static getAnswers(req, res) {
-    const questionId = QuestionController.newMethod(req);
+    const questionId = QuestionController.questionId(req);
     const allAnswers = data.answers;
     // sort for hte answers to the question
     const findAnswer = allAnswers.filter(ans => ans.questionId === parseInt(questionId, 10));
@@ -138,7 +138,7 @@ class QuestionController {
        */
 
   static deleteQuestion(req, res) {
-    const questionId = QuestionController.newMethod(req);
+    const questionId = QuestionController.questionId(req);
 
     const allQuestions = data.questions;
     const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10));
@@ -152,12 +152,41 @@ class QuestionController {
 
   }
 
+  /**
+       * Returns a message
+       * @method preferredAnswer
+       * @memberof QuestionController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
+
+  static preferredAnswer(req, res) {
+    const qid = QuestionController.questionId(req);
+    const aid = QuestionController.answerId(req);
+    const preferredAnswer = data.preferredAnswers;
+    const id = preferredAnswer[preferredAnswer.length - 1].id + 1;
+
+    const findQuestion = preferredAnswer.findIndex(question => question.questionid === parseInt(qid, 10))
+    const newPreferredQuestion = { id, qid, aid }
+    if (findQuestion === -1) {
+      preferredAnswer.push(newPreferredQuestion);
+      return res.status(200).json({ message: 'Prefered Answer Choosen' });
+    }
+    preferredAnswer[findQuestion].answerId = aid;
+    return res.status(201).json({ message: 'Prefered Answer Updated' })
+
+  }
 
 
 
 
-  static newMethod(req) {
+  static questionId(req) {
     return req.params.questionId;
+  }
+
+  static answerId(req) {
+    return req.params.answerId;
   }
 }
 
