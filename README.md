@@ -12,7 +12,7 @@ StackOverflow-lite is a platform where people can ask questions and provide answ
 
  * [Technologies](#technologies)
  * [Features](#features)
-    *[Additional Feature](#additional-feature)
+    * [Additional Feature](#additional-feature)
  * [API Endpoints](#api-endpoints)
  * [Getting Started](#getting-started)
     * [Installation](#installation)
