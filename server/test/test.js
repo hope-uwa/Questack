@@ -30,6 +30,18 @@ describe('GET endpoint for a question', () => {
         done();
       });
   });
+
+  it('should return 404 if question doesnt exist ', (done) => {
+    const noQuestionApi = '/api/v1/questions/100';
+    chai.request(app)
+      .get(noQuestionApi)
+      .end((error, response) => {
+        expect(response.status).to.equal(404);
+        expect(response.body.message).to.equal('Question not found');
+        // expect(response.body.request).to.be.an('array');
+        done();
+      });
+  });
 });
 
 describe('POST endpoint for questions', () => {
@@ -110,7 +122,7 @@ describe('POST endpoint for answers', () => {
       .send(data.goodAnswer)
       .end((error, response) => {
         expect(response.status).to.equal(404);
-        expect(response.body.message).to.equal('Question not found');      
+        expect(response.body.message).to.equal('Question not found');
         // expect(response.body.request).to.be.an('array');
         done();
       });
@@ -142,4 +154,17 @@ describe('DELETE endpoint for a question', () => {
         done();
       });
   });
+
+  it('should return 404 if question doesnt exist ', (done) => {
+    const noQuestionApi = '/api/v1/questions/100';
+    chai.request(app)
+      .delete(noQuestionApi)
+      .end((error, response) => {
+        expect(response.status).to.equal(404);
+        expect(response.body.message).to.equal('Question doesn\'t exist');
+        // expect(response.body.request).to.be.an('array');
+        done();
+      });
+  });
+
 });
