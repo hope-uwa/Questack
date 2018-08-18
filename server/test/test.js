@@ -168,3 +168,29 @@ describe('DELETE endpoint for a question', () => {
   });
 
 });
+
+describe('PUT endpoint for a preferred answer', () => {
+
+  it('should return an 201', (done) => {
+    chai.request(app)
+      .put('/api/v1/questions/2/answers/1/preferred')
+      .end((error, response) => {
+        expect(response.status).to.equal(201);
+        expect(response.body.message).to.equal('The preferred Answer has been choosen');
+        done();
+      });
+  });
+
+  it('should return 404 if question doesnt exist ', (done) => {
+    const noQuestionApi = '/api/v1/questions/100/answers/1/preferred';
+    chai.request(app)
+      .put(noQuestionApi)
+      .end((error, response) => {
+        expect(response.status).to.equal(404);
+        expect(response.body.message).to.equal('The question is not found');
+        // expect(response.body.request).to.be.an('array');
+        done();
+      });
+  });
+
+});
