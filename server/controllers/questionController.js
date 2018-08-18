@@ -38,8 +38,14 @@ class QuestionController {
     const newQuestion = {
       id, userId, questionTitle, questionBody, createdAt, updatedAt
     }
+    // updating preferred DB
+    const answerId = -1;
+    const questionId = id;
+    const newPreferredAnswer = { id, questionId, answerId };
+
     if (questionTitle !== '' && questionBody !== '' && questionTitle !== undefined && questionBody !== undefined) {
       allQuestions.push(newQuestion);
+      data.preferredAnswers.push(newPreferredAnswer);
 
       return res.status(201).json({ message: 'Question added successfully', 'Question Title': newQuestion.questionTitle, 'Question body': newQuestion.questionBody });
     }
@@ -65,10 +71,11 @@ class QuestionController {
     }
     const allAnswers = data.answers;
     // sort for hte answers to the question
-    const findAnswer = allAnswers.filter(ans => ans.questionId === parseInt(questionId, 10));
-    const displayAnswer = ['There is no response yet'];
-    if (findAnswer.length !== 0) { displayAnswer[0] = findAnswer }
-    return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'All answers': findAnswer })
+    const preferredAnswerId = QuestionController.getPreferredAnswer(req);
+    // const findAnswer = allAnswers.filter(ans => ans.questionId === parseInt(questionId, 10));
+    const displayAnswer = ['No preferred Answer Choosen Yet'];
+    if (allAnswers[preferredAnswerId] !== undefined) { displayAnswer[0] = allAnswers[preferredAnswerId] }
+    return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'Most Preferred Answers': displayAnswer })
 
   }
 
@@ -154,27 +161,25 @@ class QuestionController {
 
   /**
        * Returns a message
-       * @method preferredAnswer
+       * @method AddPreferredAnswer
        * @memberof QuestionController
        * @param {object} req
        * @param {object} res
        * @returns {(function|object)} Function next() or JSON object
        */
 
-  static preferredAnswer(req, res) {
+  static AddPreferredAnswer(req, res) {
     const qid = QuestionController.questionId(req);
     const aid = QuestionController.answerId(req);
     const preferredAnswer = data.preferredAnswers;
-    const id = preferredAnswer[preferredAnswer.length - 1].id + 1;
+    const id = qid;
 
-    const findQuestion = preferredAnswer.findIndex(question => question.questionid === parseInt(qid, 10))
-    const newPreferredQuestion = { id, qid, aid }
-    if (findQuestion === -1) {
-      preferredAnswer.push(newPreferredQuestion);
-      return res.status(200).json({ message: 'Prefered Answer Choosen' });
+    const findOption = preferredAnswer.findIndex(answer => answer.questionId === parseInt(id, 10))
+    if (findOption === -1) {
+      return res.status(404).json({ message: 'The question is not found' })
     }
-    preferredAnswer[findQuestion].answerId = aid;
-    return res.status(201).json({ message: 'Prefered Answer Updated' })
+    preferredAnswer[findOption].answerId = aid;
+    return res.status(201).json({ message: 'The preferred Answer has been choosen' });
 
   }
 
@@ -187,6 +192,22 @@ class QuestionController {
 
   static answerId(req) {
     return req.params.answerId;
+  }
+
+  static getPreferredAnswer(req) {
+    const questionid = QuestionController.questionId(req);
+    // const answerId = QuestionController.answerId(req);
+
+    const findQuestion = data.preferredAnswers.findIndex(question => question.questionId === parseInt(questionid, 10));
+
+    if (findQuestion === -1) {
+      return null;
+    }
+    const preferAnswerDb = data.preferredAnswers[findQuestion];
+
+    const preferredId = preferAnswerDb.answerId;
+    return preferredId;
+
   }
 }
 
