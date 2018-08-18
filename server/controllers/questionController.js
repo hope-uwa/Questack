@@ -128,7 +128,7 @@ class QuestionController {
     const questionId = QuestionController.questionId(req);
     const allAnswers = data.answers;
     // sort for hte answers to the question
-    const findAnswer = allAnswers.filter(ans => ans.questionId === parseInt(questionId, 10));
+    const findAnswer = allAnswers.filter(ans => ans.questionId == parseInt(questionId, 10));
     const displayAnswer = ['There is no response yet'];
     if (findAnswer.length !== 0) { displayAnswer[0] = findAnswer }
     return res.status(200).json(displayAnswer[0])
@@ -178,6 +178,7 @@ class QuestionController {
     if (findOption === -1) {
       return res.status(404).json({ message: 'The question is not found' })
     }
+
     preferredAnswer[findOption].answerId = aid;
     return res.status(201).json({ message: 'The preferred Answer has been choosen' });
 
