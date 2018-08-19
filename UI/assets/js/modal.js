@@ -12,9 +12,12 @@ window.onload = function(){
  }
  let loginModalBtn = () => {
     loginModal.style.display = "inline-block";
+
 }
 let signupModalBtn = ()=> {
     signUpModal.style.display = "inline-block";
+    loginModal.style.display = "none";
+
 }
 let closeModal = () => {
         signUpModal.style.display = "none";
