@@ -17,6 +17,10 @@
     padding: 10px 20px;
     font-size: 10px;
 }
+.btn-md{
+    padding:10px 30px;
+    font-size: 13px;
+}
 .btn-lg{
     padding: 10px 40px;
     font-size: 18px;
@@ -26,6 +30,10 @@
         padding: 10px 20px;
         font-size: 12px;
     } 
+    .btn-md{
+        padding: 5px 5px;
+        font-size: 9px;
+    }
 }
 
 .btn-success {

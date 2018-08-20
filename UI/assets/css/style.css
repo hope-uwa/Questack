@@ -298,3 +298,18 @@
   .bg-cream{
     background-color: #faffbdab;
   }
+
+  .hide-md-show-sm{
+    display: none;
+  }
+  .show-md-hide-sm{
+    display: flex;
+  }
+  @media(max-width:768px){
+    .hide-md-show-sm{
+      display:inline-flex;
+    }
+    .show-md-hide-sm{
+      display:none;
+    }
+  }
