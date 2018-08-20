@@ -110,4 +110,8 @@ margin-bottom:5px;
         margin-left: 1em;
         width: 100%;
     }
+    .answer-given{
+        
+        color: #4CAF50;
+    }
 }
