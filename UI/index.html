@@ -57,9 +57,20 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col9 colsm12  colsm-order1 ">
+                <div class="col9 colsm12  col-order2 ">
                         <div class="row bg-cream align-left pt1 pl2 pb1 pls1 bb-grey">
-                            <h1 id="thread-title" class="">Recent Threads</h1>
+                            <div class="col9">
+                                    <h1 id="thread-title" class="">Recent Threads</h1>
+                            </div>
+                            <div class="col3">
+                                <div class="row">
+                                        <button id="askQuestion" onclick="signupModalBtn()" class="btn btn-success btn-sm btn-shadow">
+                                                Ask a Question
+                                            </button>
+                                </div>
+                                    
+                            </div>
+                            
                         </div>
                         <div id="recent" class="row pl2 pls1">
                             <div class="questions-card">
@@ -182,7 +193,7 @@
                             <a href="#">❯</a>
                         </div>
                 </div>
-                <div class="col3 colsm12 sidebar colsm-order2 " >
+                <div class="col3 colsm12 sidebar col-order1 " >
                     <div class="row mt3 mb2">
                         <button id="askQuestion" onclick="signupModalBtn()" class="btn btn-success btn-lg btn-shadow">
                             Ask a Question
