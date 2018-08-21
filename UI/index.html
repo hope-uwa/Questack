@@ -9,7 +9,7 @@
   
 </head>
 <body>
-    <header>
+    <header class="fixed-header">
         <div class="navbar">
             <div class="header-logo">   
                 
@@ -21,8 +21,10 @@
             <div class="header-title" >
              <a href="">   Questack</a>
             </div>
-            <div class="search-box ml2 mls1">
-                    <input type="text" name="search" placeholder="Search..">
+            <div class="search-header">
+                    <div class="search-box ">
+                            <input type="text" name="search" placeholder="Search..">
+                    </div>
             </div>
             <div class="header-right mr1">
                 <button class="btn-header" id="loginModalBtn" onclick="loginModalBtn()">Login</button>
@@ -57,9 +59,20 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col9 colsm12  colsm-order1 ">
+                <div class="col9 colsm12  col-order2 ">
                         <div class="row bg-cream align-left pt1 pl2 pb1 pls1 bb-grey">
-                            <h1 id="thread-title" class="">Recent Threads</h1>
+                            <div class="col9">
+                                    <h1 id="thread-title" class="">Recent Questions</h1>
+                            </div>
+                            <div class="col3">
+                                <div class="row pt1 pb1 ">
+                                        <button id="askQuestion" onclick="signupModalBtn()" class="btn btn-success btn-md btn-shadow">
+                                            Ask a Question
+                                        </button>
+                                </div>
+                                    
+                            </div>
+                            
                         </div>
                         <div id="recent" class="row pl2 pls1">
                             <div class="questions-card">
@@ -70,7 +83,7 @@
                                 <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to check IP address</a></h4>
                                 <div class="question__content-description">
                                     <span>7 days ago</span>
-                                    <span class=""><a class="green-text" href="">Elpis</a></span>
+                                    <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                 </div>
                                 <div class="question__content-body">
                                     <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
@@ -78,7 +91,7 @@
                             </div>
                             <div class="question__response">
                                 
-                                <i class=""></i><span><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                             </div>
                             </div>
                             <div class="questions-card">
@@ -89,7 +102,7 @@
                                     <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
                                     <div class="question__content-description">
                                         <span>7 days ago</span>
-                                        <span class=""><a class="green-text" href="">Elpis</a></span>
+                                        <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                     </div>
                                     <div class="question__content-body">
                                         <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
@@ -97,7 +110,7 @@
                                 </div>
                                 <div class="question__response">
                                     
-                                    <i class=""></i><span><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                    <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                 </div>
                             </div>
                             <div class="questions-card">
@@ -108,7 +121,7 @@
                                     <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
                                     <div class="question__content-description">
                                         <span>7 days ago</span>
-                                        <span class=""><a class="green-text" href="">Elpis</a></span>
+                                        <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                     </div>
                                     <div class="question__content-body">
                                         <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
@@ -116,7 +129,7 @@
                                 </div>
                                 <div class="question__response">
                                     
-                                    <i class=""></i><span><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                    <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                 </div>
                             </div>
                             <div class="questions-card">
@@ -127,7 +140,7 @@
                                     <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
                                     <div class="question__content-description">
                                         <span>7 days ago</span>
-                                        <span class=""><a class="green-text" href="">Elpis</a></span>
+                                        <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                     </div>
                                     <div class="question__content-body">
                                         <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
@@ -135,7 +148,7 @@
                                 </div>
                                 <div class="question__response">
                                     
-                                    <i class=""></i><span><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                    <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                 </div>
                             </div>
                             <div class="questions-card">
@@ -146,7 +159,7 @@
                                     <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
                                     <div class="question__content-description">
                                         <span>7 days ago</span>
-                                        <span class=""><a class="green-text" href="">Elpis</a></span>
+                                        <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                     </div>
                                     <div class="question__content-body">
                                         <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
@@ -154,7 +167,7 @@
                                 </div>
                                 <div class="question__response">
                                     
-                                    <i class=""></i><span><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                    <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                 </div>
                             </div>
                             <div class="questions-card">
@@ -165,7 +178,7 @@
                                     <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
                                     <div class="question__content-description">
                                         <span>7 days ago</span>
-                                        <span class=""><a class="green-text" href="">Elpis</a></span>
+                                        <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                     </div>
                                     <div class="question__content-body">
                                         <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
@@ -173,7 +186,7 @@
                                 </div>
                                 <div class="question__response">
                                     
-                                    <i class=""></i><span><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                    <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
                                 </div>
                             </div>
                         </div>
@@ -182,16 +195,26 @@
                             <a href="#">❯</a>
                         </div>
                 </div>
-                <div class="col3 colsm12 sidebar colsm-order2 " >
-                    <div class="row mt3 mb2">
-                        <button id="askQuestion" onclick="signupModalBtn()" class="btn btn-success btn-lg btn-shadow">
-                            Ask a Question
-                        </button>
-                    </div>
-                    <div class="row welcome">
-                        Join the community
+                <div class="col3 colsm12 sidebar col-order1 " >
+                    <div class="row mt3 mb2 show-md-hide-sm">
                         
                     </div>
+                    <div class="row welcome show-md-hide-sm">
+                        
+                        
+                    </div>
+                    <div class="row h-400 h-sm-auto" >
+                            
+                            <ul class="align-center profile__actions">
+                                <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="#">Top Questions</a></li>
+                                <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="#">Lastest Questions</a></li>
+                                <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="#">All Questions</a></li>
+                                <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="#">Most Answered Question</a></li>
+                                <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="#">Recently Asked Question</a></li>
+                                <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="#">All Questions</a></li>
+                            </ul>
+    
+                        </div>
                 </div>
             </div>
 
@@ -285,7 +308,7 @@
         </div>
         <!--end of Modals-->
 
-        <footer class="footer mt3 pt2 pb2 align-center">
+        <footer class="footer  pt2 pb2 align-center">
                 © Bootcamp Cycle 35
         </footer>
     

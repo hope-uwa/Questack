@@ -18,7 +18,7 @@ else if(thread === "mostanswer"){
     document.getElementById('all').style.display = "none";
 }
 else if(thread==="all"){
-    document.getElementById('thread-title').innerHTML = 'All Threads';
+    document.getElementById('thread-title').innerHTML = 'All Questions';
     document.getElementById('recent').style.display = "none";
     document.getElementById('most-answer').style.display = "none";
     document.getElementById('all').style.display = "display";
