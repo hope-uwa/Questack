@@ -24,12 +24,19 @@
             <div class="search-box ml2 mls1">
                     <input type="text" name="search" placeholder="Search..">
             </div>
-            <div class="header-right mr1">
+            <div onclick="dropDownMenu()" class=" dropDownBtn header-right mr1 hide-md-show-sm">
+                    <button class="btn-header ">
+                            <div class="header-profile">E</div>
+                        </button>
+                        <button class="btn-header header-profile-text black-text">Elpis</button>
+                        <button class="btn-header header-profile-text black-text "><i class=" dropdown_icon fa fa-sort-desc"></i></button>
+            </div>
+            <div class="header-right mr1 show-md-hide-sm">
                 <button class="btn-header">
                     <div class="header-profile">E</div>
                 </button>
                 <button class="btn-header header-profile-text black-text">Elpis</button>
-                <button class="btn-header ml1" id="logoutModalBtn" >Logout</button>
+                <button class="btn-header ml1 show-md-hide-sm" id="logoutModalBtn" >Logout</button>
                 
                 
             </div>
@@ -40,6 +47,31 @@
         </div>
 
     </header>
+    <div class="dropdown-menu" id="dropdown-menu">
+            <ul>
+                <li>
+                        <div class="row">
+                                <!-- <div class="profile-avatar">E</div> -->
+                                
+                                <ul class="align-center profile__basic">
+                                    <li class="profile__basic-name">Elpis</li>
+                                    <li class="profile__basic-date">Joined: A month Ago</li>
+                                    <li class="profile__basic-question">Questions Asked: 10</li>
+                                    <li class="profile__basic-answer">Given Answers: 100 </li>
+                                </ul>
+                                <ul class="align-center profile__actions">
+                                    <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="./user-profile.html?thread=mostanswer">Most Answered Question</a></li>
+                                    <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="./user-profile.html?thread=recent">Recently Asked Question</a></li>
+                                    <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="./user-profile.html?thread=all">All Threads</a></li>
+                                    <li class=""><a href="index.html">Logout</a></li>
+                                </ul>
+        
+                            </div>
+                </li>
+                
+            </ul>
+
+        </div>
     <main id="main">
         <div class="question-post" id="questionBanner"> 
             <div class="container">
@@ -429,7 +461,7 @@
                             <a href="#">❯</a>
                         </div>
                 </div>
-                <div class="col3 colsm12 sidebar col-order1" >
+                <div class="col3 colsm12 sidebar col-order1 show-md-hide-sm" >
                     <div class="row mt3 mb2">
                         
                     </div>
@@ -445,7 +477,7 @@
                         <ul class="align-center profile__actions">
                             <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="./user-profile.html?thread=mostanswer">Most Answered Question</a></li>
                             <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="./user-profile.html?thread=recent">Recently Asked Question</a></li>
-                            <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="./user-profile.html?thread=all">All Threads</a></li>
+                            <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="./user-profile.html?thread=all">All Questions</a></li>
                         </ul>
 
                     </div>
