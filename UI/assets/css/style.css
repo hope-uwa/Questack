@@ -374,3 +374,8 @@
 .h-400{
   height:400px;
 }
+@media(max-width:768px){
+.h-sm-auto{
+  height: auto!important;
+}
+}
