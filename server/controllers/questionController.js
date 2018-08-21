@@ -44,11 +44,13 @@ class QuestionController {
     const questionId = id;
     const newPreferredAnswer = { id, questionId, answerId };
 
-    if (questionTitle === '' && questionTitle === undefined) {
+    if (questionTitle === '' || questionTitle === undefined) {
       return res.status(400).json({ message: 'A Title field is required', error: 'Bad Request' })
-    } if (questionBody === '' && questionBody === undefined) {
+    }
+    if (questionBody === '' || questionBody === undefined) {
       return res.status(400).json({ message: 'A question body is required', error: 'Bad Request' })
     }
+
     allQuestions.push(newQuestion);
     data.preferredAnswers.push(newPreferredAnswer);
 
@@ -87,7 +89,7 @@ class QuestionController {
 
   }
 
-  
+
 
   /**
        * Returns a message
@@ -113,7 +115,7 @@ class QuestionController {
 
   }
 
-  
+
 
 
 

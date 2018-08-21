@@ -1,5 +1,6 @@
 import moment from 'moment';
 import data from '../data';
+
 /**
  * @exports
  * @class AnswerController
@@ -9,14 +10,14 @@ class AnswerController {
   /**
        * Returns an Answer
        * @method postAnswers
-       * @memberof QuestionController
+       * @memberof AnswerController
        * @param {object} req
        * @param {object} res
        * @returns {(function|object)} Function next() or JSON object
        */
       static postAnswers(req, res) {
 
-        const questionId = QuestionController.questionId(req);
+        const questionId = AnswerController.questionId(req);
     
         const allQuestions = data.questions;
         const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10))
@@ -38,42 +39,44 @@ class AnswerController {
     
           return res.status(201).json({ message: 'Answer added successfully', content: newAnswer });
         }
-        return res.status(400).json({ message: 'An Empty field found, Please fill up all fields', error: 'Bad Request' })
+        return res.status(400).json({ message: 'An answer field is required, Please fill up field', error: 'Bad Request' })
     
       }
     
       /**
            * Returns a Answers
            * @method getAnswers
-           * @memberof QuestionController
+           * @memberof AnswerController
            * @param {object} req
            * @param {object} res
            * @returns {(function|object)} Function next() or JSON object
            */
     
       static getAnswers(req, res) {
-        const questionId = QuestionController.questionId(req);
+        const questionId = AnswerController.questionId(req);
         const allAnswers = data.answers;
     
         const findAnswer = allAnswers.filter(ans => ans.questionId == parseInt(questionId, 10));
-        const displayAnswer = ['There is no response yet'];
-        if (findAnswer.length !== 0) { displayAnswer[0] = findAnswer }
-        return res.status(200).json(displayAnswer[0])
+        
+        if (findAnswer.length !== 0) { 
+          return res.status(200).json({answer: findAnswer})
+         }
+        return res.status(200).json({answer:'There is no answer given yet'})
     
       }
 
       /**
        * Returns a message
        * @method AddPreferredAnswer
-       * @memberof QuestionController
+       * @memberof AnswerController
        * @param {object} req
        * @param {object} res
        * @returns {(function|object)} Function next() or JSON object
        */
 
   static AddPreferredAnswer(req, res) {
-    const qid = QuestionController.questionId(req);
-    const aid = QuestionController.answerId(req);
+    const qid = AnswerController.questionId(req);
+    const aid = AnswerController.answerId(req);
     const preferredAnswer = data.preferredAnswers;
     const id = qid;
 
