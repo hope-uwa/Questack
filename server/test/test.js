@@ -52,7 +52,7 @@ describe('POST endpoint for questions', () => {
       .send(data.noTitleQuestion)
       .end((error, response) => {
         expect(response.status).to.equal(400);
-        expect(response.body.message).to.equal('An Empty field found, Please fill up all fields');
+        expect(response.body.message).to.equal('A Title field is required');
         expect(response.body.error).to.equal('Bad Request');
         done();
       });
@@ -64,7 +64,7 @@ describe('POST endpoint for questions', () => {
       .send(data.noBodyQuestion)
       .end((error, response) => {
         expect(response.status).to.equal(400);
-        expect(response.body.message).to.equal('An Empty field found, Please fill up all fields');
+        expect(response.body.message).to.equal('A question body is required');
         expect(response.body.error).to.equal('Bad Request');
         done();
       });
@@ -97,7 +97,7 @@ describe('POST endpoint for answers', () => {
       .send(data.noContentAnswer)
       .end((error, response) => {
         expect(response.status).to.equal(400);
-        expect(response.body.message).to.equal('An Empty field found, Please fill up all fields');
+        expect(response.body.message).to.equal('An answer field is required, Please fill up field');
         expect(response.body.error).to.equal('Bad Request');
         done();
       });
@@ -136,7 +136,7 @@ describe('GET all answers endpoint', () => {
       .get('/api/v1/questions/2/answers')
       .end((error, response) => {
         expect(response.status).to.equal(200);
-        expect(response.body).to.be.an('array');
+        expect(response.body).to.be.an('object');
         done();
       });
   });
