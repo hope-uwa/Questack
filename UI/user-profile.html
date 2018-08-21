@@ -21,8 +21,11 @@
             <div class="header-title" >
                <a href="index.html"> Questack</a>
             </div>
-            <div class="search-box ml2 mls1">
-                    <input type="text" name="search" placeholder="Search..">
+            
+            <div class="search-header">
+                    <div class="search-box ">
+                            <input type="text" name="search" placeholder="Search..">
+                    </div>
             </div>
             <div onclick="dropDownMenu()" class=" dropDownBtn header-right mr1 hide-md-show-sm">
                     <button class="btn-header ">
@@ -32,7 +35,7 @@
                         <button class="btn-header header-profile-text black-text "><i class=" dropdown_icon fa fa-sort-desc"></i></button>
             </div>
             <div class="header-right mr1 show-md-hide-sm">
-                <button class="btn-header">
+                <button onclick="closeMenu()" class="btn-header">
                     <div class="header-profile">E</div>
                 </button>
                 <button class="btn-header header-profile-text black-text">Elpis</button>
@@ -462,10 +465,10 @@
                         </div>
                 </div>
                 <div class="col3 colsm12 sidebar col-order1 show-md-hide-sm" >
-                    <div class="row mt3 mb2">
+                    <div class="row ">
                         
                     </div>
-                    <div class="row">
+                    <div class="row mt3 h-400" >
                         <div class="profile-avatar" >E</div>
                         
                         <ul class="align-center profile__basic">

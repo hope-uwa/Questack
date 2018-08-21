@@ -5,6 +5,10 @@ let questionBanner = document.getElementById('questionBanner');
 
 let dropDownMenu = () =>{
     document.getElementById('dropdown-menu').classList.toggle("show");
+    
+}
+let closeMenu = () =>{
+    document.getElementById('dropdown-menu').style.display = "none";
 }
 
 window.onclick = function(event) {
@@ -31,5 +35,6 @@ let cancelQuestion = () => {
     questionBanner.style.display = "none";
     questionDisplayBtn.style.display = "block";
 }
+
 
 

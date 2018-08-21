@@ -21,10 +21,14 @@
                 <div class="header-title" >
                     <a href="index.html"> Questack</a>
                 </div>
-                <div class="search-box ml2 mls1">
-                        <input type="text" name="search" placeholder="Search..">
+                <div class="search-header">
+                        <div class="search-box ">
+                                <input type="text" name="search" placeholder="Search..">
+                        </div>
                 </div>
+                
                 <div onclick="dropDownMenu()" class=" dropDownBtn header-right mr1 hide-md-show-sm">
+                        
                         <button class="btn-header ">
                                 <div class="header-profile">E</div>
                             </button>
@@ -32,10 +36,11 @@
                             <button class="btn-header header-profile-text black-text "><i class=" dropdown_icon fa fa-sort-desc"></i></button>
                 </div>
                 <div class="header-right mr1 show-md-hide-sm">
-                    <button class="btn-header">
+                    
+                    <button onclick="closeMenu()" class="btn-header">
                         <div class="header-profile">E</div>
                     </button>
-                    <button class="btn-header header-profile-text black-text">Elpis</button>
+                    <button onclick="closeMenu()" class="btn-header header-profile-text black-text">Elpis</button>
                     <button class="btn-header ml1 show-md-hide-sm" id="logoutModalBtn" >Logout</button>
                     
                     
@@ -120,7 +125,7 @@
                         
 
                         <div class="answers-card pt3 pb1 most-preferred">
-                            <div class="best-answer">Most Preferred Answer</div>
+                            <div class="best-answer"> Answers</div>
                             <div class="answer__avatar ">
                                 <span class="answer__avatar-img">A</span>
                                 
@@ -128,8 +133,11 @@
 
                             <div class="answer__content">
                                 <div class="answer__content-title">
+                                        
                                     <span>1 days ago</span> <span>by</span>
-                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Alpha</a></span>
+                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Alpha</a></span><span class="ml1 most-preferred-tag">Most Preferred Answer</span>
+                                    <!-- <p class="no-margin" ><span class="most-preferred-tag">Most Preferred Answer</span></p> -->
+                                    
                                 </div>
                                 <div class="answer__content-body">
                                     <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
@@ -277,7 +285,7 @@
                         <div class="row mt3 mb2">
                                 
                         </div>
-                        <div class="row">
+                        <div class="mt3 row h-400">
                             <div class="profile-avatar">E</div>
                             
                             <ul class="align-center profile__basic">
