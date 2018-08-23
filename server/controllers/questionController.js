@@ -1,6 +1,5 @@
 import moment from 'moment';
 import { validationResult } from 'express-validator/check';
-import data from '../data';
 import validateAuth from '../helpers/validationHelpers/authHelper';
 import pool from '../helpers/dbHelper'
 /**
@@ -49,7 +48,7 @@ class QuestionController {
           return res.status(404).json({ message: 'Question do not exist' });
         }
 
-        return res.status(200).json({ Title: result.rows[0].question_title, Body: result.rows[0].question_body, Preferred_Answer: preferredAnswer })
+        return res.status(200).json({ Title: result.rows[0].question_title, Body: result.rows[0].question_body  })
       })
       .catch(() => { res.status(400).json({ message: 'The question ID must be a number' }); });
     return null;
@@ -153,21 +152,7 @@ class QuestionController {
     return req.params.answerId;
   }
 
-  static getPreferredAnswer(req) {
-    const questionid = QuestionController.questionId(req);
-
-
-    const findQuestion = data.preferredAnswers.findIndex(question => question.questionId === parseInt(questionid, 10));
-
-    if (findQuestion === -1) {
-      return null;
-    }
-    const preferAnswerDb = data.preferredAnswers[findQuestion];
-
-    const preferredId = preferAnswerDb.answerId;
-    return preferredId;
-
-  }
+  
 }
 
 export default QuestionController;
