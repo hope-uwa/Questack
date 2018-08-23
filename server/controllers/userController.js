@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken';
 import moment from 'moment'
 import pool from '../helpers/dbHelper'
 
@@ -9,7 +10,7 @@ import pool from '../helpers/dbHelper'
 class UserController {
 
   /**
-       * Returns an user
+       * Returns a user
        * @method signUp
        * @memberof UserController
        * @param {object} req
@@ -20,7 +21,7 @@ class UserController {
 
     const { username, email, password } = req.body;
     const createdAt = moment().format('YYYY-MM-DD');
-    const hashedPassword = bcrypt.hashSync(request.body.password, 6);
+    const hashedPassword = bcrypt.hashSync(password, 6);
     const checkEmail = `SELECT * FROM users WHERE email = ${email}`
     const signUpQuery = 'INSERT INTO users (user_name,email,password,created_at) VALUES ($1, $2, $3, $4) returning *';
     const values = [username, email, hashedPassword, createdAt];
@@ -30,8 +31,9 @@ class UserController {
         if (result.rowCount > 0) {
           return res.status(403).json({ message: 'Account already exists' });
         }
-        pool.query(signUpQuery)
-          .then((result) => res.status(200).send({ user: { id: result.rows[0].id, username: result.rows[0].username, role: result.rows[0].role } }))
+        const token = jwt.sign({ id: result.rows[0].id }, 'secret', { expiresIn: 86400 });
+        pool.query(signUpQuery, values)
+          .then((result1) => { res.status(200).send({ Token: token, user: { id: result1.rows[0].id, username: result1.rows[0].user_name, Date_joined: result1.rows[0].created_at } }) })
           .catch(() => { res.status(500).json({ message: 'An error occured while processing this request ' }); });
         return null;
 
@@ -40,5 +42,30 @@ class UserController {
     return null;
   }
 
+  /**
+       * Returns a user
+       * @method login
+       * @memberof UserController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
+  static login(req, res) {
+    const { email, password } = req.body;
+    const loginQuery = `SELECT * FROM users WHERE email = '${email}'`;
+    pool.query(loginQuery)
+      .then((result) => {
+        const validatePassword = bcrypt.compareSync(password.trim(), result.rows[0].password);
+        if (result.rowCount === 0 || !validatePassword) {
+          return res.status(401).json({ message: 'Email or Password incorrect' });
+        }
+        return res.status(200).json({
+          name: result.rows[0].user_name, email: result.rows[0].email, message: 'User has successfully logged in'
+        });
+      })
+      .catch(() => { res.status(401).json({ message: 'Email or Password incorrect' }); });
+    return null;
+
+  }
 }
 export default UserController;
