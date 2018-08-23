@@ -1,5 +1,7 @@
 import moment from 'moment';
+import { validationResult } from 'express-validator/check';
 import data from '../data';
+import validateAuth from '../helpers/validationHelpers/authHelper';
 import pool from '../helpers/dbHelper'
 /**
  * @exports
@@ -39,6 +41,7 @@ class QuestionController {
        */
 
   static getQuestion(req, res) {
+
     const questionId = QuestionController.questionId(req);
     pool.query(`SELECT * FROM questions WHERE id = '${questionId}`)
       .then((result) => {
@@ -65,39 +68,43 @@ class QuestionController {
        * @returns {(function|object)} Function next() or JSON object
        */
   static postQuestions(req, res) {
+    QuestionController.validatePostQuestion();
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors });
+    }
 
-    const { userId, questionTitle, questionBody } = req.body;
-
-
-    const allQuestions = data.questions;
-    const id = allQuestions[allQuestions.length - 1].id + 1;
+    const { questionTitle, questionBody } = req.body;
+    const userId = QuestionController.userId();
     const createdAt = moment().format('YYYY-MM-DD');
-    const updatedAt = moment().format('YYYY-MM-DD');
+    const postQuery = `INSERT INTO questions (user_id,question_title,question_body,created_at) VALUES ('${userId}', ${questionTitle}','${questionBody}','${createdAt}') RETURNING *`
+    pool.query(postQuery)
+      .then((result) => {
+        
+        return res.status(201).json({
+          id: result.rows[0].id,
+          Title: result.rows[0].question_title,
+          Body: result.rows[0].question_body,
+          CreatedAt: result.row[0].createdAt,
+          message: 'Your question has been added successfully'
 
-    const newQuestion = {
-      id, userId, questionTitle, questionBody, createdAt, updatedAt
-    }
+        })
+      })
+      .catch(() => {
+        res.status(500).json({ message: 'An internal error occured' })
+      })
+      return null;
 
-    const answerId = -1;
-    const questionId = id;
-    const newPreferredAnswer = { id, questionId, answerId };
-
-    if (questionTitle === '' || questionTitle === undefined) {
-      return res.status(400).json({ message: 'A Title field is required', error: 'Bad Request' })
-    }
-    if (questionBody === '' || questionBody === undefined) {
-      return res.status(400).json({ message: 'A question body is required', error: 'Bad Request' })
-    }
-
-    allQuestions.push(newQuestion);
-    data.preferredAnswers.push(newPreferredAnswer);
-
-    return res.status(201).json({ message: 'Question added successfully', 'Question Title': newQuestion.questionTitle, 'Question body': newQuestion.questionBody });
-
-
+    
   }
 
 
+
+
+  static validatePostQuestion() {
+    const newLocal = validateAuth.postQuestion;
+    return newLocal;
+  }
 
 
   /**
@@ -134,7 +141,6 @@ class QuestionController {
   static questionId(req) {
     return req.params.questionId;
   }
-
   static answerId(req) {
     return req.params.answerId;
   }
