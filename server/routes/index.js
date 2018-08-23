@@ -1,11 +1,13 @@
 import QuestionController from '../controllers/dummyController/questionController';
 import AnswerController from '../controllers/dummyController/answersController';
-
+import UserController from '../controllers/userController';
 
 const routes = (app) => {
   app.get('/', (req, res) => {
     res.send('Welcome to Questack!');
   });
+
+  app.post('api/v1/auth/signup', UserController.signup );
   app.get('/api/v1/questions', QuestionController.allQuestions);
 
   app.post('/api/v1/questions', QuestionController.postQuestions);
