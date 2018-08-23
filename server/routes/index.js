@@ -1,6 +1,7 @@
-import QuestionController from '../controllers/dummyController/questionController';
-import AnswerController from '../controllers/dummyController/answersController';
+import DummyQuestionController from '../controllers/dummyController/questionController';
+import DummyAnswerController from '../controllers/dummyController/answersController';
 import UserController from '../controllers/userController';
+import QuestionController from '../controllers/questionController';
 
 const routes = (app) => {
   app.get('/', (req, res) => {
@@ -11,19 +12,21 @@ const routes = (app) => {
 
   app.post('api/v1/auth/login', UserController.login);
 
-  app.get('/api/v1/questions', QuestionController.allQuestions);
+  app.get('/api/v2/questions', QuestionController.allQuestions);
 
-  app.post('/api/v1/questions', QuestionController.postQuestions);
+  app.get('/api/v1/questions', DummyQuestionController.allQuestions);
 
-  app.get('/api/v1/questions/:questionId', QuestionController.getQuestion);
+  app.post('/api/v1/questions', DummyQuestionController.postQuestions);
 
-  app.post('/api/v1/questions/:questionId/answers', AnswerController.postAnswers);
+  app.get('/api/v1/questions/:questionId', DummyQuestionController.getQuestion);
 
-  app.get('/api/v1/questions/:questionId/answers', AnswerController.getAnswers);
+  app.post('/api/v1/questions/:questionId/answers', DummyAnswerController.postAnswers);
 
-  app.delete('/api/v1/questions/:questionId', QuestionController.deleteQuestion);
+  app.get('/api/v1/questions/:questionId/answers', DummyAnswerController.getAnswers);
 
-  app.put('/api/v1/questions/:questionId/answers/:answerId/preferred', AnswerController.AddPreferredAnswer);
+  app.delete('/api/v1/questions/:questionId', DummyQuestionController.deleteQuestion);
+
+  app.put('/api/v1/questions/:questionId/answers/:answerId/preferred', DummyAnswerController.AddPreferredAnswer);
   
 }
 

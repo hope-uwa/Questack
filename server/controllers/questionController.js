@@ -1,5 +1,6 @@
 import moment from 'moment';
 import data from '../data';
+import pool from '../helpers/dbHelper'
 /**
  * @exports
  * @class QuestionController
@@ -16,7 +17,16 @@ class QuestionController {
        */
 
   static allQuestions(req, res) {
-    return res.status(200).json(data.questions);
+    const allQuestions = 'SELECT * FROM questions';
+
+    pool.query(allQuestions)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          res.status(200).json({ message: 'No question has been added' });
+        } res.status(200).json({ message: result })
+      })
+      .catch(() => { res.status(500).json({ message: 'An error occured while processing this request' }) })
+    return null;
   }
 
   /**
@@ -31,6 +41,8 @@ class QuestionController {
   static postQuestions(req, res) {
 
     const { userId, questionTitle, questionBody } = req.body;
+
+
     const allQuestions = data.questions;
     const id = allQuestions[allQuestions.length - 1].id + 1;
     const createdAt = moment().format('YYYY-MM-DD');
