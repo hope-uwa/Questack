@@ -8,7 +8,7 @@ const routes = (app) => {
     res.send('Welcome to Questack!');
   });
 
-  app.post('api/v1/auth/signup', UserController.signup );
+  app.post('api/v1/auth/signup', UserController.signup);
 
   app.post('api/v1/auth/login', UserController.login);
 

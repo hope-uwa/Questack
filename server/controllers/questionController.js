@@ -17,8 +17,7 @@ class QuestionController {
        */
 
   static allQuestions(req, res) {
-    const userId = QuestionController.getUserId(req);
-    const allQuestions = `SELECT * FROM questions WHERE user_id = '${userId}' ORDER BY id ASC`;
+    const allQuestions = 'SELECT * FROM questions ORDER BY id ASC';
 
     pool.query(allQuestions)
       .then((result) => {
@@ -30,7 +29,7 @@ class QuestionController {
     return null;
   }
 
-  
+
 
   /**
        * Returns a Question
