@@ -14,6 +14,8 @@ const routes = (app) => {
 
   app.get('/api/v2/questions', QuestionController.allQuestions);
 
+  app.get('/api/v2/questions/:questionId', QuestionController.getQuestion)
+
   app.get('/api/v1/questions', DummyQuestionController.allQuestions);
 
   app.post('/api/v1/questions', DummyQuestionController.postQuestions);

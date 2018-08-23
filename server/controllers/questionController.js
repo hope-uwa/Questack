@@ -29,6 +29,30 @@ class QuestionController {
     return null;
   }
 
+  /**
+       * Returns a Question
+       * @method getQuestion
+       * @memberof QuestionController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
+
+  static getQuestion(req, res) {
+    const questionId = QuestionController.questionId(req);
+    pool.query(`SELECT * FROM questions WHERE id = '${questionId}`)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          return res.status(404).json({ message: 'Question do not exist' });
+        }
+
+        return res.status(200).json({ Title: result.rows[0].question_title, Body: result.rows[0].question_body, Preferred_Answer: preferredAnswer })
+      })
+      .catch(() => { res.status(400).json({ message: 'The question ID must be a number' }); });
+    return null;
+
+
+  }
 
 
   /**
@@ -73,35 +97,6 @@ class QuestionController {
 
   }
 
-  /**
-       * Returns a Question
-       * @method getQuestion
-       * @memberof QuestionController
-       * @param {object} req
-       * @param {object} res
-       * @returns {(function|object)} Function next() or JSON object
-       */
-
-  static getQuestion(req, res) {
-    const questionId = QuestionController.questionId(req);
-    const allQuestions = data.questions;
-    const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10))
-    if (findQuestion === -1) {
-      return res.status(404).json({ message: 'Question not found' });
-    }
-    const allAnswers = data.answers;
-
-    const preferredAnswerId = QuestionController.getPreferredAnswer(req);
-
-
-    if (allAnswers[preferredAnswerId] !== undefined) {
-      return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'Most Preferred Answers': allAnswers[preferredAnswerId] })
-
-
-    }
-    return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'Most Preferred Answers': 'No preferred Answer Choosen Yet' })
-
-  }
 
 
 
