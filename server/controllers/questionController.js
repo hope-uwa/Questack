@@ -79,23 +79,20 @@ class QuestionController {
     const createdAt = moment().format('YYYY-MM-DD');
     const postQuery = `INSERT INTO questions (user_id,question_title,question_body,created_at) VALUES ('${userId}', ${questionTitle}','${questionBody}','${createdAt}') RETURNING *`
     pool.query(postQuery)
-      .then((result) => {
-        
-        return res.status(201).json({
-          id: result.rows[0].id,
-          Title: result.rows[0].question_title,
-          Body: result.rows[0].question_body,
-          CreatedAt: result.row[0].createdAt,
-          message: 'Your question has been added successfully'
+      .then(result => res.status(201).json({
+        id: result.rows[0].id,
+        Title: result.rows[0].question_title,
+        Body: result.rows[0].question_body,
+        CreatedAt: result.row[0].createdAt,
+        message: 'Your question has been added successfully'
 
-        })
-      })
+      }))
       .catch(() => {
         res.status(500).json({ message: 'An internal error occured' })
       })
-      return null;
+    return null;
 
-    
+
   }
 
 
@@ -118,17 +115,27 @@ class QuestionController {
 
   static deleteQuestion(req, res) {
     const questionId = QuestionController.questionId(req);
+    const userId = QuestionController.getUserId(req);
 
-    const allQuestions = data.questions;
-    const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10));
-    if (findQuestion === -1) {
-      return res.status(404).json({ message: 'Question doesn\'t exist' });
-    }
-    allQuestions.splice(findQuestion, 1);
-
-    return res.status(200).json({ message: 'Question has been deleted!' });
-
-
+    const findQuestion = `SELECT * FROM questions WHERE question_id ='${questionId}'`;
+    const deleteQuestion = `DELETE FROM questions WHERE question_id = '${questionId}' `;
+    pool.query(findQuestion)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          res.status(404).json({ message: 'Theres no question with that ID' })
+        } else if (result.row[0].user_id !== userId) {
+          res.status(401).json({ message: 'You can not delete this question because you are not the author' })
+        } else {
+          pool.query(deleteQuestion)
+            .then(() => {
+              res.status(200).json({ message: 'The message has been deleted successfully' })
+            })
+            .catch(() => {
+              res.status(500).json({ message: 'An internal error occured' });
+              return null;
+            })
+        }
+      })
   }
 
 
@@ -141,6 +148,7 @@ class QuestionController {
   static questionId(req) {
     return req.params.questionId;
   }
+
   static answerId(req) {
     return req.params.answerId;
   }

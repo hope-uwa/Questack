@@ -47,7 +47,7 @@ const validateAuth = {
   ],
 
   postQuestion: [
-    header('token', 'Token is required in header').exists(),
+
     check('questionTitle', 'Question title is required')
       .exists(),
     check('questionBody', 'Question Body is required')
@@ -57,11 +57,11 @@ const validateAuth = {
 
   ],
   getQuestion: [
-    header('token', 'Token is required in header').exists(),
+
     param('questionId', 'Id must be integer').isInt()
   ],
   postAnswer: [
-    header('token', 'Token is required in header').exists(),
+
     check('answerBody', 'Answer Body is required')
       .exists(),
     check('answerBody', 'Answer body can not be empty').isEmpty(),
@@ -69,7 +69,7 @@ const validateAuth = {
 
   ],
   getAnswer: [
-    header('token', 'Token is required in header').exists(),
+
     param('questionId', 'Id must be integer').isInt(),
     param('answerId', 'Id must be integer').isInt()
   ]

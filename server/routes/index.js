@@ -2,6 +2,7 @@ import DummyQuestionController from '../controllers/dummyController/questionCont
 import DummyAnswerController from '../controllers/dummyController/answersController';
 import UserController from '../controllers/userController';
 import QuestionController from '../controllers/questionController';
+import verifyToken from '../controllers/middleware/verifyToken';
 
 const routes = (app) => {
   app.get('/', (req, res) => {
@@ -16,7 +17,9 @@ const routes = (app) => {
 
   app.get('/api/v2/questions/:questionId', QuestionController.getQuestion);
 
-  app.get('api/v2/questions', QuestionController.postQuestions);
+  app.post('api/v2/questions', QuestionController.postQuestions);
+
+  app.delete('api/v2/questions/:questionId', verifyToken, QuestionController.deleteQuestion);
 
   app.get('/api/v1/questions', DummyQuestionController.allQuestions);
 
