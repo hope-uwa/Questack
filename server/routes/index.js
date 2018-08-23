@@ -8,6 +8,9 @@ const routes = (app) => {
   });
 
   app.post('api/v1/auth/signup', UserController.signup );
+
+  app.post('api/v1/auth/login', UserController.login);
+
   app.get('/api/v1/questions', QuestionController.allQuestions);
 
   app.post('/api/v1/questions', QuestionController.postQuestions);
