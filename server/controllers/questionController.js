@@ -17,7 +17,8 @@ class QuestionController {
        */
 
   static allQuestions(req, res) {
-    const allQuestions = 'SELECT * FROM questions';
+    const userId = QuestionController.getUserId(req);
+    const allQuestions = `SELECT * FROM questions WHERE user_id = '${userId}' ORDER BY id ASC`;
 
     pool.query(allQuestions)
       .then((result) => {
@@ -28,6 +29,8 @@ class QuestionController {
       .catch(() => { res.status(500).json({ message: 'An error occured while processing this request' }) })
     return null;
   }
+
+  
 
   /**
        * Returns a Question
@@ -129,7 +132,9 @@ class QuestionController {
 
 
 
-
+  static getUserId(req) {
+    return req.userId;
+  }
 
 
   static questionId(req) {
