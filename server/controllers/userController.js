@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken';
 import moment from 'moment'
 import pool from '../helpers/dbHelper'
 
@@ -9,7 +10,7 @@ import pool from '../helpers/dbHelper'
 class UserController {
 
   /**
-       * Returns an user
+       * Returns a user
        * @method signUp
        * @memberof UserController
        * @param {object} req
@@ -30,8 +31,9 @@ class UserController {
         if (result.rowCount > 0) {
           return res.status(403).json({ message: 'Account already exists' });
         }
+        const token = jwt.sign({ id: result.rows[0].id }, 'secret', { expiresIn: 86400 });
         pool.query(signUpQuery, values)
-          .then((result1) => { res.status(200).send({ user: { id: result1.rows[0].id, username: result1.rows[0].username, Date_joined: result1.rows[0].created_at } }) })
+          .then((result1) => { res.status(200).send({ Token: token, user: { id: result1.rows[0].id, username: result1.rows[0].user_name, Date_joined: result1.rows[0].created_at } }) })
           .catch(() => { res.status(500).json({ message: 'An error occured while processing this request ' }); });
         return null;
 
@@ -41,8 +43,8 @@ class UserController {
   }
 
   /**
-       * Returns an user
-       * @method signUp
+       * Returns a user
+       * @method login
        * @memberof UserController
        * @param {object} req
        * @param {object} res
@@ -58,7 +60,7 @@ class UserController {
           return res.status(401).json({ message: 'Email or Password incorrect' });
         }
         return res.status(200).json({
-          name: result.rows[0].name, email: result.rows[0].email, is_admin: result.rows[0].is_admin, message: 'User has successfully logged in'
+          name: result.rows[0].user_name, email: result.rows[0].email, message: 'User has successfully logged in'
         });
       })
       .catch(() => { res.status(401).json({ message: 'Email or Password incorrect' }); });
