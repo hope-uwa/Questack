@@ -1,6 +1,5 @@
 import moment from 'moment';
-import { validationResult } from 'express-validator/check';
-import validateAuth from '../helpers/validationHelpers/authHelper';
+import validateAuth from '../helpers/validationHelpers';
 import pool from '../helpers/dbHelper'
 /**
  * @exports
@@ -17,17 +16,17 @@ class AnswerController {
        * @returns {(function|object)} Function next() or JSON object
        */
   static postAnswers(req, res) {
-    AnswerController.validatePostAnswer();
-    const errors = validationResult(req);
+    const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors });
+      return res.status(400).json({ errors: errors.array()[0].msg });
     }
 
-    const questionId = AnswerController.questionId(req);
+    const questionId = req.params.questionId;
+    const userId = req.userId;
     const { answerBody } = req.body;
-    const userId = AnswerController.getUserId(req);
+    
     const createdAt = moment();
-    const getQuestionQuery = `SELECT * FROM question_id WHERE answer_id = '${questionId}'`;
+    const getQuestionQuery = `SELECT * FROM question_id WHERE question_id = '${questionId}'`;
 
     const addAnswerQuery = `INSERT INTO answers (user_id,question_id,answer_body,created_at) VALUES ('${userId}', ${questionId}','${answerBody}','${createdAt}') RETURNING *`
     pool.query(getQuestionQuery)
@@ -106,10 +105,7 @@ class AnswerController {
     return req.params.answerId;
   }
 
-  static validateAnswerQuestion() {
-    const newLocal = validateAuth.postAnswer;
-    return newLocal;
-  }
+  
 
 }
 

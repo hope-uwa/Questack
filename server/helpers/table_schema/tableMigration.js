@@ -4,7 +4,7 @@ class TableMigrations {
 
 
 
-  static createTables() {
+  static createTables(req, res) {
 
     const createQuestion = `CREATE TABLE IF NOT EXISTS questions(
             id serial PRIMARY KEY NOT NULL,
@@ -64,12 +64,12 @@ class TableMigrations {
       .then(() => pool.query(createPreferredAnswer))
       .then(() => pool.query(createComment))
       .then(() => pool.query(createVote))
-      .then(() => pool.end())
+      .then((result) => res.send('Tables Created'))
       .catch(err => err);
 
   }
 
-  static dropTables() {
+  static dropTables(req, res) {
     const deleteUsers = 'DROP TABLE IF EXISTS users';
     const deleteQuestions = 'DROP TABLE IF EXISTS questions';
     const deleteAnswers = 'DROP TABLE IF EXISTS answers';
@@ -83,7 +83,7 @@ class TableMigrations {
       .then(() => pool.query(deletePreferred))
       .then(() => pool.query(deleteVotes))
       .then(() => pool.query(deleteComments))
-      .then(() => pool.end())
+      .then((result) => res.send('Tables Dropped'))
       .catch(err => err);
   }
 

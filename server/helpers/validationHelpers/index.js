@@ -19,11 +19,11 @@ const validateAuth = {
       .exists()
   ],
   signUp: [
-    check('Username', 'Username is required and should be a minimum of 4 characters')
+    check('username', 'Username is required and should be a minimum of 4 characters')
       .isLength({ min: 4 })
       .custom((value) => {
-        if (trimWhiteSpaces(value).length < 3) {
-          throw new Error('First name should be a minimum of 3 characters');
+        if (trimWhiteSpaces(value).length < 4) {
+          throw new Error('Username should be a minimum of 4 characters');
         } else {
           return value;
         }
@@ -32,19 +32,20 @@ const validateAuth = {
       .exists(),
     check('email', 'please, enter a valid email')
       .isEmail(),
+    check('password', 'password is required').exists(),
     check('password', 'password should be a minimum of 6 chracters')
       .isLength({ min: 6 })
       .custom((value, { req }) => {
         if (trimWhiteSpaces(value).length < 6) {
           throw new Error('First name should be a minimum of 6 characters');
         }
-        if (value !== req.body.confirmPassword) {
-          throw new Error("Password doesn't match");
-        } else {
+        
           return value;
-        }
+        
       })
   ],
+
+  
 
   postQuestion: [
 
@@ -52,20 +53,21 @@ const validateAuth = {
       .exists(),
     check('questionBody', 'Question Body is required')
       .exists(),
-    check('questionTitle', 'Question title can not be empty').isEmpty(),
-    check('questionBody', 'Question body can not be empty').isEmpty()
+    check('questionTitle', 'Question title can not be empty').not().isEmpty(),
+    check('questionBody', 'Question body can not be empty').not().isEmpty()
 
   ],
   getQuestion: [
 
-    param('questionId', 'Id must be integer').isInt()
+    param('questionId', 'Id must be a number').isInt()
   ],
   postAnswer: [
 
     check('answerBody', 'Answer Body is required')
       .exists(),
-    check('answerBody', 'Answer body can not be empty').isEmpty(),
-    param('questionId', 'Question ID must be an integer').isInt()
+    check('answerBody', 'Answer body can not be empty').not().isEmpty(),
+    param('questionId', 'Question ID must be an integer').isInt(),
+    param('answerId', 'Answer ID must be an integer').isInt()
 
   ],
   getAnswer: [
@@ -73,7 +75,8 @@ const validateAuth = {
     param('questionId', 'Id must be integer').isInt(),
     param('answerId', 'Id must be integer').isInt()
   ]
-
+  ,
+  validationResult
 };
 
 export default validateAuth;

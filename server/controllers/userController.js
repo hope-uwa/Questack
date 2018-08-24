@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken';
 import moment from 'moment'
 import pool from '../helpers/dbHelper'
+import validateAuth from '../helpers/validationHelpers';
 
 /**
  * @exports
@@ -19,21 +20,28 @@ class UserController {
        */
   static signUp(req, res) {
 
+    
+    const errors = validateAuth.validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array()[0].msg });
+    } 
     const { username, email, password } = req.body;
     const createdAt = moment().format('YYYY-MM-DD');
-    const hashedPassword = bcrypt.hashSync(password, 6);
-    const checkEmail = `SELECT * FROM users WHERE email = ${email}`
-    const signUpQuery = 'INSERT INTO users (user_name,email,password,created_at) VALUES ($1, $2, $3, $4) returning *';
-    const values = [username, email, hashedPassword, createdAt];
-
+    const hashedPassword = bcrypt.hashSync(req.body.password, 6);
+    const checkEmail = `SELECT * FROM users WHERE email = '${email}'`
+    const signUpQuery = `INSERT INTO users (user_name,email,password,created_at) VALUES ('${username}','${email}','${hashedPassword}','${createdAt}') returning *`;
+    
+    
     pool.query(checkEmail)
       .then((result) => {
+        
         if (result.rowCount > 0) {
           return res.status(403).json({ message: 'Account already exists' });
         }
-        const token = jwt.sign({ id: result.rows[0].id }, 'secret', { expiresIn: 86400 });
-        pool.query(signUpQuery, values)
-          .then((result1) => { res.status(200).send({ Token: token, user: { id: result1.rows[0].id, username: result1.rows[0].user_name, Date_joined: result1.rows[0].created_at } }) })
+        
+        pool.query(signUpQuery)
+          .then((result1) => { 
+            const token = jwt.sign({ id: result1.rows[0].id }, 'secret', { expiresIn: 86400 });res.status(200).send({ Token: token, user: { id: result1.rows[0].id, username: result1.rows[0].user_name, Date_joined: result1.rows[0].created_at } }) })
           .catch(() => { res.status(500).json({ message: 'An error occured while processing this request ' }); });
         return null;
 
@@ -51,6 +59,11 @@ class UserController {
        * @returns {(function|object)} Function next() or JSON object
        */
   static login(req, res) {
+
+    const errors = validateAuth.validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array()[0].msg });
+    }
     const { email, password } = req.body;
     const loginQuery = `SELECT * FROM users WHERE email = '${email}'`;
     pool.query(loginQuery)
