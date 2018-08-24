@@ -71,21 +71,28 @@ class QuestionController {
   static getQuestion(req, res) {
     const questionId = QuestionController.questionId(req);
     const allQuestions = data.questions;
+    if (typeof (questionId) === 'number' && Math.round(questionId) === questionId) {
+      return res.status(400).json({ message: 'Id should be a number' });
+    }
     const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10))
-    if (findQuestion === -1) {
+    if (findQuestion < 0) {
       return res.status(404).json({ message: 'Question not found' });
     }
     const allAnswers = data.answers;
 
-    const preferredAnswerId = QuestionController.getPreferredAnswer(req);
+    const findAnswer = allAnswers.filter(ans => ans.questionId == parseInt(questionId, 10));
+
+    
 
 
-    if (allAnswers[preferredAnswerId] !== undefined) {
-      return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'Most Preferred Answers': allAnswers[preferredAnswerId] })
+    if (findAnswer.length !== 0) {
+      return res.status(200).json({
+        'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'All Answers': findAnswer
+      })
 
 
     }
-    return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'Most Preferred Answers': 'No preferred Answer Choosen Yet' })
+    return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, ' Answers': 'None provided Yet' })
 
   }
 
