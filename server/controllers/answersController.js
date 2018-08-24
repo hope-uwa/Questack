@@ -25,10 +25,10 @@ class AnswerController {
     const userId = req.userId;
     const { answerBody } = req.body;
     
-    const createdAt = moment();
-    const getQuestionQuery = `SELECT * FROM question_id WHERE question_id = '${questionId}'`;
+    const createdAt = moment().format('YYYY-MM-DD');
+    const getQuestionQuery = `SELECT * FROM questions WHERE question_id = '${questionId}'`;
 
-    const addAnswerQuery = `INSERT INTO answers (user_id,question_id,answer_body,created_at) VALUES ('${userId}', ${questionId}','${answerBody}','${createdAt}') RETURNING *`
+    const addAnswerQuery = `INSERT INTO answers (user_id,question_id,answer_body,created_at) VALUES ('${userId}', '${questionId}','${answerBody}','${createdAt}') RETURNING *`
     pool.query(getQuestionQuery)
       .then((result) => {
         if (result.rowCount === 0) {

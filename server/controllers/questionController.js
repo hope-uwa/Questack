@@ -54,15 +54,15 @@ class QuestionController {
 
     pool.query(questionQuery)
       .then((result) => {
-
-        if (result.rowCount === 0) {
+        console.log(result.rowCount);
+        if (result.rowCount < 1) {
           return res.status(200).json({ message: 'No answer given yet' });
         }
 
         pool.query(answerQuery)
           .then((result1) => {
             if (result1.rowCount === 0) {
-              return res.status(404).json({ message: 'No answer given yet' });
+              return res.status(404).json({ Title: result.rows[0].question_title, Body : result.rows[0].question_body, Answers: 'No answer given yet' });
             }
 
             return res.status(200).json({ Title: result.rows[0].question_title, Body: result.rows[0].question_body, Answers: result1.rows })
