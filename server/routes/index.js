@@ -4,25 +4,27 @@ import UserController from '../controllers/userController';
 import QuestionController from '../controllers/questionController';
 import AnswerController from '../controllers/answersController';
 import verifyToken from '../controllers/middleware/verifyToken';
+import tableMigrations from '../helpers/table_schema/tableMigration';
+import validateAuth from '../helpers/validationHelpers';
 
 const routes = (app) => {
   app.get('/', (req, res) => {
     res.send('Welcome to Questack!');
   });
 
-  app.post('api/v1/auth/signup', UserController.signup);
+  app.post('/api/v1/auth/signup',validateAuth.signUp, UserController.signUp);
 
-  app.post('api/v1/auth/login', UserController.login);
+  app.post('/api/v1/auth/login',validateAuth.login, UserController.login);
 
   app.get('/api/v2/questions', QuestionController.allQuestions);
 
-  app.get('/api/v2/questions/:questionId', QuestionController.getQuestion);
+  app.get('/api/v2/questions/:questionId',validateAuth.getQuestion, QuestionController.getQuestion);
 
-  app.post('api/v2/questions', QuestionController.postQuestions);
+  app.post('/api/v2/questions',verifyToken, validateAuth.postQuestion, QuestionController.postQuestions);
 
-  app.delete('api/v2/questions/:questionId', verifyToken, QuestionController.deleteQuestion);
+  app.delete('/api/v2/questions/:questionId', verifyToken, validateAuth.getQuestion,  QuestionController.deleteQuestion);
 
-  app.post('/api/v2/questions/:questionId/answers/answerId', verifyToken, AnswerController.postAnswers)
+  app.post('/api/v2/questions/:questionId/answers', verifyToken, validateAuth.postAnswer, AnswerController.postAnswers)
 
 
   app.get('/api/v1/questions', DummyQuestionController.allQuestions);
@@ -39,6 +41,9 @@ const routes = (app) => {
 
   app.put('/api/v1/questions/:questionId/answers/:answerId/preferred', DummyAnswerController.AddPreferredAnswer);
 
+  app.get('/upMigration', tableMigrations.createTables);
+
+  app.get('/downMigration', tableMigrations.dropTables);
 }
 
 export default routes;
