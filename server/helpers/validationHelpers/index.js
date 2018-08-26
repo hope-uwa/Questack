@@ -1,5 +1,5 @@
 import {
-  check, param, header, validationResult
+  check, param, validationResult
 } from 'express-validator/check';
 
 const trimWhiteSpaces = (input) => {
@@ -35,17 +35,17 @@ const validateAuth = {
     check('password', 'password is required').exists(),
     check('password', 'password should be a minimum of 6 chracters')
       .isLength({ min: 6 })
-      .custom((value, { req }) => {
+      .custom((value) => {
         if (trimWhiteSpaces(value).length < 6) {
           throw new Error('First name should be a minimum of 6 characters');
         }
-        
-          return value;
-        
+
+        return value;
+
       })
   ],
 
-  
+
 
   postQuestion: [
 
@@ -59,23 +59,22 @@ const validateAuth = {
   ],
   getQuestion: [
 
-    param('questionId', 'Id must be a number').isInt()
+    param('questionId', 'Question Id must be a number').isInt()
   ],
   postAnswer: [
 
     check('answerBody', 'Answer Body is required')
       .exists(),
     check('answerBody', 'Answer body can not be empty').not().isEmpty(),
-    param('questionId', 'Question ID must be an integer').isInt(),
-    param('answerId', 'Answer ID must be an integer').isInt()
+    param('questionId', 'Question ID must be an integer').isInt()
+
 
   ],
   getAnswer: [
 
     param('questionId', 'Id must be integer').isInt(),
     param('answerId', 'Id must be integer').isInt()
-  ]
-  ,
+  ],
   validationResult
 };
 

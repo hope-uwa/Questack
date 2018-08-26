@@ -1,0 +1,9 @@
+{
+    "401": "Unauthorized",
+    "403": "You are not authorized to perform this action",
+    "404": "Item Not Found",
+    "400": "Validation Error",
+    "500": "Internal Server Error",
+    "200": "Successful",
+    "201": ""
+}

@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers['token'];
+  const token = req.headers.authorization;
   if (!token) {
-    return res.status(401).send('No token has been provided in the request');
+    return res.status(401).json({ error: 'You are unauthorised to make this request' });
   }
-  jwt.verify(token, 'secret', (err, decoded) => {
+  jwt.verify(token, process.env.TOKEN_SECRET_KEY, (err, decoded) => {
     if (err) {
       return res.status(401).json({ message: 'Could not authenticate the provided token' });
     }
