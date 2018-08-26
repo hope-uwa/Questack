@@ -4,7 +4,8 @@ import answers from './answers.json';
 import comments from './comments.json';
 import votes from './votes.json';
 import preferredAnswers from './preferredAnswer.json';
+import status from './status.json'
 
 export default{
-  users, questions, answers, comments, votes, preferredAnswers
+  users, questions, answers, comments, votes, preferredAnswers, status
 }

@@ -1,5 +1,3 @@
-import DummyQuestionController from '../controllers/dummyController/questionController';
-import DummyAnswerController from '../controllers/dummyController/answersController';
 import UserController from '../controllers/userController';
 import QuestionController from '../controllers/questionController';
 import AnswerController from '../controllers/answersController';
@@ -12,38 +10,30 @@ const routes = (app) => {
     res.send('Welcome to Questack!');
   });
 
-  app.post('/api/v1/auth/signup',validateAuth.signUp, UserController.signUp);
+  app.post('/api/v1/auth/signup', validateAuth.signUp, UserController.signUp);
 
-  app.post('/api/v1/auth/login',validateAuth.login, UserController.login);
+  app.post('/api/v1/auth/login', validateAuth.login, UserController.login);
 
-  app.get('/api/v2/questions', QuestionController.allQuestions);
+  app.get('/api/v1/questions', QuestionController.allQuestions);
 
-  app.get('/api/v2/questions/:questionId',validateAuth.getQuestion, QuestionController.getQuestion);
+  app.get('/api/v1/questions/:questionId', validateAuth.getQuestion, QuestionController.getQuestion);
 
-  app.post('/api/v2/questions',verifyToken, validateAuth.postQuestion, QuestionController.postQuestions);
+  app.post('/api/v1/questions', verifyToken, validateAuth.postQuestion, QuestionController.postQuestions);
 
-  app.delete('/api/v2/questions/:questionId', verifyToken, validateAuth.getQuestion,  QuestionController.deleteQuestion);
+  app.delete('/api/v1/questions/:questionId', verifyToken, validateAuth.getQuestion, QuestionController.deleteQuestion);
 
-  app.post('/api/v2/questions/:questionId/answers', verifyToken, validateAuth.postAnswer, AnswerController.postAnswers)
+  app.post('/api/v1/questions/:questionId/answers', verifyToken, validateAuth.postAnswer, AnswerController.postAnswers)
 
 
-  app.get('/api/v1/questions', DummyQuestionController.allQuestions);
 
-  app.post('/api/v1/questions', DummyQuestionController.postQuestions);
+  app.get('/upmigration', tableMigrations.createTables);
 
-  app.get('/api/v1/questions/:questionId', DummyQuestionController.getQuestion);
+  app.get('/downmigration', tableMigrations.dropTables);
 
-  app.post('/api/v1/questions/:questionId/answers', DummyAnswerController.postAnswers);
+  app.get('/*', (req, res) => res.status(404).json({
+    message: 'This route does not exist'
+  }));
 
-  app.get('/api/v1/questions/:questionId/answers', DummyAnswerController.getAnswers);
-
-  app.delete('/api/v1/questions/:questionId', DummyQuestionController.deleteQuestion);
-
-  app.put('/api/v1/questions/:questionId/answers/:answerId/preferred', DummyAnswerController.AddPreferredAnswer);
-
-  app.get('/upMigration', tableMigrations.createTables);
-
-  app.get('/downMigration', tableMigrations.dropTables);
 }
 
 export default routes;
