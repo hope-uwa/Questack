@@ -1,6 +1,8 @@
 import moment from 'moment';
 import pool from '../helpers/dbHelper';
 import validateAuth from '../helpers/validationHelpers';
+import status from '../data/status.json'
+
 /**
  * @exports
  * @class QuestionController
@@ -24,10 +26,10 @@ class QuestionController {
     pool.query(allQuestions)
       .then((result) => {
         if (result.rowCount === 0) {
-          res.status(200).json({ message: 'No question has been added' });
-        } res.status(200).json({ status: 'Successful', data: result.rows })
+          res.status(204).json({ status: status[204] , message: 'No question has been added' });
+        } res.status(200).json({ status: status[200], data: result.rows })
       })
-      .catch(() => { res.status(500).json({ message: 'An error occured while processing this request' }) })
+      .catch(() => { res.status(500).json({status:status[500] message: 'An error occured while processing this request' }) })
     return null;
   }
 
@@ -55,26 +57,26 @@ class QuestionController {
     pool.query(questionQuery)
       .then((result) => {
         if (result.rowCount < 1) {
-          return res.status(404).json({ status: 'Not found', message: 'No question with this question Id' });
+          return res.status(404).json({ status: status[404], message: 'No question with this question Id' });
         }
 
         pool.query(answerQuery)
           .then((result1) => {
             if (result1.rowCount === 0) {
               return res.status(200).json({
-                status: 'Successful',
+                status: status[200],
                 question: {
                   title: result.rows[0].question_title,
                   body: result.rows[0].question_body,
                   userId: result.rows[0].user_id,
                   dateCreated: result.rows[0].created_at
                 },
-                answers: 'No answer added yet'
+                answers:'No answer added yet'
               });
             }
 
             return res.status(200).json({
-              status: 'Successful',
+              status: status[200],
               question: {
                 title: result.rows[0].question_title,
                 body: result.rows[0].question_body,
@@ -118,7 +120,7 @@ class QuestionController {
     const postQuery = `INSERT INTO questions (user_id,question_title,question_body,created_at) VALUES ('${userId}', '${questionTitle}','${questionBody}','${createdAt}') returning *`;
     pool.query(postQuery)
       .then(result => res.status(201).json({
-        status: 'Successful',
+        status: status[201],
         data: {
           title: result.rows[0].question_title,
           body: result.rows[0].question_body,
@@ -157,13 +159,13 @@ class QuestionController {
     pool.query(findQuestion)
       .then((result) => {
         if (result.rowCount === 0) {
-          res.status(404).json({ status: 'Not found', message: 'Theres no question with that ID' })
+          res.status(404).json({ status: status[404], message: 'Theres no question with that ID' })
         } else if (result.rows[0].user_id !== userId) {
-          res.status(401).json({ status: 'Unauthorised', message: 'You can not delete this question because you are not the author' })
+          res.status(401).json({ status: status[401], message: 'You can not delete this question because you are not the author' })
         } else {
           pool.query(deleteQuestion)
             .then(() => {
-              res.status(200).json({ message: 'The message has been deleted successfully' })
+              res.status(200).json({ status:status[200] message: 'The message has been deleted successfully' })
             })
             .catch(() => {
               res.status(500).json({ message: 'An internal error occured' });

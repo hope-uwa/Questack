@@ -1,6 +1,7 @@
 import moment from 'moment';
 import validateAuth from '../helpers/validationHelpers';
 import pool from '../helpers/dbHelper'
+import status from '../data/status.json'
 /**
  * @exports
  * @class AnswerController
@@ -33,12 +34,12 @@ class AnswerController {
       .then((result) => {
 
         if (result.rowCount === 0) {
-          return res.status(404).json({ status: 'Not FOund', message: 'There is no question with that Question ID' })
+          return res.status(404).json({ status: status[404], message: 'There is no question with that Question ID' })
         }
         pool.query(addAnswerQuery)
           .then((result1) => {
             res.status(201).json({
-              status: 'Successful',
+              status: status[201],
               message: 'Answer added successfully',
               Answer: result1.rows[0]
             })
@@ -49,7 +50,7 @@ class AnswerController {
     return null;
   }
 
-  
+
 
   static getUserId(req) {
     return req.userId;
