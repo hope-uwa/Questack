@@ -26,10 +26,10 @@ class QuestionController {
     pool.query(allQuestions)
       .then((result) => {
         if (result.rowCount === 0) {
-          res.status(204).json({ status: status[204] , message: 'No question has been added' });
+          res.status(204).json({ status: status[204], message: 'No question has been added' });
         } res.status(200).json({ status: status[200], data: result.rows })
       })
-      .catch(() => { res.status(500).json({status:status[500] message: 'An error occured while processing this request' }) })
+      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }) })
     return null;
   }
 
@@ -71,7 +71,7 @@ class QuestionController {
                   userId: result.rows[0].user_id,
                   dateCreated: result.rows[0].created_at
                 },
-                answers:'No answer added yet'
+                answers: 'No answer added yet'
               });
             }
 
@@ -165,7 +165,7 @@ class QuestionController {
         } else {
           pool.query(deleteQuestion)
             .then(() => {
-              res.status(200).json({ status:status[200] message: 'The message has been deleted successfully' })
+              res.status(200).json({ status: status[200], message: 'The message has been deleted successfully' })
             })
             .catch(() => {
               res.status(500).json({ message: 'An internal error occured' });
