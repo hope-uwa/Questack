@@ -57,17 +57,41 @@ class AnswerController {
   }
 
   /**
-           * Returns a Answers
-           * @method getAnswers
-           * @memberof AnswerController
-           * @param {object} req
-           * @param {object} res
-           * @returns {(function|object)} Function next() or JSON object
-           */
+       * Returns a Answers
+       * @method updateAnswer
+       * @memberof AnswerController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
 
-
-
-
+  static updateAnswer(req, res) {
+    const errors = validateAuth.validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array()[0].msg });
+    }
+    const answerId = req.params.answerId;
+    const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}'`;
+    const updateAnswer = `UPDATE answers SET answer_body = '${req.body.answerBody}' WHERE id = ${answerId}`
+    pool.query(answerQuery)
+      .then((result) => {
+        if (result.rowCount < 1) {
+          return res.status(400).json({ status: 'Not FOund' })
+        }
+        if (result.row[0].user_id !== req.userId) {
+          return res.status(401).json({ status: status[401], message: 'You can not edit this answer' })
+        }
+        pool.query(updateAnswer)
+          .then(result1 => res.status(201).json({
+            status: status[201],
+            message: 'You have successfully updated the answer',
+            answer: result1.row[0].answer_body
+          }))
+          .catch(() => res.status(500).json({ message: 'An internal error occured' }));
+        return null;
+      })
+    return null;
+  }
 
 }
 
