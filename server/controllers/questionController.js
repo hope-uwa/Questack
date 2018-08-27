@@ -1,5 +1,8 @@
 import moment from 'moment';
-import data from '../data';
+import pool from '../helpers/dbHelper';
+import validateAuth from '../helpers/validationHelpers';
+import status from '../data/status.json'
+
 /**
  * @exports
  * @class QuestionController
@@ -10,19 +13,92 @@ class QuestionController {
        * Returns a list of Questions
        * @method allQuestions
        * @memberof QuestionController
+       * @desc should query for all questions on db
        * @param {object} req
        * @param {object} res
        * @returns {(function|object)} Function next() or JSON object
        */
 
   static allQuestions(req, res) {
-    return res.status(200).json(data.questions);
+    const allQuestions = 'SELECT * FROM questions';
+
+
+    pool.query(allQuestions)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          res.status(204).json({ status: status[204] , message: 'No question has been added' });
+        } res.status(200).json({ status: status[200], data: result.rows })
+      })
+      .catch(() => { res.status(500).json({status:status[500] message: 'An error occured while processing this request' }) })
+    return null;
   }
 
   /**
        * Returns a Question
+       * @method getQuestion
+       * @memberof QuestionController
+       * @desc
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
+
+  static getQuestion(req, res) {
+
+    const errors = validateAuth.validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array()[0].msg });
+    }
+    const questionId = req.params.questionId;
+    const questionQuery = `SELECT * FROM questions WHERE id ='${questionId}'`
+    const answerQuery = `SELECT * FROM answers WHERE question_id ='${questionId}'`
+
+
+    pool.query(questionQuery)
+      .then((result) => {
+        if (result.rowCount < 1) {
+          return res.status(404).json({ status: status[404], message: 'No question with this question Id' });
+        }
+
+        pool.query(answerQuery)
+          .then((result1) => {
+            if (result1.rowCount === 0) {
+              return res.status(200).json({
+                status: status[200],
+                question: {
+                  title: result.rows[0].question_title,
+                  body: result.rows[0].question_body,
+                  userId: result.rows[0].user_id,
+                  dateCreated: result.rows[0].created_at
+                },
+                answers:'No answer added yet'
+              });
+            }
+
+            return res.status(200).json({
+              status: status[200],
+              question: {
+                title: result.rows[0].question_title,
+                body: result.rows[0].question_body,
+                userId: result.rows[0].user_id,
+                dateCreated: result.rows[0].created_at
+              },
+              answers: result1.rows
+            })
+
+          })
+        return null
+
+      })
+      .catch(() => res.status(500).json({ message: 'Internal Error Occurred' }))
+    return null
+  }
+
+
+  /**
+       * Returns a Question
        * @method postQuestions
-       * @desc remove userId from req.body, it should be gotten from the middleware
+       * @desc validate Create Question Endpoint
        * @memberof QuestionController
        * @param {object} req
        * @param {object} res
@@ -30,65 +106,34 @@ class QuestionController {
        */
   static postQuestions(req, res) {
 
-    const { userId, questionTitle, questionBody } = req.body;
-    const allQuestions = data.questions;
-    const id = allQuestions[allQuestions.length - 1].id + 1;
+    const errors = validateAuth.validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array()[0].msg });
+    }
+
+
+    const { questionTitle, questionBody } = req.body;
+    const userId = req.userId;
     const createdAt = moment().format('YYYY-MM-DD');
-    const updatedAt = moment().format('YYYY-MM-DD');
 
-    const newQuestion = {
-      id, userId, questionTitle, questionBody, createdAt, updatedAt
-    }
 
-    const answerId = -1;
-    const questionId = id;
-    const newPreferredAnswer = { id, questionId, answerId };
+    const postQuery = `INSERT INTO questions (user_id,question_title,question_body,created_at) VALUES ('${userId}', '${questionTitle}','${questionBody}','${createdAt}') returning *`;
+    pool.query(postQuery)
+      .then(result => res.status(201).json({
+        status: status[201],
+        data: {
+          title: result.rows[0].question_title,
+          body: result.rows[0].question_body,
+          userId: result.rows[0].user_id,
+          createdAt: result.rows[0].created_at
+        }
 
-    if (questionTitle === '' || questionTitle === undefined) {
-      return res.status(400).json({ message: 'A Title field is required', error: 'Bad Request' })
-    }
-    if (questionBody === '' || questionBody === undefined) {
-      return res.status(400).json({ message: 'A question body is required', error: 'Bad Request' })
-    }
-
-    allQuestions.push(newQuestion);
-    data.preferredAnswers.push(newPreferredAnswer);
-
-    return res.status(201).json({ message: 'Question added successfully', 'Question Title': newQuestion.questionTitle, 'Question body': newQuestion.questionBody });
+      }))
+      .catch(() => res.status(500).json({ message: 'An internal error occured' }))
+    return null;
 
 
   }
-
-  /**
-       * Returns a Question
-       * @method getQuestion
-       * @memberof QuestionController
-       * @param {object} req
-       * @param {object} res
-       * @returns {(function|object)} Function next() or JSON object
-       */
-
-  static getQuestion(req, res) {
-    const questionId = QuestionController.questionId(req);
-    const allQuestions = data.questions;
-    const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10))
-    if (findQuestion === -1) {
-      return res.status(404).json({ message: 'Question not found' });
-    }
-    const allAnswers = data.answers;
-
-    const preferredAnswerId = QuestionController.getPreferredAnswer(req);
-
-
-    if (allAnswers[preferredAnswerId] !== undefined) {
-      return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'Most Preferred Answers': allAnswers[preferredAnswerId] })
-
-
-    }
-    return res.status(200).json({ 'Question Title': allQuestions[findQuestion].questionTitle, 'Question Body': allQuestions[findQuestion].questionBody, 'Most Preferred Answers': 'No preferred Answer Choosen Yet' })
-
-  }
-
 
 
   /**
@@ -101,18 +146,34 @@ class QuestionController {
        */
 
   static deleteQuestion(req, res) {
-    const questionId = QuestionController.questionId(req);
 
-    const allQuestions = data.questions;
-    const findQuestion = allQuestions.findIndex(quest => quest.id === parseInt(questionId, 10));
-    if (findQuestion === -1) {
-      return res.status(404).json({ message: 'Question doesn\'t exist' });
+    const errors = validateAuth.validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array()[0].msg });
     }
-    allQuestions.splice(findQuestion, 1);
+    const questionId = req.params.questionId;
+    const userId = req.userId;
 
-    return res.status(200).json({ message: 'Question has been deleted!' });
-
-
+    const findQuestion = `SELECT * FROM questions WHERE id ='${questionId}'`;
+    const deleteQuestion = `DELETE FROM questions WHERE id = '${questionId}' `;
+    pool.query(findQuestion)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          res.status(404).json({ status: status[404], message: 'Theres no question with that ID' })
+        } else if (result.rows[0].user_id !== userId) {
+          res.status(401).json({ status: status[401], message: 'You can not delete this question because you are not the author' })
+        } else {
+          pool.query(deleteQuestion)
+            .then(() => {
+              res.status(200).json({ status:status[200] message: 'The message has been deleted successfully' })
+            })
+            .catch(() => {
+              res.status(500).json({ message: 'An internal error occured' });
+              return null;
+            })
+        }
+      })
+    return null;
   }
 
 
@@ -120,29 +181,6 @@ class QuestionController {
 
 
 
-  static questionId(req) {
-    return req.params.questionId;
-  }
-
-  static answerId(req) {
-    return req.params.answerId;
-  }
-
-  static getPreferredAnswer(req) {
-    const questionid = QuestionController.questionId(req);
-
-
-    const findQuestion = data.preferredAnswers.findIndex(question => question.questionId === parseInt(questionid, 10));
-
-    if (findQuestion === -1) {
-      return null;
-    }
-    const preferAnswerDb = data.preferredAnswers[findQuestion];
-
-    const preferredId = preferAnswerDb.answerId;
-    return preferredId;
-
-  }
 }
 
 export default QuestionController;
