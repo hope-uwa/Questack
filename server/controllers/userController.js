@@ -76,6 +76,7 @@ class UserController {
         const validatePassword = bcrypt.compareSync(password.trim(), result.rows[0].password);
         if (result.rowCount === 0 || !validatePassword) {
           return res.status(401).json({ message: 'Email or Password incorrect' });
+          
         }
         const token = jwt.sign({ id: result.rows[0].id }, process.env.TOKEN_SECRET_KEY, { expiresIn: 86400 });
         return res.status(200).json({
