@@ -82,8 +82,8 @@ class AnswerController {
           return res.status(401).json({ status: status[401], message: 'You can not edit this answer' })
         }
         pool.query(updateAnswer)
-          .then((result1)=>{
-            return res.status(201).json({message: 'Updated Successfully', status: status[201], answer: result1.rows[0]})
+          .then((result1) => {
+            return res.status(201).json({ message: 'Updated Successfully', status: status[201], answer: result1.rows[0] })
           })
           .catch(() => res.status(500).json({ message: 'An internal error occured1' }));
         return null;
@@ -111,7 +111,6 @@ class AnswerController {
     const answerId = req.params.answerId;
     const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}' AND question_id = '${questionId}'`;
-    const searchPreferred = `SELECT * FROM preferred WHERE question_id = '${questionId}'`;
     const createdAt = moment().format('YYYY-MM-DD');
     const insertCorrectAnswer = `INSERT INTO preferred (question_id,answer_id,created_at) VALUES ('${questionId}','${answerId}','${createdAt}') RETURNING *`
     const updateCorrectAnswer = `UPDATE preferred SET answer_id = '${answerId}' WHERE question_id = ${questionId}`
@@ -121,13 +120,10 @@ class AnswerController {
           return res.status(404).json({ status: status[404], message: `question with Id: ${questionId} can not be found` })
         }
         if (result.rows[0].user_id !== req.userId) {
-          
           return res.status(401).json({ status: status[401], message: 'You can not mark answer as correct' })
         }
         pool.query(answerQuery)
-        
           .then((result1) => {
-            console.log(result1)
             if (result1.rowCount < 1) {
               return res.status(404).json({ status: status[404], message: `Answer with Answer Id: ${answerId} can not be found` })
             }

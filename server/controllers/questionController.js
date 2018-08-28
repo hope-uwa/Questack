@@ -121,6 +121,7 @@ class QuestionController {
     pool.query(postQuery)
       .then(result => res.status(201).json({
         status: status[201],
+        message: 'Question Added Successfully',
         data: {
           title: result.rows[0].question_title,
           body: result.rows[0].question_body,
