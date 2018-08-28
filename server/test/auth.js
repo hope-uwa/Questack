@@ -2,8 +2,8 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
 
+const { expect } = chai;
 chai.use(chaiHttp);
-chai.should();
 
 const email = Math.random().toString(36).substring(2, 15);
 
@@ -14,13 +14,14 @@ describe('Authentication', () => {
       const user = {
         username: 'uwaelpis',
         email: `${email}@gmail.com`,
-        password: 'uwaelpis',
+        password: 'uwaelpis'
       };
       chai.request(app)
         .post('/api/v1/auth/signup')
         .send(user)
-        .end((err, res) => {
-          res.should.have.status(201);
+        .end((err, response) => {
+          expect(response.status).to.equal(201);
+          expect(response.body).to.be.an('object');
           done();
         });
 
@@ -30,13 +31,14 @@ describe('Authentication', () => {
       const user = {
         username: 'uwaelpis',
         email: '',
-        password: 'johndoe',
+        password: 'uwaelpis'
       };
       chai.request(app)
         .post('/api/v1/auth/signup')
         .send(user)
-        .end((err, res) => {
-          res.should.have.status(400);
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+
           done();
         });
     });
@@ -50,8 +52,8 @@ describe('Authentication', () => {
       chai.request(app)
         .post('/api/v1/auth/signup')
         .send(user)
-        .end((err, res) => {
-          res.should.have.status(400);
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
           done();
         });
     });
@@ -65,8 +67,8 @@ describe('Authentication', () => {
       chai.request(app)
         .post('/api/v1/auth/signup')
         .send(user)
-        .end((err, res) => {
-          res.should.have.status(400);
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
           done();
         });
     });
@@ -74,14 +76,14 @@ describe('Authentication', () => {
     it('should not register a user if email already exists', (done) => {
       const user = {
         username: 'uwaelpis',
-        email: 'sammysgame.dev@gmail.com',
+        email: 'uwaelpis007@gmail.com',
         password: 'password'
       };
       chai.request(app)
         .post('/api/v1/auth/signup')
         .send(user)
-        .end((err, res) => {
-          res.should.have.status(403);
+        .end((err, response) => {
+          expect(response.status).to.equal(403);
           done();
         });
     });
@@ -96,60 +98,60 @@ describe('Authentication', () => {
       chai.request(app)
         .post('/api/v1/auth/login')
         .send(details)
-        .end((err, res) => {
-          res.should.have.status(200);
+        .end((err, response) => {
+          expect(response.status).to.equal(200);
           done();
         });
     });
     it('should not log a user in successfully when email is incorrect', (done) => {
       const details = {
-        email: '123samuel@gmail.com',
-        password: 'johndoe',
+        email: 'hopeelpis@gmail.com',
+        password: 'uwaelpis'
       };
       chai.request(app)
         .post('/api/v1/auth/login')
         .send(details)
-        .end((err, res) => {
-          res.should.have.status(401);
+        .end((err, response) => {
+          expect(response.status).to.equal(401);
           done();
         });
     });
     it('should not log a user in successfully when password is incorrect', (done) => {
       const details = {
         email: `${email}@gmail.com`,
-        password: '12rfcas',
+        password: '87b f8aef'
       };
       chai.request(app)
         .post('/api/v1/auth/login')
         .send(details)
-        .end((err, res) => {
-          res.should.have.status(401);
+        .end((err, response) => {
+          expect(response.status).to.equal(401);
           done();
         });
     });
     it('should not log a user in when password is empty', (done) => {
       const details = {
         email: `${email}@gmail.com`,
-        password: '',
+        password: ''
       };
       chai.request(app)
         .post('/api/v1/auth/login')
         .send(details)
-        .end((err, res) => {
-          res.should.have.status(400);
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
           done();
         });
     });
     it('should not log a user in when email is empty', (done) => {
       const details = {
         email: '',
-        password: 'johndoe',
+        password: 'uwaelpis'
       };
       chai.request(app)
         .post('/api/v1/auth/login')
         .send(details)
-        .end((err, res) => {
-          res.should.have.status(400);
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
           done();
         });
     });
