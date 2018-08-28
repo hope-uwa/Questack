@@ -70,7 +70,7 @@ class UserController {
       return res.status(400).json({ errors: errors.array()[0].msg });
     }
     const { email, password } = req.body;
-    const loginQuery = `SELECT * FROM users WHERE email = '${email}' RETURNING *`;
+    const loginQuery = `SELECT * FROM users WHERE email = '${email}'`;
     pool.query(loginQuery)
       .then((result) => {
         const validatePassword = bcrypt.compareSync(password.trim(), result.rows[0].password);
@@ -85,7 +85,7 @@ class UserController {
           email: result.rows[0].email
         });
       })
-      .catch(() => { res.status(401).json({ message: 'Email or Password incorrect' }); });
+      .catch(() => { res.status(401).json({ message: 'Email or assword incorrect' }); });
     return null;
 
   }

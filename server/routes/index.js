@@ -26,7 +26,7 @@ const routes = (app) => {
 
   app.put('/api/v1/questions/:questionId/answers/:answerId', verifyToken, validateAuth.updateAnswer, AnswerController.updateAnswer)
 
-  app.put('/api/v1/questions/:questionId/answers/:answerId/correct', verifyToken, validateAuth.getAnswer, AnswerController.correctAnswer)
+  app.put('/api/v1/questions/:questionId/answers/:answerId/correct', verifyToken, validateAuth.getAnswer, AnswerController.acceptedAnswer)
 
   app.get('/upmigration', tableMigrations.createTables);
 
