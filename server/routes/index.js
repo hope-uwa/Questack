@@ -28,9 +28,13 @@ const routes = (app) => {
 
   app.put('/api/v1/questions/:questionId/answers/:answerId/correct', verifyToken, validateAuth.getAnswer, AnswerController.acceptedAnswer)
 
+  app.get('/api/v1/user/questions', verifyToken, QuestionController.userQuestions);
+
   app.get('/upmigration', tableMigrations.createTables);
 
   app.get('/downmigration', tableMigrations.dropTables);
+
+  
 
   app.get('/*', (req, res) => res.status(404).json({
     message: 'This route does not exist'

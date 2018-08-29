@@ -26,7 +26,7 @@ class QuestionController {
     pool.query(allQuestions)
       .then((result) => {
         if (result.rowCount === 0) {
-          return res.status(204).json({ status: status[204], data: 'No question has been added', all: result });
+          return res.status(204).json({ status: status[204], data: 'No question has been added' });
         } return res.status(200).json({ status: status[200], data: result.rows })
       })
       .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }) })
@@ -177,6 +177,30 @@ class QuestionController {
     return null;
   }
 
+  /**
+       * Returns a message
+       * @method userQuestion
+       * @memberof QuestionController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
+
+  static userQuestions(req, res) {
+     const userId = req.userId;
+    const allQuestions = `SELECT * FROM questions where user_id = ${userId}`;
+
+
+    pool.query(allQuestions)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          return res.status(204).json({ status: status[200], data: 'You have no question added' });
+        } return res.status(200).json({ status: status[200], data: result.rows })
+      })
+      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }) })
+    return null;
+
+  }
 
 
 
