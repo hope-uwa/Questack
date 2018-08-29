@@ -88,7 +88,7 @@ const validateAuth = {
     check('comment', 'Comment Body is required')
       .exists(),
     check('comment', 'Comment body can not be empty').not().isEmpty()
-  ]
+  ],
   validationResult
 };
 
