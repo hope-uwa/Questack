@@ -157,6 +157,8 @@ class QuestionController {
 
     const findQuestion = `SELECT * FROM questions WHERE id ='${questionId}'`;
     const deleteQuestion = `DELETE FROM questions WHERE id = '${questionId}' `;
+    const findAnswer = `SELECT * FROM answers WHERE id ='${questionId}'`;
+    const deleteAnswer = `DELETE FROM answers WHERE id ='${questionId}'`;
     pool.query(findQuestion)
       .then((result) => {
         if (result.rowCount === 0) {
@@ -165,9 +167,14 @@ class QuestionController {
           res.status(401).json({ status: status[401], message: 'You can not delete this question because you are not the author' })
         } else {
           pool.query(deleteQuestion)
-            .then(() => {
-              res.status(200).json({ status: status[200], message: 'The message has been deleted successfully' })
-            })
+            .then(() => pool.query(findAnswer).then((result1) => {
+              if (result1.rowCount < 1) {
+                res.status(200).json({ status: status[200], message: 'The message has been deleted successfully' })
+              } else {
+                pool.query(deleteAnswer)
+                  .then(() => res.status(200).json({ status: status[200], message: 'The message has been deleted successfully' }))
+              }
+            }))
             .catch(() => {
               res.status(500).json({ message: 'An internal error occured' });
               return null;
@@ -187,7 +194,7 @@ class QuestionController {
        */
 
   static userQuestions(req, res) {
-     const userId = req.userId;
+    const userId = req.userId;
     const allQuestions = `SELECT * FROM questions where user_id = ${userId}`;
 
 
