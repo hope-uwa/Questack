@@ -79,8 +79,16 @@ const validateAuth = {
     check('answerBody', 'Answer Body is required')
       .exists(),
     check('answerBody', 'Answer body can not be empty').not().isEmpty(),
-    param('answerId', 'Id must be integer').isInt()
+    param('answerId', 'Id must be integer').isInt(),
+    param('questionId','Id must be an integar').isInt()
   ],
+  postComments: [
+    param('answerId', 'Id must be integer').isInt(),
+    param('questionId','Id must be an integar').isInt(),
+    check('comment', 'Comment Body is required')
+      .exists(),
+    check('comment', 'Comment body can not be empty').not().isEmpty()
+  ]
   validationResult
 };
 
