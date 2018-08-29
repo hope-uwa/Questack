@@ -25,14 +25,14 @@ class CommentController {
     const questionId = req.params.questionId;
     const answerId = req.params.questionId;
     const userId = req.userId;
-    const { comment } = req.body;
+    const { body } = req.body;
 
     const createdAt = moment().format('YYYY-MM-DD');
     const getQuestionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const getAnswerQuery = `SELECT * FROM answers WHERE id = '${questionId}'`;
 
 
-    const addCommentQuery = `INSERT INTO comments (answer_id,user_id,comment,created_at) VALUES ('${answerId}', '${userId}','${comment}','${createdAt}') RETURNING *`
+    const addCommentQuery = `INSERT INTO comments (answer_id,user_id,comment_body,created_at) VALUES ('${answerId}', '${userId}','${body}','${createdAt}') RETURNING *`
     pool.query(getQuestionQuery)
       .then((result) => {
 
@@ -49,16 +49,17 @@ class CommentController {
               .then(result2 => res.status(201).json({
                 status: status[201],
                 message: 'Comment added successfully',
-                Answer: result2.rows[0]
+                comment: result2.rows[0]
               }))
-              .catch(() => res.status(500).json({ message: 'An internal error occured' }));
+              .catch(() => res.status(500).json({ message: 'An internal error occured 2' }));
             return null;
 
           })
 
-          .catch(() => res.status(500).json({ message: 'An internal error occured' }));
+          .catch(() => res.status(500).json({ message: 'An internal error occured 1' }));
         return null;
       })
+      .catch(() => res.status(500).json({ message: 'An internal error occured ' }));
     return null;
   }
 

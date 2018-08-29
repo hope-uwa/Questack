@@ -112,12 +112,12 @@ class QuestionController {
     }
 
 
-    const { questionTitle, questionBody } = req.body;
+    const { title, body } = req.body;
     const userId = req.userId;
     const createdAt = moment().format('YYYY-MM-DD');
 
 
-    const postQuery = `INSERT INTO questions (user_id,question_title,question_body,created_at) VALUES ('${userId}', '${questionTitle}','${questionBody}','${createdAt}') returning *`;
+    const postQuery = `INSERT INTO questions (user_id,question_title,question_body,created_at) VALUES ('${userId}', '${title}','${body}','${createdAt}') returning *`;
     pool.query(postQuery)
       .then(result => res.status(201).json({
         status: status[201],
@@ -130,7 +130,7 @@ class QuestionController {
         }
 
       }))
-      .catch(() => res.status(500).json({ message: 'An internal error occured' }))
+      .catch((err) => res.status(500).json({ message: 'An internal error occured', error:err }))
     return null;
 
 

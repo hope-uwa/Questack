@@ -49,12 +49,12 @@ const validateAuth = {
 
   postQuestion: [
 
-    check('questionTitle', 'Question title is required')
+    check('title', 'Question title is required')
       .exists(),
-    check('questionBody', 'Question Body is required')
+    check('body', 'Question Body is required')
       .exists(),
-    check('questionTitle', 'Question title can not be empty').not().isEmpty(),
-    check('questionBody', 'Question body can not be empty').not().isEmpty()
+    check('title', 'Question title can not be empty').not().isEmpty(),
+    check('body', 'Question body can not be empty').not().isEmpty()
 
   ],
   getQuestion: [
@@ -63,31 +63,34 @@ const validateAuth = {
   ],
   postAnswer: [
 
-    check('answerBody', 'Answer Body is required')
+    check('body', 'Answer Body is required')
       .exists(),
-    check('answerBody', 'Answer body can not be empty').not().isEmpty(),
+    check('body', 'Answer body can not be empty').not().isEmpty(),
     param('questionId', 'Question ID must be an integer').isInt()
 
 
   ],
+  getAnswers: [
+    param('questionId', 'Question Id must be integer').isInt()
+  ],
   getAnswer: [
 
-    param('questionId', 'Id must be integer').isInt(),
-    param('answerId', 'Id must be integer').isInt()
+    param('questionId', 'Question Id must be integer').isInt(),
+    param('answerId', 'Answer Id must be integer').isInt()
   ],
   updateAnswer: [
-    check('answerBody', 'Answer Body is required')
+    check('body', 'Answer Body is required')
       .exists(),
-    check('answerBody', 'Answer body can not be empty').not().isEmpty(),
-    param('answerId', 'Id must be integer').isInt(),
-    param('questionId','Id must be an integar').isInt()
+    check('body', 'Answer body can not be empty').not().isEmpty(),
+    param('answerId', ' Answer Id must be integer').isInt(),
+    param('questionId','Question Id must be an integar').isInt()
   ],
   postComments: [
-    param('answerId', 'Id must be integer').isInt(),
-    param('questionId','Id must be an integar').isInt(),
-    check('comment', 'Comment Body is required')
+    param('answerId', 'Answer Id must be integer').isInt(),
+    param('questionId','Question Id must be an integar').isInt(),
+    check('body', 'Comment Body is required')
       .exists(),
-    check('comment', 'Comment body can not be empty').not().isEmpty()
+    check('body', 'Comment body can not be empty').not().isEmpty()
   ],
   validationResult
 };

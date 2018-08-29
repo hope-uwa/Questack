@@ -24,19 +24,21 @@ const routes = (app) => {
 
   app.delete('/api/v1/questions/:questionId', verifyToken, validateAuth.getQuestion, QuestionController.deleteQuestion);
 
-  app.post('/api/v1/questions/:questionId/answers', verifyToken, validateAuth.postAnswer, AnswerController.postAnswers)
+  app.post('/api/v1/questions/:questionId/answers', verifyToken, validateAuth.postAnswer, AnswerController.postAnswers);
+
+  app.get('/api/v1/questions/:questionId/answers', validateAuth.getAnswers, AnswerController.getAnswers);
 
   app.put('/api/v1/questions/:questionId/answers/:answerId', verifyToken, validateAuth.updateAnswer, AnswerController.updateAnswer)
 
   app.put('/api/v1/questions/:questionId/answers/:answerId/correct', verifyToken, validateAuth.getAnswer, AnswerController.acceptedAnswer)
 
-  app.get('/api/v1/user/questions', verifyToken, QuestionController.userQuestions);
+  app.get('/api/v1/users/questions', verifyToken, QuestionController.userQuestions);
 
   app.post('/api/v1/questions/:questionId/answers/:answerId/comments', verifyToken, validateAuth.postComments, CommentController.postComment)
 
-  app.post('/api/v1/questions/:questionId/answers/:answerId/vote/up', verifyToken, validateAuth.getAnswer, VoteController.voteUp);
+  app.post('/api/v1/questions/:questionId/answers/:answerId/voteup', verifyToken, validateAuth.getAnswer, VoteController.voteUp);
 
-  app.post('/api/v1/questions/:questionId/answers/:answerId/vote/down', verifyToken, validateAuth.getAnswer, VoteController.voteDown);
+  app.post('/api/v1/questions/:questionId/answers/:answerId/votedown', verifyToken, validateAuth.getAnswer, VoteController.voteDown);
 
   app.get('/upmigration', tableMigrations.createTables);
 
