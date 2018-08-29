@@ -4,11 +4,12 @@
   "description": "StackOverflow-lite is a platform where people can ask questions and provide answers.",
   "main": "app.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --require babel-register server/test/*.js  --exit",
+    "test-table-migration": "node --require babel-register server/helpers/table_schema/testTableMigrations",
+    "test": "npm run test-table-migration && nyc --reporter=html --reporter=text mocha --timeout 10000 --require babel-register server/test/*.js  --exit",
     "start": "nodemon --exec babel-node -- ./server/app.js",
     "lint-all": "eslint ./server/app.js ./server/test/*",
     "coverage": "nyc --reporter=html --reporter=text --reporter=lcov mocha --reporter spec --require babel-register server/test/* --exit",
-    "coveralls": "npm run coverage -- --report lcovonly && cat coverage/lcov.info | coveralls"
+    "coveralls": "npm run test-table-migration && npm run coverage -- --report lcovonly && cat coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,8 @@
     "express-validator": "^5.3.0",
     "jsonwebtoken": "^8.3.0",
     "moment": "^2.22.2",
-    "pg": "^7.4.3"
+    "pg": "^7.4.3",
+    "supertest": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
