@@ -4,6 +4,8 @@ import AnswerController from '../controllers/answersController';
 import verifyToken from '../controllers/middleware/verifyToken';
 import tableMigrations from '../helpers/table_schema/tableMigration';
 import validateAuth from '../helpers/validationHelpers';
+import CommentController from '../controllers/commentController';
+import VoteController from '../controllers/voteController';
 
 const routes = (app) => {
   app.get('/', (req, res) => {
@@ -30,11 +32,17 @@ const routes = (app) => {
 
   app.get('/api/v1/user/questions', verifyToken, QuestionController.userQuestions);
 
+  app.post('/api/v1/questions/:questionId/answers/:answerId/comments', verifyToken, validateAuth.postComments, CommentController.postComment)
+
+  app.post('/api/v1/questions/:questionId/answers/:answerId/vote/up', verifyToken, validateAuth.getAnswer, VoteController.voteUp);
+
+  app.post('/api/v1/questions/:questionId/answers/:answerId/vote/down', verifyToken, validateAuth.getAnswer, VoteController.voteDown);
+
   app.get('/upmigration', tableMigrations.createTables);
 
   app.get('/downmigration', tableMigrations.dropTables);
 
-  
+
 
   app.get('/*', (req, res) => res.status(404).json({
     message: 'This route does not exist'
