@@ -57,7 +57,7 @@ class UserController {
               token
             });
           })
-          .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request ' }); });
+          .catch(() => { res.status(500).json({ status: status[500], message: `An error occured while ${err} processing this request ` }); });
         return null;
       })
       .catch((err) => { res.status(500).json({ status: status[500], message: `An error occured while ${err} processing this request 1` }); });
