@@ -33,7 +33,7 @@ class UserController {
     }
     const { username, email, password } = req.body;
     const createdAt = moment().format('YYYY-MM-DD');
-    const hashedPassword = bcrypt.hashSync(password, 6);
+    const hashedPassword = bcrypt.hashSync(password, 1);
     const checkEmail = `SELECT email FROM users WHERE email = '${email}'`;
     const signUpQuery = `INSERT INTO users (user_name, email, password, created_at) values ('${username}', '${email}', '${hashedPassword}', '${createdAt}') RETURNING *`;
 
@@ -57,10 +57,10 @@ class UserController {
               token
             });
           })
-          .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request ' }); });
+          .catch(() => { res.status(500).json({ status: status[500], message: `An error occured while ${err} processing this request ` }); });
         return null;
       })
-      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request ' }); });
+      .catch((err) => { res.status(500).json({ status: status[500], message: `An error occured while ${err} processing this request 1` }); });
     return null;
 
 
