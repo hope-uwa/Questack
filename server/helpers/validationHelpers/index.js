@@ -85,6 +85,10 @@ const validateAuth = {
     param('answerId', ' Answer Id must be integer').isInt(),
     param('questionId','Question Id must be an integar').isInt()
   ],
+  specialUpdate: [
+    param('answerId', ' Answer Id must be integer').isInt(),
+    param('questionId','Question Id must be an integar').isInt()
+  ],
   postComments: [
     param('answerId', 'Answer Id must be integer').isInt(),
     param('questionId','Question Id must be an integar').isInt(),

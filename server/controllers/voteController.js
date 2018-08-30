@@ -24,11 +24,11 @@ class VoteController {
     const answerId = req.params.answerId;
     const questionId = req.params.questionId;
     const userId = req.userId;
-    const questionQuery = `SELECT FROM * questions WHERE question_id = '${questionId}'`;
+    const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const vote = 'up'
-    const voteQuery = `SELECT FROM * votes WHERE answer_id = '${answerId}' AND question_id = '${questionId}'`
-    const answerQuery = `SELECT FROM * answers WHERE answer_id = '${answerId}'`
-    const addVote = `INSERT INTO votes (answer_id,user_id,vote) VALUES ('${answerId}','${userId}','${vote}') `
+    const voteQuery = `SELECT * FROM votes WHERE answer_id = '${answerId}'`
+    const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}'`
+    const addVote = `INSERT INTO votes (answer_id,user_id,vote) values ('${answerId}','${userId}','${vote}') `
     pool.query(questionQuery)
       .then((result) => {
         if (result.rowCount < 1) {
@@ -46,17 +46,17 @@ class VoteController {
                 }
                 pool.query(addVote)
                   .then(() => res.status(201).json({ status: status[201], message: 'You have successfully voted Up' }))
-                  .catch(() => res.status(500).json({ message: 'An internal error occured' }))
+                  .catch(() => res.status(500).json({ message: 'An internal error occured 4' }))
                 return null;
 
               })
-              .catch(() => res.status(500).json({ message: 'An internal error occured' }))
+              .catch(() => res.status(500).json({ message: 'An internal error occured 3' }))
             return null;
           })
-          .catch(() => res.status(500).json({ message: 'An internal error occured' }))
+          .catch(() => res.status(500).json({ message: 'An internal error occured 2' }))
         return null;
       })
-      .catch(() => res.status(500).json({ message: 'An internal error occured' }))
+      .catch(() => res.status(500).json({ message: 'An internal error occured 1' }))
     return null;
 
 
@@ -70,11 +70,11 @@ class VoteController {
     const answerId = req.params.answerId;
     const questionId = req.params.questionId;
     const userId = req.userId;
-    const questionQuery = `SELECT FROM * questions WHERE question_id = '${questionId}'`;
+    const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const vote = 'down'
-    const voteQuery = `SELECT FROM * votes WHERE answer_id = '${answerId}' AND question_id = '${questionId}'`
-    const answerQuery = `SELECT FROM * answers WHERE answer_id = '${answerId}'`
-    const addVote = `INSERT INTO votes (answer_id,user_id,vote) VALUES ('${answerId}','${userId}','${vote}') `
+    const voteQuery = `SELECT * FROM votes WHERE answer_id = '${answerId}'`
+    const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}'`
+    const addVote = `INSERT INTO votes (answer_id,user_id,vote) values ('${answerId}','${userId}','${vote}') `
     pool.query(questionQuery)
       .then((result) => {
         if (result.rowCount < 1) {
@@ -91,18 +91,18 @@ class VoteController {
                   return res.status(200).json({ message: 'You have voted before', vote: result2.rows[0].vote })
                 }
                 pool.query(addVote)
-                  .then(() => res.status(201).json({ status: status[201], message: 'You have successfully voted Down' }))
-                  .catch(() => res.status(500).json({ message: 'An internal error occured' }))
+                  .then(() => res.status(201).json({ status: status[201], message: 'You have successfully voted Up' }))
+                  .catch(() => res.status(500).json({ message: 'An internal error occured 4' }))
                 return null;
 
               })
-              .catch(() => res.status(500).json({ message: 'An internal error occured' }))
+              .catch(() => res.status(500).json({ message: 'An internal error occured 3' }))
             return null;
           })
-          .catch(() => res.status(500).json({ message: 'An internal error occured' }))
+          .catch(() => res.status(500).json({ message: 'An internal error occured 2' }))
         return null;
       })
-      .catch(() => res.status(500).json({ message: 'An internal error occured' }))
+      .catch(() => res.status(500).json({ message: 'An internal error occured 1' }))
     return null;
 
 
