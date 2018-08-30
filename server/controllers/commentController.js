@@ -22,9 +22,9 @@ class CommentController {
       return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
 
-    const questionId = req.params.questionId;
-    const answerId = req.params.questionId;
-    const userId = req.userId;
+    const { questionId }= req.params.questionId;
+    const { answerId } = req.params.questionId;
+    const { userId } = req.userId;
     const { body } = req.body;
 
     const createdAt = moment().format('YYYY-MM-DD');

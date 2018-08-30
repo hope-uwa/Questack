@@ -4,6 +4,7 @@ import moment from 'moment'
 import pool from '../helpers/dbHelper'
 import validateAuth from '../helpers/validationHelpers';
 import status from '../data/status.json'
+import errorReporter from '../helpers/validationHelpers/authHelper'
 
 /**
  * @exports
@@ -21,10 +22,14 @@ class UserController {
        */
   static signUp(req, res) {
 
+    const err = errorReporter(req);
+    if (err.length !== 0) {
+      return res.status(400).json({ status: status[400], error: err })
+    }
 
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({Status: status[400], error: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
     const { username, email, password } = req.body;
     const createdAt = moment().format('YYYY-MM-DD');
@@ -35,7 +40,7 @@ class UserController {
     pool.query(checkEmail)
       .then((result) => {
         if (result.rowCount > 0) {
-          return res.status(403).json({Status: status[403], message: 'Account already exists' });
+          return res.status(403).json({ Status: status[403], message: 'Account already exists' });
         }
         pool.query(signUpQuery)
           .then((result1) => {
@@ -45,16 +50,17 @@ class UserController {
               { expiresIn: 86400 },
             );
             return res.status(201).json({
-              token,
-              username: result1.rows[0].user_name,
+              status: status[201],
+              message: `${result1.rows[0].user_name} was added successfully`,
+              userName: result1.rows[0].user_name,
               email: result1.rows[0].email,
-              message: 'User account created successfully'
+              token
             });
           })
-          .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request 2' }); });
+          .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request ' }); });
         return null;
       })
-      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request 1' }); });
+      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request ' }); });
     return null;
 
 
@@ -86,10 +92,11 @@ class UserController {
         }
         const token = jwt.sign({ id: result.rows[0].id }, process.env.TOKEN_SECRET_KEY, { expiresIn: 86400 });
         return res.status(200).json({
-          token: token,
-          status: 'successful',
+
+          status: status[200],
           name: result.rows[0].user_name,
-          email: result.rows[0].email
+          email: result.rows[0].email,
+          token: token
         });
       })
       .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request 1' }); });

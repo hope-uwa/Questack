@@ -28,7 +28,7 @@ const routes = (app) => {
 
   app.get('/api/v1/questions/:questionId/answers', validateAuth.getAnswers, AnswerController.getAnswers);
 
-  app.put('/api/v1/questions/:questionId/answers/:answerId', verifyToken, validateAuth.specialUpdate, AnswerController.specialAnswer)
+  app.put('/api/v1/questions/:questionId/answers/:answerId', verifyToken, validateAuth.specialUpdate, AnswerController.updateAnswer)
 
   app.put('/api/v1/questions/:questionId/answers/:answerId/correct', verifyToken, validateAuth.getAnswer, AnswerController.acceptedAnswer)
 

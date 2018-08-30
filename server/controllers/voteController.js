@@ -20,9 +20,9 @@ class VoteController {
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array()[0].msg });
     }
-    const answerId = req.params.answerId;
-    const questionId = req.params.questionId;
-    const userId = req.userId;
+    const { answerId } = req.params;
+    const { questionId } = req.params;
+    const { userId } = req;
     const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const vote = 'up'
     const voteQuery = `SELECT * FROM votes WHERE answer_id = '${answerId}'`
@@ -66,9 +66,9 @@ class VoteController {
     if (!errors.isEmpty()) {
       return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
-    const answerId = req.params.answerId;
-    const questionId = req.params.questionId;
-    const userId = req.userId;
+    const { answerId } = req.params;
+    const { questionId } = req.params;
+    const { userId }= req;
     const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const vote = 'down'
     const voteQuery = `SELECT * FROM votes WHERE answer_id = '${answerId}'`
@@ -87,7 +87,7 @@ class VoteController {
             pool.query(voteQuery)
               .then((result2) => {
                 if (result2.rowCount !== 0 && result2.rows[0].user_id === userId) {
-                  return res.status(200).json({ message: 'You have voted before', vote: result2.rows[0].vote })
+                  return res.status(200).json({ status: status[200], message: 'You have voted before', vote: result2.rows[0].vote })
                 }
                 pool.query(addVote)
                   .then(() => res.status(201).json({ status: status[201], message: 'You have successfully voted Up' }))
