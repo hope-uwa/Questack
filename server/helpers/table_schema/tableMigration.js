@@ -19,7 +19,7 @@ class TableMigrations {
             id serial PRIMARY KEY NOT NULL,
             user_id integer NOT NULL,
             question_id integer NOT NULL,
-            answer_body character(250) NOT NULL,
+            answer_body varchar(250) NOT NULL,
             created_at timestamp DEFAULT NOW()
             )`;
 
