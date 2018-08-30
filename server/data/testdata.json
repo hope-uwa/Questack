@@ -1,26 +1,28 @@
 {
     "noTitleQuestion":{
-        "questionTitle":"",
-        "questionBody":"I'm trying to do this the elegant way, with jsdom and jQuery in node ."
+        "title":"",
+        "body":"I'm trying to do this the elegant way, with jsdom and jQuery in node ."
         
     },
     "noBodyQuestion":{
-        "questionTitle":"Firing onclick event which triggers a POST request in jsdom",
-        "questionBody":""
+        "title":"Firing onclick event which triggers a POST request in jsdom",
+        "body":""
         
     },
     "goodQuestion":{
-        "questionTitle":"Firing onclick event which triggers a POST request in jsdom",
-        "questionBody":"I'm trying to do this the elegant way, with jsdom and jQuery in node"
+        "title":"Firing onclick event which triggers a POST request in jsdom",
+        "body":"I'm trying to do this the elegant way, with jsdom and jQuery in node"
         
     },
     "noContentAnswer":{
-        "answerBody":""
+        "body":""
         
     },
     "goodAnswer":{
-        "answerBody":"I'm trying to do this the elegant way"
+        "body":"I'm trying to do this the elegant way"
     }
+   
+    
 
     
 
