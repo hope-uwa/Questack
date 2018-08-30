@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import moment from 'moment'
 import pool from '../helpers/dbHelper'
 import validateAuth from '../helpers/validationHelpers';
+import status from '../data/status.json'
 
 /**
  * @exports
@@ -23,7 +24,7 @@ class UserController {
 
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({Status: status[400], error: errors.array()[0].msg });
     }
     const { username, email, password } = req.body;
     const createdAt = moment().format('YYYY-MM-DD');
@@ -34,7 +35,7 @@ class UserController {
     pool.query(checkEmail)
       .then((result) => {
         if (result.rowCount > 0) {
-          return res.status(403).json({ message: 'Account already exists' });
+          return res.status(403).json({Status: status[403], message: 'Account already exists' });
         }
         pool.query(signUpQuery)
           .then((result1) => {
@@ -50,10 +51,10 @@ class UserController {
               message: 'User account created successfully'
             });
           })
-          .catch(() => { res.status(500).json({ message: 'An error occured while processing this request 2' }); });
+          .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request 2' }); });
         return null;
       })
-      .catch(() => { res.status(500).json({ message: 'An error occured while processing this request 1' }); });
+      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request 1' }); });
     return null;
 
 
@@ -72,7 +73,7 @@ class UserController {
 
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
     const { email, password } = req.body;
     const loginQuery = `SELECT * FROM users WHERE email = '${email}'`;
@@ -80,7 +81,7 @@ class UserController {
       .then((result) => {
         const validatePassword = bcrypt.compareSync(password.trim(), result.rows[0].password);
         if (result.rowCount === 0 || !validatePassword) {
-          return res.status(401).json({ message: 'Email or Password incorrect' });
+          return res.status(401).json({ status: status[401], message: 'Email or Password incorrect' });
 
         }
         const token = jwt.sign({ id: result.rows[0].id }, process.env.TOKEN_SECRET_KEY, { expiresIn: 86400 });
@@ -91,7 +92,7 @@ class UserController {
           email: result.rows[0].email
         });
       })
-      .catch(() => { res.status(500).json({ message: 'An error occured while processing this request 1' }); });
+      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request 1' }); });
     return null;
 
   }

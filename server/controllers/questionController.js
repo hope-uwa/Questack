@@ -90,7 +90,7 @@ class QuestionController {
         return null
 
       })
-      .catch(() => res.status(500).json({ message: 'Internal Error Occurred' }))
+      .catch(() => res.status(500).json({ status: status[500], message: 'Internal Error Occurred' }))
     return null
   }
 
@@ -108,7 +108,7 @@ class QuestionController {
 
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
 
 
@@ -130,7 +130,7 @@ class QuestionController {
         }
 
       }))
-      .catch((err) => res.status(500).json({ message: 'An internal error occured', error:err }))
+      .catch(err => res.status(500).json({ status: status[500], message: 'An internal error occured', error: err }))
     return null;
 
 
@@ -150,7 +150,7 @@ class QuestionController {
 
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
     const questionId = req.params.questionId;
     const userId = req.userId;
@@ -176,7 +176,7 @@ class QuestionController {
               }
             }))
             .catch(() => {
-              res.status(500).json({ message: 'An internal error occured' });
+              res.status(500).json({ status: status[500], message: 'An internal error occured' });
               return null;
             })
         }

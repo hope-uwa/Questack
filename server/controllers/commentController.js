@@ -19,7 +19,7 @@ class CommentController {
   static postComment(req, res) {
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
 
     const questionId = req.params.questionId;
@@ -51,15 +51,15 @@ class CommentController {
                 message: 'Comment added successfully',
                 comment: result2.rows[0]
               }))
-              .catch(() => res.status(500).json({ message: 'An internal error occured 2' }));
+              .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured 2' }));
             return null;
 
           })
 
-          .catch(() => res.status(500).json({ message: 'An internal error occured 1' }));
+          .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured 1' }));
         return null;
       })
-      .catch(() => res.status(500).json({ message: 'An internal error occured ' }));
+      .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured ' }));
     return null;
   }
 
