@@ -60,7 +60,7 @@ class UserController {
           .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request ' }); });
         return null;
       })
-      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request ' }); });
+      .catch((err) => { res.status(500).json({ status: status[500], message: `An error occured while ${err} processing this request 1` }); });
     return null;
 
 
