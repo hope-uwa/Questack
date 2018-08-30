@@ -3,13 +3,16 @@ const ErrorReporter = (req) => {
 
   if (req.body.username === '' || req.body.username === undefined) {
 
-    error[0] = 'Username is required';
+   const usernameError= 'Username is required';
+    error.push(usernameError)
   }
   if (req.body.email === '' || req.body.email === undefined) {
-    error[1] = 'Email is required'
+    const emailError = 'Email is required'
+    error.push(emailError)
   }
   if (req.body.password === '' || req.body.password === undefined) {
-    error[2] = 'Password is required'
+    const passwordError = 'Password is required'
+    error.push(passwordError)
   }
   return error
 
