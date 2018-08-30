@@ -2,6 +2,7 @@ import moment from 'moment';
 import pool from '../helpers/dbHelper';
 import validateAuth from '../helpers/validationHelpers';
 import status from '../data/status.json'
+import questionErrorReporter from '../helpers/validationHelpers/questionHelper'
 
 /**
  * @exports
@@ -26,8 +27,8 @@ class QuestionController {
     pool.query(allQuestions)
       .then((result) => {
         if (result.rowCount === 0) {
-          return res.status(204).json({ status: status[204], data: 'No question has been added' });
-        } return res.status(200).json({ status: status[200], data: result.rows })
+          return res.status(204).json({ status: status[204], message: 'No question has been added' });
+        } return res.status(200).json({ status: status[200], message: result.rows })
       })
       .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }) })
     return null;
@@ -47,9 +48,9 @@ class QuestionController {
 
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
-    const questionId = req.params.questionId;
+    const { questionId } = req.params;
     const questionQuery = `SELECT * FROM questions WHERE id ='${questionId}'`
     const answerQuery = `SELECT * FROM answers WHERE question_id ='${questionId}'`
 
@@ -69,9 +70,10 @@ class QuestionController {
                   title: result.rows[0].question_title,
                   body: result.rows[0].question_body,
                   userId: result.rows[0].user_id,
-                  dateCreated: result.rows[0].created_at
-                },
-                answers: 'No answer added yet'
+                  dateCreated: result.rows[0].created_at,
+                  answers: 'No answer added yet'
+                }
+
               });
             }
 
@@ -81,16 +83,17 @@ class QuestionController {
                 title: result.rows[0].question_title,
                 body: result.rows[0].question_body,
                 userId: result.rows[0].user_id,
-                dateCreated: result.rows[0].created_at
-              },
-              answers: result1.rows
+                dateCreated: result.rows[0].created_at,
+                answers: result1.rows
+              }
+
             })
 
           })
         return null
 
       })
-      .catch(() => res.status(500).json({ message: 'Internal Error Occurred' }))
+      .catch(() => res.status(500).json({ status: status[500], message: 'Internal Error Occurred' }))
     return null
   }
 
@@ -105,15 +108,19 @@ class QuestionController {
        * @returns {(function|object)} Function next() or JSON object
        */
   static postQuestions(req, res) {
+    const err = questionErrorReporter(req);
+    if (err.length !== 0) {
+      return res.status(400).json({ status: status[400], error: err });
+    }
 
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
 
 
     const { title, body } = req.body;
-    const userId = req.userId;
+    const { userId } = req;
     const createdAt = moment().format('YYYY-MM-DD');
 
 
@@ -130,7 +137,7 @@ class QuestionController {
         }
 
       }))
-      .catch((err) => res.status(500).json({ message: 'An internal error occured', error:err }))
+      .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured' }))
     return null;
 
 
@@ -150,10 +157,10 @@ class QuestionController {
 
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
-    const questionId = req.params.questionId;
-    const userId = req.userId;
+    const { questionId } = req.params;
+    const { userId } = req;
 
     const findQuestion = `SELECT * FROM questions WHERE id ='${questionId}'`;
     const deleteQuestion = `DELETE FROM questions WHERE id = '${questionId}' `;
@@ -162,21 +169,21 @@ class QuestionController {
     pool.query(findQuestion)
       .then((result) => {
         if (result.rowCount === 0) {
-          res.status(404).json({ status: status[404], message: 'Theres no question with that ID' })
+          res.status(404).json({ status: status[404], message: 'There is no question with ID ' })
         } else if (result.rows[0].user_id !== userId) {
           res.status(401).json({ status: status[401], message: 'You can not delete this question because you are not the author' })
         } else {
           pool.query(deleteQuestion)
             .then(() => pool.query(findAnswer).then((result1) => {
               if (result1.rowCount < 1) {
-                res.status(200).json({ status: status[200], message: 'The message has been deleted successfully' })
+                res.status(200).json({ status: status[200], message: `The question with id: ${questionId} has been deleted successfully` })
               } else {
                 pool.query(deleteAnswer)
-                  .then(() => res.status(200).json({ status: status[200], message: 'The message has been deleted successfully' }))
+                  .then(() => res.status(200).json({ status: status[200], message: `The question with id: ${questionId} has been deleted successfully` }))
               }
             }))
             .catch(() => {
-              res.status(500).json({ message: 'An internal error occured' });
+              res.status(500).json({ status: status[500], message: 'An internal error occured' });
               return null;
             })
         }
@@ -194,14 +201,14 @@ class QuestionController {
        */
 
   static userQuestions(req, res) {
-    const userId = req.userId;
+    const { userId } = req;
     const allQuestions = `SELECT * FROM questions where user_id = ${userId}`;
 
 
     pool.query(allQuestions)
       .then((result) => {
         if (result.rowCount === 0) {
-          return res.status(204).json({ status: status[200], data: 'You have no question added' });
+          return res.status(204).json({ status: status[200], data: 'You have asked no question' });
         } return res.status(200).json({ status: status[200], data: result.rows })
       })
       .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }) })

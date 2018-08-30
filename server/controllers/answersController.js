@@ -19,12 +19,13 @@ class AnswerController {
   static postAnswers(req, res) {
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
 
-    const questionId = req.params.questionId;
-    const userId = req.userId;
+    const { questionId } = req.params;
+    const { userId } = req;
     const { body } = req.body;
+    console.log(body)
 
     const createdAt = moment().format('YYYY-MM-DD');
     const getQuestionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
@@ -34,7 +35,7 @@ class AnswerController {
       .then((result) => {
 
         if (result.rowCount === 0) {
-          return res.status(404).json({ status: status[404], message: 'There is no question with that Question ID' })
+          return res.status(404).json({ status: status[404], message: `question with Id: ${questionId} can not be found` })
         }
         pool.query(addAnswerQuery)
           .then((result1) => {
@@ -47,10 +48,10 @@ class AnswerController {
               message: 'Answer added successfully'
             })
           })
-          .catch(() => res.status(500).json({ message: 'An internal error occured' }));
+          .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured' }));
         return null;
       })
-      .catch(() => res.status(500).json({ message: 'An internal error occured' }));
+      .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured' }));
     return null;
   }
 
@@ -66,10 +67,10 @@ class AnswerController {
   static getAnswers(req, res) {
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
 
-    const questionId = req.params.questionId;
+    const { questionId } = req.params;
 
     const getQuestionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
 
@@ -78,7 +79,7 @@ class AnswerController {
     pool.query(getQuestionQuery)
       .then((result) => {
         if (result.rowCount < 1) {
-          return res.status(404).json({ status: status[404], message: 'There is no question with that question ID' })
+          return res.status(404).json({ status: status[404], message: `Question with Id: ${questionId} can not be found` })
         }
         pool.query(getAnswersQuery)
           .then((result1) => {
@@ -88,56 +89,52 @@ class AnswerController {
             return res.status(200).json({
               status: status[200],
               questionId: result1.rows[0].question_id,
-              body: result1.rows[0].answer_body,
+              body: result1.rows[0].answer_body.trim(),
               createdAt: result1.rows[0].created_at
 
             })
           })
-          .catch(() => res.status(500).json({ message: 'An internal error occured' }));
+          .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured' }));
         return null;
       })
-      .catch(() => res.status(500).json({ message: 'An internal error occured' }));
+      .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured' }));
     return null;
 
 
   }
 
 
-  static getUserId(req) {
-    return req.userId;
-  }
-
   /**
        * Returns a Answers
-       * @method updateAnswer
+       * @method oldUpdateAnswer
        * @memberof AnswerController
        * @param {object} req
        * @param {object} res
        * @returns {(function|object)} Function next() or JSON object
        */
 
-  static updateAnswer(req, res) {
+  static oldUpdateAnswer(req, res) {
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array()[0].msg });
     }
-    const answerId = req.params.answerId;
+    const { answerId } = req.params;
     const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}'`;
     const updateAnswer = `UPDATE answers SET answer_body = '${req.body.body}' WHERE id = '${answerId}' RETURNING *`
     pool.query(answerQuery)
       .then((result) => {
         if (result.rowCount < 1) {
-          return res.status(400).json({ status: 'Not FOund' })
+          return res.status(400).json({ status: status[400] })
         }
         if (result.rows[0].user_id !== req.userId) {
           return res.status(401).json({ status: status[401], message: 'You can not edit this answer' })
         }
         pool.query(updateAnswer)
-          .then(result1 => res.status(201).json({ message: 'Updated Successfully', status: status[201], answer: result1.rows[0] }))
-          .catch(() => res.status(500).json({ message: 'An internal error occured1' }));
+          .then(result1 => res.status(201).json({ status: status[201], message: 'Updated Successfully', answer: result1.rows[0] }))
+          .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured1' }));
         return null;
       })
-      .catch(() => res.status(500).json({ message: 'An internal error occured2' }));
+      .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured2' }));
     return null;
   }
 
@@ -156,13 +153,12 @@ class AnswerController {
       return res.status(400).json({ errors: errors.array()[0].msg });
     }
 
-    const questionId = req.params.questionId;
-    const answerId = req.params.answerId;
+    const { questionId } = req.params;
+    const { answerId } = req.params;
     const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}' AND question_id = '${questionId}'`;
     const createdAt = moment().format('YYYY-MM-DD');
     const insertCorrectAnswer = `INSERT INTO preferred (question_id,answer_id,created_at) VALUES ('${questionId}','${answerId}','${createdAt}') RETURNING *`
-    const updateCorrectAnswer = `UPDATE preferred SET answer_id = '${answerId}' WHERE question_id = ${questionId}`
     pool.query(questionQuery)
       .then((result) => {
         if (result.rowCount < 1) {
@@ -188,15 +184,23 @@ class AnswerController {
     return null;
   }
 
+  /**
+       * Returns a Answers
+       * @method updateAnswer
+       * @memberof AnswerController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
 
-  static specialAnswer(req, res) {
+  static updateAnswer(req, res) {
     const errors = validateAuth.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array()[0].msg });
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
 
-    const questionId = req.params.questionId;
-    const answerId = req.params.answerId;
+    const { questionId } = req.params;
+    const { answerId } = req.params;
     const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}' AND question_id = '${questionId}'`;
     const createdAt = moment().format('YYYY-MM-DD');
@@ -215,40 +219,40 @@ class AnswerController {
             if (result1.rowCount < 1) {
               return res.status(404).json({ status: status[404], message: `Answer with Answer Id: ${answerId} can not be found` })
             }
-            
+
 
             if (result.rows[0].user_id === req.userId) {
               // mark as correct
               pool.query(insertCorrectAnswer)
                 .then(() => res.status(201).json({ status: status[201], message: 'Answer has been marked as correct', body: result1.rows[0] }))
-                .catch(() => res.status(500).json({ message: 'An internal error occured4' }))
+                .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured' }))
               return null
             }
-            
+
             const user = result1.rows[0].user_id;
-            if (req.userId !== user ) {
-              
-             return res.status(401).json({ status: status[401], message: 'You can not update this answer' })
+            if (req.userId !== user) {
+
+              return res.status(401).json({ status: status[401], message: 'You can not update this answer' })
             }
 
-            
-            
+
+
             if (result1.row[0].user_id === req.userId && req.body.body !== undefined && req.body.body !== '') {
               // update answer if user asked it and has filled body field
-              
+
               pool.query(updateAnswer)
-                .then(result2 => res.status(201).json({ message: 'Updated Successfully', status: status[201], answer: result2.rows[0] }))
-                .catch(() => res.status(500).json({ message: 'An internal error occured3' }));
+                .then(result2 => res.status(201).json({ status: status[201], message: 'Updated Successfully', answer: result2.rows[0] }))
+                .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured' }));
               return null;
             }
-            
+
             return null;
           })
-          .catch(() => res.status(500).json({ message: 'An internal error occured2' }));
+          .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured' }));
         return null;
 
       })
-      .catch(() => res.status(500).json({ message: 'An internal error occured1' }));
+      .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured' }));
     return null;
 
   }

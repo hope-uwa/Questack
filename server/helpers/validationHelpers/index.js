@@ -49,24 +49,24 @@ const validateAuth = {
 
   postQuestion: [
 
-    check('title', 'Question title is required')
+    check('title', 'Title of question is required')
       .exists(),
-    check('body', 'Question Body is required')
+    check('body', 'Body for question  is required')
       .exists(),
-    check('title', 'Question title can not be empty').not().isEmpty(),
-    check('body', 'Question body can not be empty').not().isEmpty()
+    check('title', 'The title of the question can not be empty').not().isEmpty(),
+    check('body', 'The Content of the question can not be empty').not().isEmpty()
 
   ],
   getQuestion: [
 
-    param('questionId', 'Question Id must be a number').isInt()
+    param('questionId', 'Question Id must be an integer').isInt()
   ],
   postAnswer: [
 
-    check('body', 'Answer Body is required')
+    check('body', 'Answer is required')
       .exists(),
-    check('body', 'Answer body can not be empty').not().isEmpty(),
-    param('questionId', 'Question ID must be an integer').isInt()
+    check('body', 'Content of answer can not be empty').not().isEmpty(),
+    param('questionId', 'Question Id must be an integer').isInt()
 
 
   ],
@@ -75,26 +75,26 @@ const validateAuth = {
   ],
   getAnswer: [
 
-    param('questionId', 'Question Id must be integer').isInt(),
-    param('answerId', 'Answer Id must be integer').isInt()
+    param('questionId', 'Question Id must be an integer').isInt(),
+    param('answerId', 'Answer Id must be an integer').isInt()
   ],
   updateAnswer: [
-    check('body', 'Answer Body is required')
+    check('body', 'Content of answer is required')
       .exists(),
-    check('body', 'Answer body can not be empty').not().isEmpty(),
-    param('answerId', ' Answer Id must be integer').isInt(),
-    param('questionId','Question Id must be an integar').isInt()
+    check('body', 'Content of answer can not be empty').not().isEmpty(),
+    param('answerId', ' Answer Id must be an integer').isInt(),
+    param('questionId', 'Question Id must be an integar').isInt()
   ],
   specialUpdate: [
     param('answerId', ' Answer Id must be integer').isInt(),
-    param('questionId','Question Id must be an integar').isInt()
+    param('questionId', 'Question Id must be an integar').isInt()
   ],
   postComments: [
     param('answerId', 'Answer Id must be integer').isInt(),
-    param('questionId','Question Id must be an integar').isInt(),
-    check('body', 'Comment Body is required')
+    param('questionId', 'Question Id must be an integar').isInt(),
+    check('body', 'Comment content is required')
       .exists(),
-    check('body', 'Comment body can not be empty').not().isEmpty()
+    check('body', 'Comment content can not be empty').not().isEmpty()
   ],
   validationResult
 };
