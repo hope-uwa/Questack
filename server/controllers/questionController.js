@@ -90,6 +90,7 @@ class QuestionController {
             })
 
           })
+          .catch(() => res.status(500).json({ status: status[500], message: 'Internal Error Occurred' }))
         return null
 
       })
@@ -188,6 +189,8 @@ class QuestionController {
             })
         }
       })
+      .catch(() => res.status(500).json({ status: status[500], message: 'Internal Error Occurred' }))
+
     return null;
   }
 
