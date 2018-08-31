@@ -22,9 +22,9 @@ class CommentController {
       return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
 
-    const { questionId }= req.params.questionId;
-    const { answerId } = req.params.questionId;
-    const { userId } = req.userId;
+    const { questionId } = req.params;
+    const { answerId } = req.params;
+    const { userId } = req;
     const { body } = req.body;
 
     const createdAt = moment().format('YYYY-MM-DD');
@@ -59,10 +59,61 @@ class CommentController {
           .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured 1' }));
         return null;
       })
-      .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured ' }));
+      .catch(err => res.status(500).json({ status: status[500], message: `${err}An internal error occured ` }));
     return null;
   }
 
+  static getComment(req, res) {
+
+    const errors = validateAuth.validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
+    }
+    const { answerId } = req.params;
+    const answerQuery = `SELECT * FROM answers WHERE id ='${answerId}'`
+    const commentQuery = `SELECT user_id,comment_body,created_at FROM comments WHERE answer_id ='${answerId}'`
+
+    pool.query(answerQuery)
+      .then((result) => {
+        if (result.rowCount < 1) {
+          return res.status(404).json({ status: status[404], message: 'No answer with this answer Id' });
+        }
+
+        pool.query(commentQuery)
+          .then((result1) => {
+            if (result1.rowCount === 0) {
+              return res.status(200).json({
+                status: status[200],
+                answer: {
+
+                  answer_body: result.rows[0].answer_body,
+                  user_id: result.rows[0].user_id,
+                  date_created: result.rows[0].created_at,
+                  comments: 'No comments added yet'
+                }
+
+              });
+            }
+
+            return res.status(200).json({
+              status: status[200],
+              answer: {
+                body: result.rows[0].answer_body,
+                user_id: result.rows[0].user_id,
+                date_created: result.rows[0].created_at,
+                comments: result1.rows
+              }
+
+            })
+
+          })
+          .catch(() => res.status(500).json({ status: status[500], message: 'Internal Error Occurred' }))
+        return null
+
+      })
+      .catch(() => res.status(500).json({ status: status[500], message: 'Internal Error Occurred' }))
+    return null
+  }
 
 
 

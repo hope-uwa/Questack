@@ -36,6 +36,8 @@ const routes = (app) => {
 
   app.post('/api/v1/questions/:questionId/answers/:answerId/comments', verifyToken, validateAuth.postComments, CommentController.postComment)
 
+  app.get('/api/v1/questions/:questionId/answers/:answerId', verifyToken, validateAuth.getAnswer, CommentController.getComment)
+
   app.post('/api/v1/questions/:questionId/answers/:answerId/voteup', verifyToken, validateAuth.getAnswer, VoteController.voteUp);
 
   app.post('/api/v1/questions/:questionId/answers/:answerId/votedown', verifyToken, validateAuth.getAnswer, VoteController.voteDown);
@@ -47,6 +49,7 @@ const routes = (app) => {
 
 
   app.get('/*', (req, res) => res.status(404).json({
+    status: '404 -Not Found',
     message: 'This route does not exist'
   }));
 
