@@ -53,8 +53,26 @@ const validateAuth = {
       .exists(),
     check('body', 'Body for question  is required')
       .exists(),
-    check('title', 'The title of the question can not be empty').not().isEmpty(),
+    check('title', 'The title of the question can not be empty').not().isEmpty()
+      .isLength({ min: 10 })
+      .custom((value) => {
+        if (trimWhiteSpaces(value).length < 10) {
+          throw new Error('Question Title should be a minimum of 10 characters');
+        }
+
+        return value;
+
+      }),
     check('body', 'The Content of the question can not be empty').not().isEmpty()
+      .isLength({ min: 10 })
+      .custom((value) => {
+        if (trimWhiteSpaces(value).length < 10) {
+          throw new Error('Question Body should be a minimum of 10 characters');
+        }
+
+        return value;
+
+      })
 
   ],
   getQuestion: [

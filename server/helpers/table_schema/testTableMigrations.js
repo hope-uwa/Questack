@@ -65,7 +65,7 @@ class TableMigrations {
       .then(() => pool.query(createComment))
       .then(() => pool.query(createVote))
       .then(() => pool.end())
-      .catch(err => err);
+      .catch(err => console.log(err));
 
   }
 
@@ -83,8 +83,10 @@ class TableMigrations {
       .then(() => pool.query(deletePreferred))
       .then(() => pool.query(deleteVotes))
       .then(() => pool.query(deleteComments))
-      .then(() => pool.end())
-      .catch(err => err);
+      .then(() => TableMigrations.createTables())
+      .catch(err => console.log(err) );
+
+    
   }
 
 
@@ -92,5 +94,5 @@ class TableMigrations {
 
 }
 TableMigrations.dropTables();
-TableMigrations.createTables();
 
+console.log('Migration Successful');
