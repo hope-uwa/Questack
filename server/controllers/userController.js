@@ -47,7 +47,6 @@ class UserController {
             const token = jwt.sign(
               { id: result1.rows[0].id },
               process.env.TOKEN_SECRET_KEY,
-              { expiresIn: 86400 },
             );
             return res.status(201).json({
               status: status[201],
@@ -57,10 +56,10 @@ class UserController {
               token
             });
           })
-          .catch(() => { res.status(500).json({ status: status[500], message: `An error occured while ${err} processing this request ` }); });
+          .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }); });
         return null;
       })
-      .catch((err) => { res.status(500).json({ status: status[500], message: `An error occured while ${err} processing this request 1` }); });
+      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request 1' }); });
     return null;
 
 
@@ -90,7 +89,9 @@ class UserController {
           return res.status(401).json({ status: status[401], message: 'Email or Password incorrect' });
 
         }
-        const token = jwt.sign({ id: result.rows[0].id }, process.env.TOKEN_SECRET_KEY, { expiresIn: 86400 });
+        const token = jwt.sign({ id: result.rows[0].id },
+          process.env.TOKEN_SECRET_KEY,
+        );
         return res.status(200).json({
 
           status: status[200],

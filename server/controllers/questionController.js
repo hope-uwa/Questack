@@ -170,7 +170,7 @@ class QuestionController {
     pool.query(findQuestion)
       .then((result) => {
         if (result.rowCount === 0) {
-          res.status(404).json({ status: status[404], message: 'There is no question with ID ' })
+          res.status(404).json({ status: status[404], message: 'There is no question with that ID' })
         } else if (result.rows[0].user_id !== userId) {
           res.status(401).json({ status: status[401], message: 'You can not delete this question because you are not the author' })
         } else {
