@@ -7,6 +7,8 @@ import bodyParser from 'body-parser';
 
 import routes from './routes';
 
+import uiRoutes from './routes/ui';
+
 const swaggerDocument = require('../swagger.json');
 
 dotenv.config();
@@ -18,8 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 4000;
 // Static files
 app.use('/', express.static(path.resolve(__dirname, '../ui/')));
+
 app.use('/docs', swagger.serve, swagger.setup(swaggerDocument));
+app.use('/', uiRoutes)
 routes(app);
+// frontroute(app);
 
 
 app.listen(port, () => {

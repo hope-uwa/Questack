@@ -27,7 +27,7 @@ fetch(loginUrl, {
         }
         localStorage.setItem('ascii-mt-token', message.token);
         console.log(message.token)
-        window.setTimeout(() => { window.location.href = '/user-profile.html'; }, 1000);
+        window.setTimeout(() => { window.location.href = '/profile'; }, 1000);
         return null;
 
 

@@ -90,8 +90,7 @@ class UserController {
 
         }
         const token = jwt.sign({ id: result.rows[0].id },
-          process.env.TOKEN_SECRET_KEY,
-        );
+          process.env.TOKEN_SECRET_KEY);
         return res.status(200).json({
 
           status: status[200],
@@ -103,6 +102,21 @@ class UserController {
       .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request 1' }); });
     return null;
 
+  }
+
+  static user(req, res) {
+    const { userId } = req;
+    const getUser = `SELECT * FROM users where id = ${userId}`;
+
+
+    pool.query(getUser)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          return res.status(200).json({ status: status[200], data: 'There is no such user' });
+        } return res.status(200).json({ status: status[200], username: result.rows[0].user_name, dateJoined: result.rows[0].created_at })
+      })
+      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }) })
+    return null;
   }
 }
 export default UserController;

@@ -29,8 +29,10 @@ function signup(event) {
                 return null;
             }
             localStorage.setItem('ascii-mt-token', message.token);
-            console.log(message.token)
-            window.setTimeout(() => { window.location.href = '/user-profile.html'; }, 1000);
+            localStorage.setItem('ascii-mt-username', message.userName);
+            console.log(message.userName)
+
+            window.setTimeout(() => { window.location.href = '/profile'; }, 1000);
             return null;
 
 
