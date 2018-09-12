@@ -165,3 +165,7 @@ header{
 .header-title a:focus{
  color:#4CAF50!important;
 }
+.search-header{
+position: absolute;
+right:19%
+}

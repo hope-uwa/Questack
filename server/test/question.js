@@ -14,11 +14,12 @@ const { userToken, userToken2, wrongToken } = token;
 
 describe('GET all questions endpoint', () => {
 
-  it('should return a 204', (done) => {
+  it('should return a 200', (done) => {
     chai.request(app)
       .get('/api/v1/questions')
       .end((error, response) => {
-        expect(response.status).to.equal(204);
+        expect(response.status).to.equal(200);
+        expect(response.body.message).to.equal('No question has been added');
         expect(response.body).to.be.an('object');
         done();
       });

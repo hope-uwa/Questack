@@ -1,0 +1,225 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Stackoverflow Lite",
+    "description" : "StackOverflow-lite is a platform where people can ask questions and provide answers.",
+    "version" : "0.1"
+  },
+  "servers" : [ {
+    "url" : "https://uwaelpis.herokuapp.com"
+  } ],
+  "paths" : {
+    "/api/v1/questions/" : {
+      "get" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login" : {
+      "post" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "password" : {
+                    "type" : "string"
+                  },
+                  "email" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "examples" : {
+                "0" : {
+                  "value" : "{\n    \"email\": \"uwaelpis007@gmail.com\",\n    \"password\": \"password\"\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/signup" : {
+      "post" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "password" : {
+                    "type" : "string"
+                  },
+                  "email" : {
+                    "type" : "string"
+                  },
+                  "username" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "examples" : {
+                "0" : {
+                  "value" : "{\n    \"username\": \"uwaelpis\",\n    \"email\": \"uwaelpis007@gmail.com\",\n    \"password\": \"password\"\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/questions/1/answers" : {
+      "post" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "body" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "examples" : {
+                "0" : {
+                  "value" : "{\n    \"body\": \"You need to consult a previous thread on question 122\"\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/questions/1" : {
+      "get" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/questions" : {
+      "post" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "title" : {
+                    "type" : "string"
+                  },
+                  "body" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "examples" : {
+                "0" : {
+                  "value" : "{\n    \"title\": \"How to parse a string\",\n    \"body\": \"I have an issue parsing a string in javascript what is the syntax\"\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
