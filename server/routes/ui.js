@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 const uiRoutes = Router();
-const root = './ui';
+const root = 'ui';
 
 uiRoutes.get('/index', (req, res) => {
   res.sendFile('index.html', { root })
