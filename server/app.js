@@ -22,7 +22,7 @@ const port = process.env.PORT || 4000;
 app.use('/', express.static(path.resolve(__dirname, '../ui/')));
 
 app.use('/docs', swagger.serve, swagger.setup(swaggerDocument));
-// app.use('/', uiRoutes)
+app.use('/', uiRoutes)
 routes(app);
 // frontroute(app);
 
