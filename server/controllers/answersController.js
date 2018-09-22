@@ -27,7 +27,7 @@ class AnswerController {
     const { body } = req.body;
     console.log(body)
 
-    const createdAt = moment().format('YYYY-MM-DD');
+    const createdAt = moment().format();
     const getQuestionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
 
     const addAnswerQuery = `INSERT INTO answers (user_id,question_id,answer_body,created_at) VALUES ('${userId}', '${questionId}','${body}','${createdAt}') RETURNING *`
@@ -44,7 +44,7 @@ class AnswerController {
               questionId: result1.rows[0].question_id,
               answerId: result1.rows[0].id,
               body: result1.rows[0].answer_body,
-              createdAt: result1.rows[0].created_at,
+              createdAt: moment(result1.rows[0].created_at).fromNow(),
               message: 'Answer added successfully'
             })
           })
@@ -90,7 +90,7 @@ class AnswerController {
               status: status[200],
               questionId: result1.rows[0].question_id,
               body: result1.rows[0].answer_body.trim(),
-              createdAt: result1.rows[0].created_at
+              createdAt: moment(result1.rows[0].created_at).fromNow()
 
             })
           })
@@ -157,7 +157,7 @@ class AnswerController {
     const { answerId } = req.params;
     const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}' AND question_id = '${questionId}'`;
-    const createdAt = moment().format('YYYY-MM-DD');
+    const createdAt = moment().format();
     const insertCorrectAnswer = `INSERT INTO preferred (question_id,answer_id,created_at) VALUES ('${questionId}','${answerId}','${createdAt}') RETURNING *`
     pool.query(questionQuery)
       .then((result) => {
@@ -203,7 +203,8 @@ class AnswerController {
     const { answerId } = req.params;
     const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}' AND question_id = '${questionId}'`;
-    const createdAt = moment().format('YYYY-MM-DD');
+    const createdAt = moment().format();
+    const updatePreferredAnswer = `UPDATE answers SET preferred = 'check' WHERE id = '${answerId}' RETURNING *`
     const insertCorrectAnswer = `INSERT INTO preferred (question_id,answer_id,created_at) VALUES ('${questionId}','${answerId}','${createdAt}') RETURNING *`
     const updateAnswer = `UPDATE answers SET answer_body = '${req.body.body}' WHERE id = '${answerId}' RETURNING *`
 
@@ -221,7 +222,7 @@ class AnswerController {
             }
 
 
-            if (result.rows[0].user_id === req.userId) {
+            if (result.rows[0].user_id === req.userId && result1.rows[0].user_id !== req.userId) {
               // mark as correct
               pool.query(insertCorrectAnswer)
                 .then(() => res.status(201).json({ status: status[201], message: 'Answer has been marked as correct', body: result1.rows[0] }))
@@ -236,8 +237,8 @@ class AnswerController {
             }
 
 
-
-            if (result1.row[0].user_id === req.userId && req.body.body !== undefined && req.body.body !== '') {
+            
+            if (result1.rows[0].user_id === req.userId && req.body.body !== undefined && req.body.body !== '') {
               // update answer if user asked it and has filled body field
 
               pool.query(updateAnswer)
@@ -256,6 +257,36 @@ class AnswerController {
     return null;
 
   }
+  /**
+       * Returns a Answers
+       * @method usersAnswer
+       * @memberof AnswerController
+       * @param {object} req
+       * @param {object} res
+       * @returns {(function|object)} Function next() or JSON object
+       */
+
+  static userAnswers(req, res) {
+    const { userId } = req;
+    const usersAnswerQuery = `SELECT answers.id, answers.question_id, questions.question_title, answers.answer_body, answers.created_at FROM answers INNER JOIN questions ON answers.question_id=questions.id WHERE answers.user_id='${userId}' ORDER BY id DESC`
+    pool.query(usersAnswerQuery)
+      .then((result) => {
+        if (result.rowCount < 1) {
+          return res.status(200).json({
+            status: status[404],
+            data: 'You have not asked any question yet'
+          })
+        }
+        return res.status(200).json({
+          status: status[200],
+          data: result.rows
+        })
+      })
+      .catch(() => res.status(500).json({ status: status[500], message: 'An internal error occured' }));
+    return null;
+
+  }
+
 
 
 }

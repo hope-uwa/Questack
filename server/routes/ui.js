@@ -7,10 +7,13 @@ uiRoutes.get('/', (req, res) => {
   res.sendFile('index.html', { root })
 })
 uiRoutes.get('/profile', (req, res) => {
-  res.sendFile('user-profile.html', { root })
+  res.sendFile('auth/user-profile.html', { root })
+})
+uiRoutes.get('/question/:id', (req, res) => {
+  res.sendFile('question.html', { root })
 })
 uiRoutes.get('/questions/:id', (req, res) => {
-  res.sendFile('question.html', { root })
+  res.sendFile('auth/question.html', { root })
 })
 
 
