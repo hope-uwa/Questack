@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Questack-Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  
+</head>
+<body>
+        <script src="./assets/js/verifyUser.js"></script>
+    <header class="fixed-header">
+        <div class="navbar">
+            <div class="header-logo">   
+                
+                <a href="/">
+                    <img class="logo-size" src="./assets/img/logo.png" alt="Logo">
+                </a>
+                
+            </div>
+            <div class="header-title" >
+             <a href="/">   Questack</a>
+            </div>
+            <div class="search-header">
+                    <div class="search-box ">
+                            <input type="text" name="search" placeholder="Search..">
+                    </div>
+            </div>
+            <div class="header-right mr1">
+                <button class="btn-header" id="loginModalBtn" onclick="loginModalBtn()">Login</button>
+                <button class="btn-header" id="signupModalBtn" onclick="signupModalBtn()"> Sign Up</button>
+                
+            </div>
+
+        </div>
+        <div class="header-banner">
+
+        </div>
+
+    </header>
+    <main id="main">
+        <div class="question-post" id="questionBanner"> 
+            <div class="container">
+                <div class="row">
+                    <div class="question-box pl2 pr2 mt2 mb2 pls1">
+                        <h3>Give it a Title:</h3>
+                        <input type="text" class="w100" name="title" id="">
+                        <h3>Question:</h3>
+                        <textarea name="" class="w100"  id="" cols="30" rows="10" style="overflow-y: scroll"></textarea>
+                        <div class="align-right mt1 mb1">
+                            <button id="cancel-question" onclick="cancelQuestion()" class="btn btn-danger btn-lg btn-shadow">Cancel</button>
+                            <button class="btn btn-success btn-lg btn-shadow">Publish</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col9 colsm12  col-order2 ">
+                        <div class="row bg-cream align-left pt1 pl2 pb1 pls1 bb-grey">
+                            <div class="col9">
+                                    <h1 id="thread-title" class="">Top Questions</h1>
+                            </div>
+                            <div class="col3">
+                                <div class="row pt1 pb1 ">
+                                        <button id="askQuestion" onclick="signupModalBtn()" class="btn btn-success btn-md btn-shadow">
+                                            Ask a Question
+                                        </button>
+                                </div>
+                                    
+                            </div>
+                            
+                        </div>
+                        <div id="recent"  class=" allquestion row pl2 pls1">
+                            <div class="questions-card">
+                            <div class="question__avatar">
+                                <span class="answered question__avatar-img"><i class="fa fa-check"></i></span>
+                            </div>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to check IP address</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago</span>
+                                    <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
+                            </div>
+                            <div class="question__response">
+                                
+                                <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                            </div>
+                            </div>
+                            <div class="questions-card">
+                                <div class="question__avatar">
+                                    <span class="unanswered question__avatar-img"><i class="fa fa-exclamation"></i></span>
+                                </div>
+                                <div class="question__content">
+                                    <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
+                                    <div class="question__content-description">
+                                        <span>7 days ago</span>
+                                        <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                    </div>
+                                    <div class="question__content-body">
+                                        <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                    </div>
+                                </div>
+                                <div class="question__response">
+                                    
+                                    <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                </div>
+                            </div>
+                            <div class="questions-card">
+                                <div class="question__avatar">
+                                    <span class=" answered question__avatar-img"><i class="fa fa-check"></i></span>
+                                </div>
+                                <div class="question__content">
+                                    <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
+                                    <div class="question__content-description">
+                                        <span>7 days ago</span>
+                                        <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                    </div>
+                                    <div class="question__content-body">
+                                        <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                    </div>
+                                </div>
+                                <div class="question__response">
+                                    
+                                    <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                </div>
+                            </div>
+                            <div class="questions-card">
+                                <div class="question__avatar">
+                                    <span class="unanswered question__avatar-img"><i class="fa fa-exclamation"></i></span>
+                                </div>
+                                <div class="question__content">
+                                    <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
+                                    <div class="question__content-description">
+                                        <span>7 days ago</span>
+                                        <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                    </div>
+                                    <div class="question__content-body">
+                                        <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                    </div>
+                                </div>
+                                <div class="question__response">
+                                    
+                                    <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                </div>
+                            </div>
+                            <div class="questions-card">
+                                <div class="question__avatar">
+                                    <span class="unanswered question__avatar-img"><i class="fa fa-exclamation"></i></span>
+                                </div>
+                                <div class="question__content">
+                                    <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                    <div class="question__content-description">
+                                        <span>7 days ago</span>
+                                        <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                    </div>
+                                    <div class="question__content-body">
+                                        <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                    </div>
+                                </div>
+                                <div class="question__response">
+                                    
+                                    <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                </div>
+                            </div>
+                            <div class="questions-card">
+                                <div class="question__avatar">
+                                    <span class="answered question__avatar-img"><i class="fa fa-check"></i></span>
+                                </div>
+                                <div class="question__content">
+                                    <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="#">How to find a career path</a></h4>
+                                    <div class="question__content-description">
+                                        <span>7 days ago</span>
+                                        <span class="mr2"><a class="green-text" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                    </div>
+                                    <div class="question__content-body">
+                                        <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                    </div>
+                                </div>
+                                <div class="question__response">
+                                    
+                                    <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pagination">
+                            <a href="#">❮</a>
+                            <a href="#">❯</a>
+                        </div>
+                </div>
+                <div class="col3 colsm12 sidebar col-order1 " >
+                    <div class="row mt3 mb2 show-md-hide-sm">
+                        
+                    </div>
+                    <div class="row welcome show-md-hide-sm">
+                        
+                        
+                    </div>
+                    <div class="row h-400 h-sm-auto" >
+                            
+                            <ul class="align-center profile__actions">
+                                <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="#">Top Questions</a></li>
+                                <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="#">Lastest Questions</a></li>
+                                <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="#">All Questions</a></li>
+                                <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="#">Most Answered Questions</a></li>
+                                <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="#">Recently Asked Questions</a></li>
+                                <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="#">All Questions</a></li>
+                            </ul>
+    
+                        </div>
+                </div>
+            </div>
+
+
+        </div>
+        
+        
+    </main>
+    
+    <!-- The Modal -->
+    <div id="loginModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-head w100">
+                    <span class="pl1 modal-title ">Welcome Back!</span>
+                    <span onclick="closeModal()" class="close">&times;</span>
+                </div>
+              
+              <div class="modal__signup-form row">
+
+                
+                  <form id="login-form" class=" mt2 mb2" action="user-profile.html"  >
+                    
+                      
+                    <div class="modal-form align-center">
+                      
+                      <input type="email" required placeholder="Enter Email Address" id="email" class="" name="email" required>
+
+                      <input type="password" required placeholder="Enter Password" id="password"  class="" name="psw" required>
+                          
+                      <button type="submit" id="loginBtn"  class="btn btn-success btn-shadow btn-login w60 mt1" >LOGIN</button>
+                      
+                    </div>
+
+                    
+                  </form>
+
+              </div>
+              
+              <div class="modal-footer  w-100 pt1 pb2">
+                    <p>---------New Here?--------</p>
+                    <button class="btn btn-shadow btn_login-signup w60" onclick="signupModalBtn()">SIGN UP</button>
+
+              </div>
+            </div>
+
+        </div>
+
+        <!--Sign Up-->
+
+        <div id="signUpModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-head w100">
+                        <span class="pl1  modal-title ">Join Our Community!</span>
+                        <span onclick="closeModal()" id="s-close" class="close">&times;</span>
+                    </div>
+                <form id="signup-form" class=" mt2"   >
+                  <div class="modal__signup-form row">
+    
+                    
+                      
+                        
+                          
+                        <div class="modal-form align-center">
+                          
+                          <input type="text" required placeholder="Enter Your Nickname" id="username1" class="" name="username">
+
+                          <input type="email" required placeholder="Enter Email Address" id="email1" class="" name="email" >
+    
+                          <input type="password" required placeholder="Enter Password" id="password1"  class="" name="psw" >
+                              
+                          
+                          
+                        </div>
+    
+                        
+                     
+    
+                  </div>
+                  
+                  <div class="modal-footer  w-100 pt2 pb2">
+                      
+                        <button type="submit" id="signupBtn" class="btn btn-shadow btn_login-signup w60">SIGN UP</button>
+    
+                  </div>
+                </form>
+                </div>
+    
+        </div>
+        <!--end of Modals-->
+        <div class="message">
+            
+        </div>
+
+        <footer class="footer  pt2 pb2 align-center">
+                © Bootcamp Cycle 35
+        </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="./assets/js/modal.js"></script> 
+<script src="./assets/js/script.js"></script>  
+<script src="./assets/js/login.js"></script>
+<script src="./assets/js/signup.js"></script>
+<script src="./assets/js/allquestion.js"></script>
+</body>
+</html>
