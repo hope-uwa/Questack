@@ -27,7 +27,7 @@ class CommentController {
     const { userId } = req;
     const { body } = req.body;
 
-    const createdAt = moment().format('YYYY-MM-DD');
+    const createdAt = moment().format();
     const getQuestionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
     const getAnswerQuery = `SELECT * FROM answers WHERE id = '${questionId}'`;
 

@@ -263,6 +263,9 @@
       color: white;
 
     }
+    .delete{
+      background-color: #4caf501c;
+    }
     
     @media(max-width:768px){
       .smhide{
@@ -391,22 +394,84 @@
 }
 
 .message-success {
-  display: none;
+  display: inline-block;
   border-radius: 0.25rem;
   color: #155724;
   border: 2px solid #c3e6cb;
-  padding: 15px 10px;
-  font-size: 20px;
+  padding: 15px 15px;
+  font-size: 14px;
   background-color: #d4edda;
   
 }
 
 .message-failure {
-  display: none;
+  display: inline-block;
   border-radius: 0.25rem;
   color: #721c24;
-  padding: 15px 10px;
-  font-size: 20px;
+  padding: 15px 15px;
+  font-size: 14px;
   background-color: #f8d7da;
   border: 2px solid #f5c6cb;
+}
+/* .message {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.message-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.message-failure {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.hide {
+  display: none;
+} */
+
+.question__content-edit{
+  display:none;
+}
+.mark-it{
+  font-size: 24px;
+  color: grey;
+  cursor: pointer;
+}
+.mark-it:hover{
+  color:green;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.tooltip .tooltiptext {
+  font-size:11px;
+  visibility: hidden;
+  width: 120px;
+  background-color: #4caf50;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

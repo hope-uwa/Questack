@@ -32,7 +32,7 @@ class UserController {
       return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
     const { username, email, password } = req.body;
-    const createdAt = moment().format('YYYY-MM-DD');
+    const createdAt = moment().format();
     const hashedPassword = bcrypt.hashSync(password, 1);
     const checkEmail = `SELECT email FROM users WHERE email = '${email}'`;
     const signUpQuery = `INSERT INTO users (user_name, email, password, created_at) values ('${username}', '${email}', '${hashedPassword}', '${createdAt}') RETURNING *`;
@@ -53,6 +53,7 @@ class UserController {
               message: `${result1.rows[0].user_name} was added successfully`,
               userName: result1.rows[0].user_name,
               email: result1.rows[0].email,
+              createdAt: result1.rows[0].created_at,
               token
             });
           })
@@ -96,6 +97,7 @@ class UserController {
           status: status[200],
           name: result.rows[0].user_name,
           email: result.rows[0].email,
+          createdAt: result.rows[0].created_at,
           token: token
         });
       })

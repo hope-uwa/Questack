@@ -9,8 +9,8 @@ class TableMigrations {
     const createQuestion = `CREATE TABLE IF NOT EXISTS questions(
             id serial PRIMARY KEY NOT NULL,
             user_id integer NOT NULL,
-            question_title varchar(50) NOT NULL,
-            question_body varchar(250) NOT NULL,
+            question_title varchar(250) NOT NULL,
+            question_body varchar(350) NOT NULL,
             created_at timestamp DEFAULT NOW()            
             )`;
 
@@ -19,7 +19,8 @@ class TableMigrations {
             id serial PRIMARY KEY NOT NULL,
             user_id integer NOT NULL,
             question_id integer NOT NULL,
-            answer_body varchar(250) NOT NULL,
+            answer_body varchar(255) NOT NULL,
+            preferred varchar(50) NULL,
             created_at timestamp DEFAULT NOW()
             )`;
 
@@ -52,7 +53,7 @@ class TableMigrations {
         id serial PRIMARY KEY NOT NULL,
         user_id integer NOT NULL,
         answer_id integer NOT NULL,
-        comment_body varchar(250) NOT NULL,
+        comment_body varchar(350) NOT NULL,
         created_at timestamp DEFAULT NOW() 
         )`;
 

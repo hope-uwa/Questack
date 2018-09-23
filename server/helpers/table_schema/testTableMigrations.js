@@ -20,6 +20,7 @@ class TableMigrations {
             user_id integer NOT NULL,
             question_id integer NOT NULL,
             answer_body varchar(250) NOT NULL,
+            preferred varchar(50) NULL,
             created_at timestamp DEFAULT NOW()
             )`;
 

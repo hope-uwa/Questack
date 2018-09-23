@@ -30,6 +30,7 @@ function signup(event) {
             }
             localStorage.setItem('ascii-mt-token', message.token);
             localStorage.setItem('ascii-mt-username', message.userName);
+            localStorage.setItem('ascii-mt-createdat', message.createdAt);
             console.log(message.userName)
 
             window.setTimeout(() => { window.location.href = '/profile'; }, 1000);

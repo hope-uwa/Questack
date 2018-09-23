@@ -34,6 +34,8 @@ const routes = (app) => {
 
   app.get('/api/v1/users/questions', verifyToken, QuestionController.userQuestions);
 
+  app.get('/api/v1/users/answers', verifyToken, AnswerController.userAnswers);
+
   app.post('/api/v1/questions/:questionId/answers/:answerId/comments', verifyToken, validateAuth.postComments, CommentController.postComment)
 
   app.get('/api/v1/questions/:questionId/answers/:answerId', verifyToken, validateAuth.getAnswer, CommentController.getComment)
@@ -48,8 +50,7 @@ const routes = (app) => {
 
   app.get('/downmigration', tableMigrations.dropTables);
 
-
-
+  
   app.get('/*', (req, res) => res.status(404).json({
     status: '404 -Not Found',
     message: 'This route does not exist'

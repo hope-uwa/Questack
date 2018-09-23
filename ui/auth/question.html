@@ -5,31 +5,45 @@
   <title>Questack</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
   
 </head>
 <body>
-        <script src="../assets/js/verifyUser.js"></script>
-        <header class="fixed-header">
+        <script src="../assets/js/tokenMiddleware.js"></script>
+        <header>
             <div class="navbar">
                 <div class="header-logo">   
                     
-                    <a href="../">
+                    <a href="/">
                         <img class="logo-size" src="../assets/img/logo.png" alt="Logo">
                     </a>
                     
                 </div>
                 <div class="header-title" >
-                    <a href="../">   Questack</a>
+                    <a href="/"> Questack</a>
                 </div>
                 <div class="search-header">
                         <div class="search-box ">
                                 <input type="text" name="search" placeholder="Search..">
                         </div>
                 </div>
-                <div class="header-right mr1">
-                    <button class="btn-header" id="loginModalBtn" onclick="loginModalBtn()">Login</button>
-                    <button class="btn-header" id="signupModalBtn" onclick="signupModalBtn()"> Sign Up</button>
+                
+                <div onclick="dropDownMenu()" class=" dropDownBtn header-right mr1 hide-md-show-sm">
+                        
+                        <button class="btn-header ">
+                                <div class="header-profile user-letter">E</div>
+                            </button>
+                            <button class="btn-header header-profile-text black-text">Elpis</button>
+                            <button class="btn-header header-profile-text black-text "><i class=" dropdown_icon fa fa-sort-desc"></i></button>
+                </div>
+                <div class="header-right mr1 show-md-hide-sm">
+                    
+                    <button onclick="closeMenu()" class="btn-header">
+                        <div class="header-profile user-letter">E</div>
+                    </button>
+                    <button onclick="closeMenu()" class="btn-header header-profile-text black-text user"></button>
+                    <button class="btn-header ml1 show-md-hide-sm" id="logoutModalBtn" >Logout</button>
+                    
                     
                 </div>
     
@@ -46,15 +60,16 @@
                                     <!-- <div class="profile-avatar">E</div> -->
                                     
                                     <ul class="align-center profile__basic">
-                                        <li class="profile__basic-name">Elpis</li>
-                                        <li class="profile__basic-date">Joined: A month Ago</li>
-                                        <li class="profile__basic-question">Questions Asked: 10</li>
-                                        <li class="profile__basic-answer">Given Answers: 100 </li>
+                                        <li class="profile__basic-name user"></li>
+                                        <li class="profile__basic-date">Joined: &nbsp; <span class="user-joined"></span></li>
+                                    
                                     </ul>
                                     <ul class="align-center profile__actions">
-                                        <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="./user-profile.html?thread=mostanswer">Most Answered Question</a></li>
-                                        <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="./user-profile.html?thread=recent">Recently Asked Question</a></li>
-                                        <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="./user-profile.html?thread=all">All Threads</a></li>
+                                        <li class="profile__actions-recent"><i class=" dblue-text fa fa-question-circle-o"></i>&nbsp;<a href="../profile?thread=question-asked">Questions Asked  &nbsp;</a><span class="no-of-q green-text">0</span></li>
+                                        <li class="profile__actions-answers"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="../profile?thread=answers-given">Answers Given  &nbsp;</a><span class="no-of-a green-text">0</span></li>
+                                        <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="../profile?thread=mostanswer">Answered Questions</a></li>
+                                        <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="../profile?thread=mostanswer">Unanswered Questions</a></li>
+                                        <li class="profile__actions-threads"><i class=" dblue-text fa fa-question-circle"></i>&nbsp;<a href="../profile?thread=all">All Threads  &nbsp;</a><span class="no-of-all-q green-text">0</span></li>
                                         <li class=""><a href="index.html">Logout</a></li>
                                     </ul>
             
@@ -65,7 +80,26 @@
     
             </div>
     <main id="main">
-        
+        <div class="question-post" id="questionBanner"> 
+            <div class="container">
+                <div class="row">
+                    <div class="question-box pl2 pr2 mt2 mb2">
+                        <form id="question-form">
+                            <h3>Give it a Title:</h3>
+                            <input type="text" class="w100" name="title" id="title">
+                            <h3>Question:</h3>
+                            <textarea name="" class="w100"  id="body" cols="30" rows="10" style="overflow-y: scroll"></textarea>
+                            <div class="align-right mt1 mb1">
+                                <button id="cancel-question" id="cancel-question" onclick="cancelQuestion()" class="btn btn-danger btn-lg btn-shadow">Cancel</button>
+                                <button type="submit" id="submitQuestion" class="btn btn-success btn-lg btn-shadow">Publish</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
         <div class="container ">
             <div class="row">
                 <div class="col9 pt2 colsm12 col-order2">
@@ -79,9 +113,9 @@
                         </div>
                         </div>
                         <div class="col3 pt1 pb1">
-                                <!-- <button id="" onclick="loginModalBtn()" class="btn btn-success btn-md btn-shadow">
-                                        Add an Answer
-                                    </button> -->
+                                <button id="askQuestion" onclick="askQuestion()" class="btn btn-success btn-md btn-shadow">
+                                        Ask a Question
+                                    </button>
                         </div>
                         <div class="question-body">
                                 I will help you find today by just taking a peep into the necessities of existence in a 3rd world
@@ -92,41 +126,19 @@
                         
 
                     </div>
-                    
+                    <div class="align-right pr1 delete" id="delete">
+                        
+                    </div>
                     <div class="row ml2 mls0 pb3 correct-answer">                     
-                        <div class="answers-card pt3 pb1 most-preferred">
+                        <div class="answers-card  pb1 most-preferred">
                             <div class="best-answer"> Answers</div>
-                            <div class="answer__avatar ">
-                                <span class="answer__avatar-img">A</span>
-                                
-                            </div>
-
-                            <div class="answer__content">
-                                <div class="answer__content-title">
-                                        
-                                    <span>1 days ago</span> <span>by</span>
-                                    <span class=""><a class="green-text link-nostyle blckgrey-text" href="">Alpha</a></span><span class="ml1 most-preferred-tag">Most Preferred Answer</span>
-                                    <!-- <p class="no-margin" ><span class="most-preferred-tag">Most Preferred Answer</span></p> -->
-                                    
-                                </div>
-                                <div class="answer__content-body">
-                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
-                                </div>
-                                <div class="align-right mr2">
-                                        <span><i class=" ml1 msl1 vote fa fa-thumbs-o-up"></i><sup>20</sup></span>
-                                        <span><i class=" ml1 msl1 vote fa fa-thumbs-down"></i><sup>50</sup></span>
-                                        <span><i class="ml1 fa fa-comment"></i><sup>10</sup></span>
-
-                                </div>
-                                
-                            </div>
-                            <div class="answer__response black-text">
-                                
-                                
-                            </div>
+                            
+                            
                         </div>
                     </div>
+                    
                     <div class="row m12 mls0 pb3 answers-board">
+                            
                         <div class="answers-card pt1 pb1">
                             <div class="answer__avatar">
                                 <span class="answer__avatar-img">B</span>
@@ -241,11 +253,11 @@
                             </div>
                             
                             <div class="answer__box align-right">
-                                
+                                <form id="answer-form">
                                     <h4 class="align-left">Your Answer</h4>
-                                    <textarea name="" id="answer" disabled="disabled" placeholder="You can't add an answer until you are logined in"   class="answer-text"></textarea>
-                                    <button  id="loginModalBtn" onclick="loginModalBtn()" class="btn btn-success btn-sm">Add Answer</button>
-                                                               
+                                    <textarea name="" id="answer"  class="answer-text"></textarea>
+                                    <button id="answerQuestion" class="btn btn-success btn-sm">Add Answer</button>
+                                </form>                                
                             </div>
                             <div class="answer__response black-text">
                                 
@@ -260,18 +272,18 @@
                                 
                         </div>
                         <div class="mt3 row h-400">
-                            <div class="profile-avatar">E</div>
+                            <div class="profile-avatar user-letter">E</div>
                             
                             <ul class="align-center profile__basic">
-                                <li class="profile__basic-name">Elpis</li>
-                                <li class="profile__basic-date">Joined: A month Ago</li>
-                                <li class="profile__basic-question">Questions Asked: 10</li>
-                                <li class="profile__basic-answer">Given Answers: 100 </li>
+                                <li class="profile__basic-name user"></li>
+                                <li class="profile__basic-date">Joined: &nbsp;<span class="user-joined"></span></li>
                             </ul>
                             <ul class="align-center profile__actions">
-                                <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="./user-profile.html?thread=mostanswer">Most Answered Question</a></li>
-                                <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="./user-profile.html?thread=recent">Recently Asked Question</a></li>
-                                <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="./user-profile.html?thread=all">All Threads</a></li>
+                                <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="../profile?thread=question-asked">Questions Asked  &nbsp;</a><span class="no-of-q green-text">0</span></li>
+                                <li class="profile__actions-answers"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="../profile?thread=answers-given">Answers Given  &nbsp;</a><span class="no-of-a green-text">0</span></li>
+                                <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="../profile?thread=mostanswer">Answered Questions</a></li>
+                                <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="../profile?thread=mostanswer">Unanswered Questions</a></li>
+                                <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="../profile?thread=all">All Questions  &nbsp;</a><span class="no-of-all-q green-text">0</span></li>
                             </ul>
     
                         </div>
@@ -283,6 +295,7 @@
      
         
     </main>
+    <!-- The Modal -->
     <div id="loginModal" class="modal">
 
             <!-- Modal content -->
@@ -366,12 +379,19 @@
     
         </div>
         <!--end of Modals-->
+        <div class="message">
+        
+        </div>
     <footer class="footer pt3 pb3 align-center">
             © 2018 Hope Uwa
     </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="../assets/js/modal.js"></script> 
 <script src="../assets/js/script.js"></script>  
-<script src="../assets/js/singlequestion.js"></script>
+<script src="../assets/js/auth/user.js"></script>
+<script src="../assets/js/auth/userprofile.js"></script>
+<script src="../assets/js/auth/question.js"></script>
+<script src="../assets/js/auth/postquestion.js"></script>
+<script src="../assets/js/logout.js"></script>
 </body>
 </html>
