@@ -9,6 +9,7 @@
   
 </head>
 <body>
+    <script src="./assets/js/tokenMiddleware.js"></script>
     <header>
         <div class="navbar">
             <div class="header-logo">   
@@ -31,15 +32,15 @@
                     <button class="btn-header ">
                             <div class="header-profile">E</div>
                         </button>
-                        <button class="btn-header header-profile-text black-text">Elpis</button>
+                        <button class="btn-header header-profile-text black-text user">i</button>
                         <button class="btn-header header-profile-text black-text "><i class=" dropdown_icon fa fa-sort-desc"></i></button>
             </div>
             <div class="header-right mr1 show-md-hide-sm">
                 <button onclick="closeMenu()" class="btn-header">
                     <div class="header-profile">E</div>
                 </button>
-                <button class="btn-header header-profile-text black-text">Elpis</button>
-                <button class="btn-header ml1 show-md-hide-sm" id="logoutModalBtn" >Logout</button>
+                <button class="btn-header header-profile-text black-text user">i</button>
+                <button class="btn-header ml1 show-md-hide-sm" onclick="logout()" id="logoutModalBtn" >Logout</button>
                 
                 
             </div>
@@ -57,16 +58,16 @@
                                 <!-- <div class="profile-avatar">E</div> -->
                                 
                                 <ul class="align-center profile__basic">
-                                    <li class="profile__basic-name">Elpis</li>
+                                    <li class="profile__basic-name user"></li>
                                     <li class="profile__basic-date">Joined: A month Ago</li>
-                                    <li class="profile__basic-question">Questions Asked: 10</li>
+                                    <li class="profile__basic-question">Questions Asked: <span class="no-of-q">0</span></li>
                                     <li class="profile__basic-answer">Given Answers: 100 </li>
                                 </ul>
                                 <ul class="align-center profile__actions">
                                     <li class="profile__actions-questions"><i class="dblue-text fa fa-fire"></i>&nbsp;<a href="./user-profile.html?thread=mostanswer">Most Answered Question</a></li>
                                     <li class="profile__actions-recent"><i class=" dblue-text fa fa-filter"></i>&nbsp;<a href="./user-profile.html?thread=recent">Recently Asked Question</a></li>
                                     <li class="profile__actions-threads"><i class=" dblue-text fa fa-comments"></i>&nbsp;<a href="./user-profile.html?thread=all">All Threads</a></li>
-                                    <li class=""><a href="index.html">Logout</a></li>
+                                    <li class=""  onclick="logout()"> Logout</li>
                                 </ul>
         
                             </div>
@@ -80,14 +81,16 @@
             <div class="container">
                 <div class="row">
                     <div class="question-box pl2 pr2 mt2 mb2">
-                        <h3>Give it a Title:</h3>
-                        <input type="text" class="w100" name="title" id="">
-                        <h3>Question:</h3>
-                        <textarea name="" class="w100"  id="" cols="30" rows="10" style="overflow-y: scroll"></textarea>
-                        <div class="align-right mt1 mb1">
-                            <button id="cancel-question" onclick="cancelQuestion()" class="btn btn-danger btn-lg btn-shadow">Cancel</button>
-                            <button class="btn btn-success btn-lg btn-shadow">Publish</button>
-                        </div>
+                        <form id="question-form">
+                            <h3>Give it a Title:</h3>
+                            <input type="text" class="w100" name="title" id="title">
+                            <h3>Question:</h3>
+                            <textarea name="" class="w100"  id="body" cols="30" rows="10" style="overflow-y: scroll"></textarea>
+                            <div class="align-right mt1 mb1">
+                                <button id="cancel-question" id="cancel-question" onclick="cancelQuestion()" class="btn btn-danger btn-lg btn-shadow">Cancel</button>
+                                <button type="submit" id="submitQuestion" class="btn btn-success btn-lg btn-shadow">Publish</button>
+                            </div>
+                        </form>
                     </div>
 
                 </div>
@@ -345,23 +348,23 @@
                     </div>
                     <div id="all" class="row  pl2 pls1">
                         <div class="questions-card">
-                        <div class="question__avatar">
-                            <span class="unanswered question__avatar-img"><i class="fa fa-exclamation"></i></span>
-                        </div>
-                        <div class="question__content">
-                            <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
-                            <div class="question__content-description">
-                                <span>7 days ago by </span>
-                                <span class=""><a class="green-text mr2" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                            <div class="question__avatar">
+                                <span class="unanswered question__avatar-img"><i class="fa fa-exclamation"></i></span>
                             </div>
-                            <div class="question__content-body">
-                                <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                            <div class="question__content">
+                                <h4 class="question__content-title "><a class="link-nostyle blckgrey-text" href="question.html">How to find a career path</a></h4>
+                                <div class="question__content-description">
+                                    <span>7 days ago by </span>
+                                    <span class=""><a class="green-text mr2" href="">Elpis</a></span><span class="hide-md-show-sm answer-given"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                                </div>
+                                <div class="question__content-body">
+                                    <span>I will help you find today by just taking a peep into the necessities of existence in a 3rd world </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="question__response">
-                            
-                            <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
-                        </div>
+                            <div class="question__response">
+                                
+                                <span class="show-md-hide-sm"><i class="fa fa-comments-o"></i> &nbsp; 5</span>
+                            </div>
                         </div>
                         <div class="questions-card">
                             <div class="question__avatar">
@@ -472,9 +475,9 @@
                         <div class="profile-avatar" >E</div>
                         
                         <ul class="align-center profile__basic">
-                            <li class="profile__basic-name">Elpis</li>
+                            <li class="profile__basic-name user"></li>
                             <li class="profile__basic-date">Joined: A month Ago</li>
-                            <li class="profile__basic-question">Questions Asked: 10</li>
+                            <li class="profile__basic-question">Questions Asked: <span class="no-of-q">0</span></li>
                             <li class="profile__basic-answer">Given Answers: 100 </li>
                         </ul>
                         <ul class="align-center profile__actions">
@@ -581,5 +584,7 @@
 <script src="./assets/js/profile.js"></script>
 <script src="./assets/js/modal.js"></script> 
 <script src="./assets/js/script.js"></script>  
+<script src="./assets/js/userprofile.js"></script>
+<script src="./assets/js/postquestion.js"></script>
 </body>
 </html>

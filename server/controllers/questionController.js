@@ -210,7 +210,7 @@ class QuestionController {
     pool.query(allQuestions)
       .then((result) => {
         if (result.rowCount === 0) {
-          return res.status(204).json({ status: status[200], data: 'You have asked no question' });
+          return res.status(200).json({ status: status[200], data: 'You have asked no question' });
         } return res.status(200).json({ status: status[200], data: result.rows })
       })
       .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }) })

@@ -379,3 +379,34 @@
   height: auto!important;
 }
 }
+
+.message {
+  position: fixed;
+  bottom: 10px;
+  right: 5px;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.message-success {
+  display: none;
+  border-radius: 0.25rem;
+  color: #155724;
+  border: 2px solid #c3e6cb;
+  padding: 15px 10px;
+  font-size: 20px;
+  background-color: #d4edda;
+  
+}
+
+.message-failure {
+  display: none;
+  border-radius: 0.25rem;
+  color: #721c24;
+  padding: 15px 10px;
+  font-size: 20px;
+  background-color: #f8d7da;
+  border: 2px solid #f5c6cb;
+}
