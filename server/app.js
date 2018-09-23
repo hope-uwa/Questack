@@ -20,8 +20,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 4000;
 // Static files
 app.use('/', express.static(path.resolve(__dirname, '../ui/')));
-app.use(express.static(path.join(__dirname)));
-app.use("/assets", express.static(__dirname + 'ui/assets'));
 
 app.use('/docs', swagger.serve, swagger.setup(swaggerDocument));
 app.use('/', uiRoutes)
