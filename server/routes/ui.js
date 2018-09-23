@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 const uiRoutes = Router();
-const root = 'ui';
+const root = 'frontend';
 
 uiRoutes.get('/', (req, res) => {
   res.sendFile('index.html', { root })
