@@ -3,12 +3,9 @@ import { Router } from 'express';
 const uiRoutes = Router();
 const root = 'ui';
 
-uiRoutes.get('/index', (req, res) => {
+uiRoutes.get('/', (req, res) => {
   res.sendFile('index.html', { root })
-});
-uiRoutes.get('/prof',(req, res) => {
-  res.sendFile(path.join(__dirname + '/../ui/index.html'));
-});
+})
 uiRoutes.get('/profile', (req, res) => {
   res.sendFile('auth/user-profile.html', { root })
 })
