@@ -23,11 +23,10 @@ class QuestionController {
   static allQuestions(req, res) {
     const allQuestions = 'SELECT * FROM questions';
 
-
     pool.query(allQuestions)
       .then((result) => {
         if (result.rowCount === 0) {
-          return res.status(204).json({ status: status[204], message: 'No question has been added' });
+          return res.status(200).json({ status: status[200], message: 'No question has been added' });
         } return res.status(200).json({ status: status[200], message: result.rows })
       })
       .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }) })

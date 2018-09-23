@@ -39,7 +39,7 @@
     padding: 10px 5px;
     border-bottom: 1px dotted #d7d7d7;
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 400;
     cursor:pointer;
     letter-spacing: -.6px;
     transition: padding-left .4s;
@@ -70,4 +70,17 @@ color:inherit;
 }
 .sidebar{
     background-color: #e0e0e075;
+}
+@media(max-width:768px){
+    .profile__actions li {
+        display: inline-block;
+        text-align: left;
+        padding: 10px 5px;
+        border-bottom: 1px dotted #d7d7d7;
+        font-size: 12px;
+        font-weight: 400;
+        cursor: pointer;
+        letter-spacing: -.6px;
+        transition: padding-left .4s;
+    }
 }
