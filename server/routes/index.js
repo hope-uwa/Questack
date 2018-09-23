@@ -50,10 +50,7 @@ const routes = (app) => {
 
   app.get('/downmigration', tableMigrations.dropTables);
 
-  app.get('/ind', (req, res) => {
-  res.sendFile('index.html', { root })
-});
-
+  
   app.get('/*', (req, res) => res.status(404).json({
     status: '404 -Not Found',
     message: 'This route does not exist'
