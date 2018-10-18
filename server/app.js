@@ -5,13 +5,15 @@ import swagger from 'swagger-ui-express';
 
 import bodyParser from 'body-parser';
 
+dotenv.config();
+
 import routes from './routes';
 
 import uiRoutes from './routes/ui';
 
 const swaggerDocument = require('../swagger.json');
 
-dotenv.config();
+
 
 const app = express();
 
@@ -28,8 +30,8 @@ routes(app);
 
 
 app.listen(port, () => {
-
-  console.log(`Server running on port ${port}`);
+  
+  console.log(`You are on ${process.env.NODE_ENV}, and server is running on port ${port}`);
 });
 
 export default app;
