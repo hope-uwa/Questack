@@ -7,7 +7,9 @@ chai.use(chaiHttp);
 
 process.env.NODE_ENV = 'test';
 
-// const email = Math.random().toString(36).substring(2, 15);
+const email = Math.random().toString(36).substring(2, 15);
+const randomized = Math.random(100)
+console.log(email);
 
 describe('Authentication', () => {
 
@@ -65,6 +67,21 @@ describe('Authentication', () => {
       username: '',
       email: 'elpis@gmail.com',
       password: 'johndoe'
+    };
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(user)
+      .end((err, response) => {
+        expect(response.status).to.equal(400);
+        done();
+      });
+  });
+
+  it('should not register a user if username is empty', (done) => {
+    const user = {
+      username: '',
+      email: '',
+      password: ''
     };
     chai.request(app)
       .post('/api/v1/auth/signup')

@@ -7,7 +7,7 @@ import token from '../helpers/tokenGenerator';
 const { expect } = chai;
 chai.use(chaiHttp);
 
-const { userToken, userToken2, wrongToken } = token;
+const { userToken, wrongToken } = token;
 
 describe('POST endpoint for voteup', () => {
   const api = '/api/v1/questions/1/answers/1/voteup';
@@ -22,7 +22,7 @@ describe('POST endpoint for voteup', () => {
       .end((error, response) => {
         expect(response.status).to.equal(401);
         expect(response.body.error).to.equal('You are unauthorised to make this request');
-        if (error) return done(error);
+
         done();
       });
   });
@@ -35,7 +35,7 @@ describe('POST endpoint for voteup', () => {
       .end((error, response) => {
         expect(response.status).to.equal(401);
         expect(response.body.error).to.equal('Could not authenticate the provided token');
-        if (error) return done(error);
+
         done();
       });
   });
@@ -47,8 +47,6 @@ describe('POST endpoint for voteup', () => {
       .send(data.noContentAnswer)
       .end((error, response) => {
         expect(response.status).to.equal(400);
-        // expect(response.body.error).to.equal('Question Id must be an integer');
-        if (error) return done(error);
         done();
       });
   });
@@ -59,8 +57,6 @@ describe('POST endpoint for voteup', () => {
       .send(data.noContentAnswer)
       .end((error, response) => {
         expect(response.status).to.equal(400);
-        // expect(response.body.error).to.equal('Answer Id must be an integer');
-        if (error) return done(error);
         done();
       });
   });
@@ -73,36 +69,36 @@ describe('POST endpoint for voteup', () => {
       .end((error, response) => {
         expect(response.status).to.equal(404);
         expect(response.body.message).to.equal('There is no question with that Question Id');
-        if (error) return done(error);
+
         done();
       });
   });
 
   it('should return 404 if answer is not found ', (done) => {
     chai.request(app)
-      .post(noAnswerApi)
+      .post('/api/v1/questions/2/answers/4/voteup')
       .set('Authorization', userToken)
       .send(data.noContentAnswer)
       .end((error, response) => {
         expect(response.status).to.equal(404);
         expect(response.body.message).to.equal('There is no answer with that Answer Id');
-        if (error) return done(error);
         done();
       });
   });
 
   it('should return 201 if voted Up ', (done) => {
     chai.request(app)
-      .posts(api)
+      .post('/api/v1/questions/2/answers/1/voteup')
       .set('Authorization', userToken)
       .send(data.noContentAnswer)
       .end((error, response) => {
-        expect(response.status).to.equal(404);
-        expect(response.body.message).to.equal('There is no answer with that Answer Id');
-        if (error) return done(error);
+        expect(response.status).to.equal(201);
+        expect(response.body.message).to.equal('You have successfully voted Up');
         done();
       });
   });
+
+
 });
 describe('POST endpoint for votedown', () => {
   const api = '/api/v1/questions/1/answers/1/votedown';
@@ -115,7 +111,7 @@ describe('POST endpoint for votedown', () => {
       .end((error, response) => {
         expect(response.status).to.equal(401);
         expect(response.body.error).to.equal('You are unauthorised to make this request');
-        if (error) return done(error);
+
         done();
       });
   });
@@ -128,7 +124,7 @@ describe('POST endpoint for votedown', () => {
       .end((error, response) => {
         expect(response.status).to.equal(401);
         expect(response.body.error).to.equal('Could not authenticate the provided token');
-        if (error) return done(error);
+
         done();
       });
   });
@@ -141,7 +137,7 @@ describe('POST endpoint for votedown', () => {
       .end((error, response) => {
         expect(response.status).to.equal(400);
         // expect(response.body.error).to.equal('Question Id must be an integer');
-        if (error) return done(error);
+
         done();
       });
   });
@@ -153,7 +149,7 @@ describe('POST endpoint for votedown', () => {
       .end((error, response) => {
         expect(response.status).to.equal(400);
         // expect(response.body.error).to.equal('Answer Id must be an integer');
-        if (error) return done(error);
+
         done();
       });
   });

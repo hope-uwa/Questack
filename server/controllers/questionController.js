@@ -21,7 +21,7 @@ class QuestionController {
        */
 
   static allQuestions(req, res) {
-   
+
     const allQuestions = 'SELECT questions.id, questions.question_title, questions.question_body, questions.created_at, users.user_name FROM questions INNER JOIN users ON questions.user_id=users.id ORDER BY id DESC';
 
     pool.query(allQuestions)
@@ -54,7 +54,7 @@ class QuestionController {
     // const questionQuery = `SELECT * FROM questions WHERE id ='${questionId}'`
     const answerQuery = `SELECT answers.id, answers.answer_body, answers.created_at, users.user_name FROM answers INNER JOIN users ON answers.user_id=users.id WHERE question_id ='${questionId}'`
     const questionQuery = `SELECT questions.id, questions.question_title, questions.question_body, questions.created_at, users.user_name FROM questions INNER JOIN users ON questions.user_id=users.id WHERE questions.id='${questionId}'   `;
-    const preferredAnswerQuery = `SELECT answers.id, answers.answer_body, answers.created_at, users.user_name FROM answers INNER JOIN users ON answers.user_id=users.id WHERE question_id ='${questionId}'`
+    // const preferredAnswerQuery = `SELECT answers.id, answers.answer_body, answers.created_at, users.user_name FROM answers INNER JOIN users ON answers.user_id=users.id WHERE question_id ='${questionId}'`
     pool.query(questionQuery)
       .then((result) => {
         if (result.rowCount < 1) {
@@ -171,7 +171,8 @@ class QuestionController {
       .then((result) => {
         if (result.rowCount === 0) {
           res.status(404).json({ status: status[404], message: 'There is no question with that ID' })
-        } else if (result.rows[0].user_id !== userId) {
+        } else if (userId != result.rows[0].user_id) {
+          // console.log(`user:${result.rows[0].user_id} ,user2:${userId}`)
           res.status(401).json({ status: status[401], message: 'You can not delete this question because you are not the author' })
         } else {
           pool.query(deleteQuestion)

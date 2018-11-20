@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test-table-migration": "node --require babel-register server/helpers/table_schema/testTableMigrations",
-    "test": "cross-env NODE_ENV=test npm run test-table-migration && nyc --reporter=html --reporter=text mocha --timeout 10000 --require babel-register server/test/*.js  --exit",
+    "test": "cross-env NODE_ENV=test npm run test-table-migration && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 10000 --require babel-register server/test/*.js  --exit",
     "start": "babel-node ./server/app.js",
     "dev-start": "cross-env NODE_ENV=production nodemon --exec babel-node -- ./server/app.js",
     "lint-all": "eslint ./server/app.js ./server/test/*",

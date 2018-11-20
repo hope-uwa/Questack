@@ -29,7 +29,7 @@ class CommentController {
 
     const createdAt = moment().format();
     const getQuestionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
-    const getAnswerQuery = `SELECT * FROM answers WHERE id = '${questionId}'`;
+    const getAnswerQuery = `SELECT * FROM answers WHERE id = '${answerId}'`;
 
 
     const addCommentQuery = `INSERT INTO comments (answer_id,user_id,comment_body,created_at) VALUES ('${answerId}', '${userId}','${body}','${createdAt}') RETURNING *`
