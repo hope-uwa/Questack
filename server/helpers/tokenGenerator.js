@@ -6,7 +6,7 @@ const userToken = `${jwt.sign({
 }, process.env.TOKEN_SECRET_KEY)}`;
 const userToken2 = `${jwt.sign({
   id: '2'
-}, process.env.TOKEN_SECRET_KEY )}`;
+}, process.env.TOKEN_SECRET_KEY)}`;
 const wrongToken = `${jwt.sign({
   id: '1'
 }, 'fakesecretkey')}`

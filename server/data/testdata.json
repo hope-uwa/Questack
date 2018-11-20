@@ -4,6 +4,11 @@
         "body":"I'm trying to do this the elegant way, with jsdom and jQuery in node ."
         
     },
+    "noContent":{
+        "title":"",
+        "body":""
+        
+    },
     "noBodyQuestion":{
         "title":"Firing onclick event which triggers a POST request in jsdom",
         "body":""
@@ -11,7 +16,7 @@
     },
     "goodQuestion":{
         "title":"Firing onclick event which triggers a POST request in jsdom",
-        "body":"I'm trying to do this the elegant way, with jsdom and jQuery in node"
+        "body":"I am trying to do this the elegant way, with jsdom and jQuery in node"
         
     },
     "noContentAnswer":{
@@ -19,7 +24,7 @@
         
     },
     "goodAnswer":{
-        "body":"I'm trying to do this the elegant way"
+        "body":"I am trying to do this the elegant way"
     }
    
     

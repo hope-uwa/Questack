@@ -85,9 +85,9 @@ class TableMigrations {
       .then(() => pool.query(deleteVotes))
       .then(() => pool.query(deleteComments))
       .then(() => TableMigrations.createTables())
-      .catch(err => console.log(err) );
+      .catch(err => console.log(err));
 
-    
+
   }
 
 

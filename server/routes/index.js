@@ -28,9 +28,7 @@ const routes = (app) => {
 
   app.get('/api/v1/questions/:questionId/answers', validateAuth.getAnswers, AnswerController.getAnswers);
 
-  app.put('/api/v1/questions/:questionId/answers/:answerId', verifyToken, validateAuth.specialUpdate, AnswerController.updateAnswer)
-
-  app.put('/api/v1/questions/:questionId/answers/:answerId/correct', verifyToken, validateAuth.getAnswer, AnswerController.acceptedAnswer)
+  app.put('/api/v1/questions/:questionId/answers/:answerId', verifyToken, validateAuth.specialUpdate, AnswerController.updateAnswer);
 
   app.get('/api/v1/users/questions', verifyToken, QuestionController.userQuestions);
 
@@ -44,13 +42,11 @@ const routes = (app) => {
 
   app.post('/api/v1/questions/:questionId/answers/:answerId/votedown', verifyToken, validateAuth.getAnswer, VoteController.voteDown);
 
-  app.get('/api/v1/user', UserController.user);
-
   app.get('/upmigration', tableMigrations.createTables);
 
   app.get('/downmigration', tableMigrations.dropTables);
 
-  
+
   app.get('/*', (req, res) => res.status(404).json({
     status: '404 -Not Found',
     message: 'This route does not exist'

@@ -5,19 +5,21 @@ import swagger from 'swagger-ui-express';
 
 import bodyParser from 'body-parser';
 
+dotenv.config();
+
 import routes from './routes';
 
 import uiRoutes from './routes/ui';
 
 const swaggerDocument = require('../swagger.json');
 
-dotenv.config();
+
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5002;
 // Static files
 app.use('/', express.static(path.resolve(__dirname, '../frontend/')));
 
@@ -29,7 +31,7 @@ routes(app);
 
 app.listen(port, () => {
 
-  console.log(`Server running on port ${port}`);
+  console.log(`You are on ${process.env.NODE_ENV}, and server is running on port ${port}`);
 });
 
 export default app;

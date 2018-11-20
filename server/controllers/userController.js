@@ -106,19 +106,19 @@ class UserController {
 
   }
 
-  static user(req, res) {
-    const { userId } = req;
-    const getUser = `SELECT * FROM users where id = ${userId}`;
+  // static user(req, res) {
+  //   const { userId } = req;
+  //   const getUser = `SELECT * FROM users where id = ${userId}`;
 
 
-    pool.query(getUser)
-      .then((result) => {
-        if (result.rowCount === 0) {
-          return res.status(200).json({ status: status[200], data: 'There is no such user' });
-        } return res.status(200).json({ status: status[200], username: result.rows[0].user_name, dateJoined: result.rows[0].created_at })
-      })
-      .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }) })
-    return null;
-  }
+  //   pool.query(getUser)
+  //     .then((result) => {
+  //       if (result.rowCount === 0) {
+  //         return res.status(200).json({ status: status[200], data: 'There is no such user' });
+  //       } return res.status(200).json({ status: status[200], username: result.rows[0].user_name, dateJoined: result.rows[0].created_at })
+  //     })
+  //     .catch(() => { res.status(500).json({ status: status[500], message: 'An error occured while processing this request' }) })
+  //   return null;
+  // }
 }
 export default UserController;

@@ -1,5 +1,5 @@
-import chaiHttp from 'chai-http';
 import chai from 'chai';
+import chaiHttp from 'chai-http';
 import app from '../app';
 import data from '../data/testdata.json';
 import token from '../helpers/tokenGenerator';
@@ -20,7 +20,7 @@ describe('POST endpoint for comment', () => {
       .end((error, response) => {
         expect(response.status).to.equal(401);
         expect(response.body.error).to.equal('You are unauthorised to make this request');
-        if (error) return done(error);
+
         done();
       });
   });
@@ -33,7 +33,7 @@ describe('POST endpoint for comment', () => {
       .end((error, response) => {
         expect(response.status).to.equal(401);
         expect(response.body.error).to.equal('Could not authenticate the provided token');
-        if (error) return done(error);
+
         done();
       });
   });
@@ -45,7 +45,7 @@ describe('POST endpoint for comment', () => {
       .end((error, response) => {
         expect(response.status).to.equal(400);
         expect(response.body.error).to.equal('Comment content can not be empty');
-        if (error) return done(error);
+
         done();
       });
   });
@@ -57,7 +57,7 @@ describe('POST endpoint for comment', () => {
       .end((error, response) => {
         expect(response.status).to.equal(400);
         expect(response.body.error).to.equal('Comment content is required');
-        if (error) return done(error);
+
         done();
       });
   });
@@ -69,8 +69,6 @@ describe('POST endpoint for comment', () => {
       .send(data.goodAnswer)
       .end((error, response) => {
         expect(response.status).to.equal(404);
-       // expect(response.body.message).to.equal('question with Id: 50 can not be found');
-        if (error) return done(error);
         done();
       });
   });
@@ -81,23 +79,22 @@ describe('POST endpoint for comment', () => {
       .send(data.goodAnswer)
       .end((error, response) => {
         expect(response.status).to.equal(400);
-       // expect(response.body.error).to.equal('Question ID must be an integer');
         expect(response.body).to.be.an('object');
-        if (error) return done(error);
+
         done();
       });
   });
 
   it('should return 201 for a successful post request ', (done) => {
     chai.request(app)
-      .post(api)
+      .post('/api/v1/questions/2/answers/1/comments')
       .set('Authorization', userToken)
       .send(data.goodAnswer)
       .end((error, response) => {
         expect(response.status).to.equal(201);
-        expect(response.body.message).to.equal('Answer added successfully');
+        expect(response.body.message).to.equal('Comment added successfully');
         expect(response.body).to.be.an('object');
-        if (error) return done(error);
+
         done();
       });
   });
