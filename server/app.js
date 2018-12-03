@@ -2,6 +2,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import express from 'express';
 import swagger from 'swagger-ui-express';
+import cors from 'cors'
 
 import bodyParser from 'body-parser';
 
@@ -19,6 +20,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
 const port = process.env.PORT || 5002;
 // Static files
 app.use('/', express.static(path.resolve(__dirname, '../frontend/')));
