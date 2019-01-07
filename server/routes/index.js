@@ -30,6 +30,9 @@ const routes = (app) => {
 
   app.put('/api/v1/questions/:questionId/answers/:answerId', verifyToken, validateAuth.specialUpdate, AnswerController.updateAnswer);
 
+  app.put('/api/v1/questions/:questionId/answers/:answerId/accept', verifyToken, validateAuth.specialUpdate, AnswerController.acceptedAnswer);
+  
+
   app.get('/api/v1/users/questions', verifyToken, QuestionController.userQuestions);
 
   app.get('/api/v1/users/answers', verifyToken, AnswerController.userAnswers);

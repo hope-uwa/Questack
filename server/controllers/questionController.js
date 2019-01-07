@@ -22,7 +22,7 @@ class QuestionController {
 
   static allQuestions(req, res) {
 
-    const allQuestions = 'SELECT questions.id, questions.question_title, questions.question_body, questions.created_at, users.user_name FROM questions INNER JOIN users ON questions.user_id=users.id ORDER BY id DESC';
+    const allQuestions = 'SELECT questions.id, questions.question_title, questions.question_body, questions.created_at, users.user_name,  COUNT(answers.question_id), COUNT(preferred.question_id) AS preferred  FROM questions FULL JOIN answers ON questions.id= answers.question_id FULL JOIN preferred ON preferred.question_id=questions.id INNER JOIN users ON questions.user_id=users.id GROUP BY questions.id, users.user_name, preferred.question_id ORDER BY id DESC';
 
     pool.query(allQuestions)
       .then((result) => {
@@ -51,8 +51,8 @@ class QuestionController {
       return res.status(400).json({ status: status[400], error: errors.array()[0].msg });
     }
     const { questionId } = req.params;
-    // const questionQuery = `SELECT * FROM questions WHERE id ='${questionId}'`
-    const answerQuery = `SELECT answers.id, answers.answer_body, answers.created_at, users.user_name FROM answers INNER JOIN users ON answers.user_id=users.id WHERE question_id ='${questionId}'`
+    // const questionQuery = `SELECT * FROM questions WHERE id ='${questionId}'` 
+    const answerQuery = `SELECT answers.id, answers.answer_body, answers.preferred, answers.created_at, users.user_name FROM answers INNER JOIN users ON answers.user_id=users.id WHERE question_id ='${questionId}'`
     const questionQuery = `SELECT questions.id, questions.question_title, questions.question_body, questions.created_at, users.user_name FROM questions INNER JOIN users ON questions.user_id=users.id WHERE questions.id='${questionId}'   `;
     // const preferredAnswerQuery = `SELECT answers.id, answers.answer_body, answers.created_at, users.user_name FROM answers INNER JOIN users ON answers.user_id=users.id WHERE question_id ='${questionId}'`
     pool.query(questionQuery)

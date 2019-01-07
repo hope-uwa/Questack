@@ -34,7 +34,7 @@ class AnswerController {
       .then((result) => {
 
         if (result.rowCount === 0) {
-          return res.status(404).json({ status: status[404], message: `question with Id: ${questionId} can not be found` })
+          return res.status(404).json({ status: status[404], message: 'question can not be found' })
         }
         pool.query(addAnswerQuery)
           .then((result1) => {
@@ -146,42 +146,55 @@ class AnswerController {
        * @returns {(function|object)} Function next() or JSON object
        */
 
-  // static acceptedAnswer(req, res) {
-  //   const errors = validateAuth.validationResult(req);
-  //   if (!errors.isEmpty()) {
-  //     return res.status(400).json({ errors: errors.array()[0].msg });
-  //   }
+  static acceptedAnswer(req, res) {
+    const errors = validateAuth.validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array()[0].msg });
+    }
 
-  //   const { questionId } = req.params;
-  //   const { answerId } = req.params;
-  //   const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
-  //   const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}' AND question_id = '${questionId}'`;
-  //   const createdAt = moment().format();
-  //   const insertCorrectAnswer = `INSERT INTO preferred (question_id,answer_id,created_at) VALUES ('${questionId}','${answerId}','${createdAt}') RETURNING *`
-  //   pool.query(questionQuery)
-  //     .then((result) => {
-  //       if (result.rowCount < 1) {
-  //         return res.status(404).json({ status: status[404], message: `question with Id: ${questionId} can not be found` })
-  //       }
-  //       if (result.rows[0].user_id !== req.userId) {
-  //         return res.status(401).json({ status: status[401], message: 'You can not mark answer as correct' })
-  //       }
-  //       pool.query(answerQuery)
-  //         .then((result1) => {
-  //           if (result1.rowCount < 1) {
-  //             return res.status(404).json({ status: status[404], message: `Answer with Answer Id: ${answerId} can not be found` })
-  //           }
-  //           pool.query(insertCorrectAnswer)
-  //             .then(() => res.status(201).json({ status: status[201], message: 'Answer has been marked as correct', body: result1.rows[0] }))
-  //             .catch(() => res.status(500).json({ message: 'An internal error occured1' }));
-  //           return null;
-  //         })
-  //         .catch(() => res.status(500).json({ message: 'An internal error occured2' }));
-  //       return null;
-  //     })
-  //     .catch(() => res.status(500).json({ message: 'An internal error occured 3' }));
-  //   return null;
-  // }
+    const { questionId } = req.params;
+    const { answerId } = req.params;
+    const questionQuery = `SELECT * FROM questions WHERE id = '${questionId}'`;
+    const answerQuery = `SELECT * FROM answers WHERE id = '${answerId}' AND question_id = '${questionId}'`;
+    const updateAnswer = `UPDATE answers SET preferred = 'true' WHERE id = '${answerId}' RETURNING *`
+    const createdAt = moment().format();
+    const checkPreferred = `SELECT * FROM preferred WHERE question_id = '${questionId}'`;
+    const insertCorrectAnswer = `INSERT INTO preferred (question_id,answer_id,created_at) VALUES ('${questionId}','${answerId}','${createdAt}') RETURNING *`
+    pool.query(questionQuery)
+      .then((result) => {
+        if (result.rowCount < 1) {
+          return res.status(404).json({ status: status[404], message: `question with Id: ${questionId} can not be found` })
+        }
+        if (result.rows[0].user_id !== req.userId) {
+          return res.status(401).json({ status: status[401], message: 'You can not mark answer as correct' })
+        }
+        pool.query(answerQuery)
+          .then((result1) => {
+            if (result1.rowCount < 1) {
+              return res.status(404).json({ status: status[404], message: `Answer with Answer Id: ${answerId} can not be found` })
+            }
+            pool.query(checkPreferred)
+              .then((preferredExist) => {
+                if (preferredExist.rowCount < 1) {
+                  pool.query(insertCorrectAnswer)
+                    .then(pool.query(updateAnswer))
+                    .then(() => res.status(201).json({ status: status[201], message: 'Answer has been marked as correct', body: result1.rows[0] }))
+                    .catch(() => res.status(500).json({ message: 'An internal error occured1' }));
+                  return null;
+
+                }
+
+                return res.status(401).json({ status: status[401], message: 'You have already preferred a question' })
+
+              })
+
+          })
+          .catch(() => res.status(500).json({ message: 'An internal error occured2' }));
+        return null;
+      })
+      .catch(() => res.status(500).json({ message: 'An internal error occured 3' }));
+    return null;
+  }
 
   /**
        * Returns a Answers
