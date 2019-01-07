@@ -6,21 +6,21 @@ import cors from 'cors'
 
 import bodyParser from 'body-parser';
 
-dotenv.config();
-
 import routes from './routes';
 
 import uiRoutes from './routes/ui';
+
+dotenv.config();
 
 const swaggerDocument = require('../swagger.json');
 
 
 
 const app = express();
-
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors())
+
 const port = process.env.PORT || 5002;
 // Static files
 app.use('/', express.static(path.resolve(__dirname, '../frontend/')));
