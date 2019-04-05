@@ -1,4 +1,4 @@
-# StackOverflow-lite
+# Questack
 [![Build Status](https://travis-ci.org/uwaelpis/StackOverflow-lite.svg?branch=develop)](https://travis-ci.org/uwaelpis/StackOverflow-lite)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f825ed59ea572f98f4cc/test_coverage)](https://codeclimate.com/github/uwaelpis/StackOverflow-lite/test_coverage)
 [![Coverage Status](https://coveralls.io/repos/github/uwaelpis/StackOverflow-lite/badge.svg?branch=develop)](https://coveralls.io/github/uwaelpis/StackOverflow-lite?branch=develop)
