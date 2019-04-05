@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/uwaelpis/StackOverflow-lite/badge.svg?branch=develop)](https://coveralls.io/github/uwaelpis/StackOverflow-lite?branch=develop)
 
 ## Project Overview
-StackOverflow-lite is a platform where people can ask questions and provide answers.
+Questack is a platform where people can ask questions and provide answers.
 
 
 
