@@ -23,7 +23,7 @@ Questack is a platform where people can ask questions and provide answers.
 Project is currently being built with the Project Management Tool, Pivotal Tracker at [https://www.pivotaltracker.com/n/projects/2189288](https://www.pivotaltracker.com/n/projects/2189288)
 
 ### Template
-Template is hosted at [https://uwaelpis.github.io/StackOverflow-lite/UI/index.html](https://uwaelpis.github.io/StackOverflow-lite/UI/index.html)
+Template is hosted at [https://uwaelpis.github.io/Questack/UI/index.html](https://uwaelpis.github.io/Questack/UI/index.html)
 
 ### API Deployment
 API is deployed with dummy data at [https://uwaelpis.herokuapp.com/](https://uwaelpis.herokuapp.com/)
@@ -98,7 +98,7 @@ answer.
 ### Installation
 
 * git clone
-  [StackOverflow Lite](https://github.com/uwaelpis/StackOverflow-lite.git)
+  [Questack](https://github.com/uwaelpis/Questack.git)
 * Run `npm install` to install packages
 * Run `npm start` to start the server
 * Navigate to [localhost:4000](http://localhost:4000/) in browser to access the
